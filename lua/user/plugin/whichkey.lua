@@ -134,15 +134,14 @@ local mappings = {
 
     f = {
         name = "Find",
-        B = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         b = {
             "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
-            "Find files",
+            "Find buffer",
         },
         c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
         f = {
             "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = flase})<cr>",
-            "Find files",
+            "Find file",
         },
         t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
         p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
@@ -161,7 +160,7 @@ local mappings = {
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-        l = { "<cmd>GitBlameToggle<cr>", "Blame" },
+        l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
         p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
