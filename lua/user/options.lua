@@ -1,7 +1,7 @@
 local options = {
     -- appearance
     showcmd = true, --右下角显示命令
-    showmode = true, --右下角显示模式
+    showmode = false, --右下角显示模式
     number = true, --行号
     relativenumber = true, --相对行号
     cmdheight = 1, --Number of screen lines to use for the command-line.

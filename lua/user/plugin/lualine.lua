@@ -15,200 +15,37 @@ local function contains(t, value)
     return false
 end
 
-vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = "#32363e" })
-vim.api.nvim_set_hl(0, "SLTermIcon", { fg = "#b668cd", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = "#32363e", bold = false })
-vim.api.nvim_set_hl(0, "SLProgress", { fg = "#abb2bf", bg = "#32363e" })
-vim.api.nvim_set_hl(0, "SLFG", { fg = "#abb2bf", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLSeparator", { fg = "#6b727f", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLError", { fg = "#bf616a", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLWarning", { fg = "#D7BA7D", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLLSP", { fg = "#5e81ac", bg = "#282c34" })
-vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = "#282c34" })
-
-local mode_color = {
-    n = "#519fdf",
-    i = "#c18a56",
-    v = "#b668cd",
-    [""] = "#b668cd",
-    V = "#b668cd",
-    -- c = '#B5CEA8',
-    -- c = '#D7BA7D',
-    c = "#46a6b2",
-    no = "#D16D9E",
-    s = "#88b369",
-    S = "#c18a56",
-    [""] = "#c18a56",
-    ic = "#d05c65",
-    R = "#D16D9E",
-    Rv = "#d05c65",
-    cv = "#519fdf",
-    ce = "#519fdf",
-    r = "#d05c65",
-    rm = "#46a6b2",
-    ["r?"] = "#46a6b2",
-    ["!"] = "#46a6b2",
-    t = "#d05c65",
-}
+vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = "#3e4451" })
 
 local mode = {
-    -- mode component
-    function()
-        -- return "▊"
-        return "  "
-        -- return "  "
-    end,
-    color = function()
-        -- auto change color according to neovims mode
-        return { bg = mode_color[vim.fn.mode()] }
-    end,
-    padding = 0,
+    "mode",
+    icon = ""
 }
-
-local hide_in_width_60 = function()
-    return vim.o.columns > 60
-end
-
-local hide_in_width = function()
-    return vim.o.columns > 80
-end
-
-local hide_in_width_100 = function()
-    return vim.o.columns > 100
-end
 
 local icons = require "user.icons"
 
 local diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
-    sections = { "error", "warn" },
-    symbols = { error = "%#SLError#" .. icons.diagnostics.Error .. "%*" .. " ",
-        warn = "%#SLWarning#" .. icons.diagnostics.Warning .. "%*" .. " " },
-    colored = false,
+    sections = { "error", "warn", "info", "hint" },
+    symbols = {
+        error = icons.diagnostics.Error .. " ",
+        warn = icons.diagnostics.Warning .. " ",
+        info = icons.diagnostics.Information .. " ",
+        hint = icons.diagnostics.Hint .. " ",
+    },
     update_in_insert = false,
-    always_visible = true,
+    always_visible = false,
 }
 
 local diff = {
     "diff",
-    colored = false,
-    symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
-    cond = hide_in_width_60,
-    separator = "%#SLSeparator#" .. "│ " .. "%*",
+    symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " },
 }
 
-local filetype = {
-    "filetype",
-    fmt = function(str)
-        local ui_filetypes = {
-            "help",
-            "packer",
-            "neogitstatus",
-            "NvimTree",
-            "Trouble",
-            "lir",
-            "Outline",
-            "spectre_panel",
-            "toggleterm",
-            "DressingSelect",
-            "",
-            "nil",
-        }
-
-        if str == "TelescopePrompt" then
-            return icons.ui.Telescope
-        end
-
-        local function get_term_num()
-            local t_status_ok, toggle_num = pcall(vim.api.nvim_buf_get_var, 0, "toggle_number")
-            if not t_status_ok then
-                return ""
-            end
-            return toggle_num
-        end
-
-        if str == "toggleterm" then
-            -- 
-            local term = "%#SLTermIcon#" .. " " .. "%*" .. "%#SLFT#" .. get_term_num() .. "%*"
-            return term
-        end
-
-        if contains(ui_filetypes, str) then
-            return ""
-        else
-            return str
-        end
-        return str
-    end,
-    icons_enabled = false,
-    padding = 0,
-}
 local branch = {
     "branch",
-    icons_enabled = true,
-    icon = "%#SLGitIcon#" .. "" .. "%*" .. "%#SLBranchName#",
-    -- color = "Constant",
-    colored = false,
-}
-
-local progress = {
-    "progress",
-    color = "SLProgress",
-}
-
-local current_signature = {
-    function()
-        local buf_ft = vim.bo.filetype
-
-        if buf_ft == "toggleterm" then
-            return ""
-        end
-        if not pcall(require, "lsp_signature") then
-            return ""
-        end
-        local sig = require("lsp_signature").status_line(30)
-        local hint = sig.hint
-
-        if not require("user.functions").isempty(hint) then
-            -- return "%#SLSeparator#│ : " .. hint .. "%*"
-            return "%#SLSeparator#│ " .. hint .. "%*"
-        end
-
-        return ""
-    end,
-    cond = hide_in_width_100,
-    padding = 0,
-}
-
-local spaces = {
-    function()
-        local buf_ft = vim.bo.filetype
-
-        local ui_filetypes = {
-            "help",
-            "packer",
-            "neogitstatus",
-            "NvimTree",
-            "Trouble",
-            "lir",
-            "Outline",
-            "spectre_panel",
-            "DressingSelect",
-            "",
-        }
-        local space = ""
-
-        if contains(ui_filetypes, buf_ft) then
-            space = " "
-        end
-
-        -- TODO: update codicons and use their indent
-        return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. space
-    end,
-    padding = 0,
-    separator = "%#SLSeparator#" .. " │" .. "%*",
-    cond = hide_in_width_100,
+    icon = { "", color = { fg = "#E8AB53" } },
 }
 
 local lanuage_server = {
@@ -273,10 +110,10 @@ local lanuage_server = {
         local language_servers = ""
         local client_names_str_len = #client_names_str
         if client_names_str_len ~= 0 then
-            language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
+            language_servers = "[" .. client_names_str .. "]"
         end
         if copilot_active then
-            language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
+            language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface
         end
 
         if client_names_str_len == 0 and not copilot_active then
@@ -286,18 +123,7 @@ local lanuage_server = {
             return language_servers:gsub(", anonymous source", "")
         end
     end,
-    padding = 0,
-    cond = hide_in_width,
-    separator = "%#SLSeparator#" .. " │" .. "%*",
-}
-
-local location = {
-    "location",
-    color = function()
-        -- darkerplus
-        -- return { fg = "#252525", bg = mode_color[vim.fn.mode()] }
-        return { fg = "#1E232A", bg = mode_color[vim.fn.mode()] }
-    end,
+    padding = 1,
 }
 
 lualine.setup {
@@ -311,22 +137,12 @@ lualine.setup {
         always_divide_middle = true,
     },
     sections = {
-        lualine_a = { mode, branch },
-        lualine_b = { diagnostics },
-        lualine_c = { current_signature },
-        lualine_x = { diff, lanuage_server, spaces, filetype },
-        lualine_y = { progress },
-        lualine_z = { location },
+        lualine_a = { mode },
+        lualine_b = { branch },
+        lualine_c = { diagnostics },
+        lualine_x = { diff },
+        lualine_y = { lanuage_server, "encoding", "fileformat", "filetype" },
+        lualine_z = { "progress", "location" },
     },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-    },
-    tabline = {},
-    extensions = {},
+    extensions = { 'nvim-dap-ui', 'toggleterm', 'nvim-tree' },
 }
-
