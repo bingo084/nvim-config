@@ -112,6 +112,8 @@ return require('packer').startup(function(use)
     use {'knubie/vim-kitty-navigator',
         run= 'cp ./*.py ~/.config/kitty/'
     }
+    -- Color
+    use 'norcalli/nvim-colorizer.lua'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
