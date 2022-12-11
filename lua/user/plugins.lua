@@ -105,7 +105,6 @@ return require('packer').startup(function(use)
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'p00f/nvim-ts-rainbow'
     use 'windwp/nvim-ts-autotag'
-    use 'nvim-telescope/telescope-media-files.nvim'
     -- Git
     use 'lewis6991/gitsigns.nvim'
     -- Vim-kitty-navigater
