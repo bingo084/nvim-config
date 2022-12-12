@@ -274,13 +274,10 @@ local mappings = {
         ["2"] = { ":2ToggleTerm<cr>", "2" },
         ["3"] = { ":3ToggleTerm<cr>", "3" },
         ["4"] = { ":4ToggleTerm<cr>", "4" },
-        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-        u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
         b = { "<cmd>lua _BTOP_TOGGLE()<cr>", "Btop" },
-        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
         f = { "<cmd>lua _FLOAT_TERM()<cr>", "Float" },
-        h = { "<cmd>lua _HORIZONTAL_TERM()<cr>", "Horizontal" },
-        v = { "<cmd>lua _VERTICAL_TERM()<cr>", "Vertical" },
+        ["-"] = { "<cmd>lua _HORIZONTAL_TERM()<cr>", "Horizontal" },
+        ["\\"] = { "<cmd>lua _VERTICAL_TERM()<cr>", "Vertical" },
     },
 
     T = {
