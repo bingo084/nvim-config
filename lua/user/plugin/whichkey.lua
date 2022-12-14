@@ -123,7 +123,23 @@ local mappings = {
     ["w"] = { "<cmd>w<CR>", "Write" },
     ["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
     ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
-    ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>", "Buffer 1" },
+    ["2"] = { "<cmd>BufferLineGoToBuffer 2<CR>", "Buffer 2" },
+    ["3"] = { "<cmd>BufferLineGoToBuffer 3<CR>", "Buffer 3" },
+    ["4"] = { "<cmd>BufferLineGoToBuffer 4<CR>", "Buffer 4" },
+    ["5"] = { "<cmd>BufferLineGoToBuffer 5<CR>", "Buffer 5" },
+    ["6"] = { "<cmd>BufferLineGoToBuffer 6<CR>", "Buffer 6" },
+    ["7"] = { "<cmd>BufferLineGoToBuffer 7<CR>", "Buffer 7" },
+    ["8"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Buffer 8" },
+    ["9"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Buffer 9" },
+    ["$"] = { "<cmd>BufferLineGoToBuffer -1<CR>", "Last Buffer" },
+
+    b = {
+        name = "Buffer",
+        a = { "<cmd>%bdelete!<CR>", "Close All" },
+        c = { "<cmd>bdelete!<CR>", "Close Current" },
+        o = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close Others" },
+    },
 
     d = {
         name = "Debug",
