@@ -31,6 +31,8 @@ keymap('n', '<C-Down>', '<cmd>resize -2<CR>', opts)
 keymap('n', '<C-Left>', '<cmd>vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', '<cmd>vertical resize +2<CR>', opts)
 -- Navigate buffers
+keymap('n', '<leader>k', 'K', opts)
+keymap('n', '<leader>j', 'J', opts)
 keymap('n', '<S-k>', '<cmd>BufferLineCycleNext<CR>', opts)
 keymap('n', '<S-j>', '<cmd>BufferLineCyclePrev<CR>', opts)
 keymap('n', '<leader>c', '<cmd>Bdelete<CR>', opts)
