@@ -23,13 +23,13 @@ toggleterm.setup {
 }
 
 function _G.set_terminal_keymaps()
-    local opts = { noremap = true }
-    vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<cmd>exit<CR>]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<c-h>", [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<c-j>", [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<c-k>", [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<c-l>", [[<C-\><C-n><C-W>l]], opts)
+    local opts = { noremap = true, buffer = 0 }
+    vim.keymap.set({ "n", "t" }, "<esc>", "<cmd>exit<CR>", opts)
+    vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "<c-h>", [[<C-\><C-n><C-W>h]], opts)
+    vim.keymap.set("t", "<c-j>", [[<C-\><C-n><C-W>j]], opts)
+    vim.keymap.set("t", "<c-k>", [[<C-\><C-n><C-W>k]], opts)
+    vim.keymap.set("t", "<c-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
 vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
@@ -37,8 +37,8 @@ vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 local Terminal = require("toggleterm.terminal").Terminal
 local unmap_key = function(term)
     if vim.fn.mapcheck('jk', 't') ~= '' then
-        vim.api.nvim_buf_del_keymap(term.bufnr, "t", "<esc>")
-        vim.api.nvim_buf_del_keymap(term.bufnr, 't', 'jk')
+        vim.keymap.del("t", "<esc>", { buffer = term.bufnr })
+        vim.keymap.del("t", "jk", { buffer = term.bufnr })
     end
 end
 
@@ -55,12 +55,10 @@ end
 local float_term = Terminal:new {
     direction = "float",
     on_open = function(term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "i", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "i", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
+        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><c-2>",
+            { remap = true, silent = true, buffer = term.bufnr })
+        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><c-3>",
+            { remap = true, silent = true, buffer = term.bufnr })
     end,
     count = 1,
 }
@@ -69,16 +67,13 @@ function _FLOAT_TERM()
     float_term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<c-1>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<c-1>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<c-1>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "t" }, "<c-1>", _FLOAT_TERM, { silent = true })
 
 local vertical_term = Terminal:new {
     direction = "vertical",
     on_open = function(term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "i", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<c-3>", "<cmd>exit<CR><c-3>", { silent = true })
+        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><c-3>",
+            { remap = true, silent = true, buffer = term.bufnr })
     end,
     count = 2,
 }
@@ -87,16 +82,13 @@ function _VERTICAL_TERM()
     vertical_term:toggle(60)
 end
 
-vim.api.nvim_set_keymap("n", "<c-2>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<c-2>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<c-2>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "t" }, "<c-2>", _VERTICAL_TERM, { silent = true })
 
 local horizontal_term = Terminal:new {
     direction = "horizontal",
     on_open = function(term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "i", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
-        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<c-2>", "<cmd>exit<CR><c-2>", { silent = true })
+        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><c-2>",
+            { remap = true, silent = true, buffer = term.bufnr })
     end,
     count = 3,
 }
@@ -105,6 +97,4 @@ function _HORIZONTAL_TERM()
     horizontal_term:toggle(10)
 end
 
-vim.api.nvim_set_keymap("n", "<c-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<c-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<c-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "t" }, "<c-3>", _HORIZONTAL_TERM, { silent = true })
