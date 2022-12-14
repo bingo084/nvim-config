@@ -55,10 +55,10 @@ end
 local float_term = Terminal:new {
     direction = "float",
     on_open = function(term)
-        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><c-2>",
-            { remap = true, silent = true, buffer = term.bufnr })
-        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><c-3>",
-            { remap = true, silent = true, buffer = term.bufnr })
+        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><cmd>lua _VERTICAL_TERM()<CR>)",
+            { silent = true, buffer = term.bufnr })
+        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><cmd>lua _HORIZONTAL_TERM()<CR>)",
+            { silent = true, buffer = term.bufnr })
     end,
     count = 1,
 }
@@ -72,8 +72,8 @@ vim.keymap.set({ "n", "i", "t" }, "<c-1>", _FLOAT_TERM, { silent = true })
 local vertical_term = Terminal:new {
     direction = "vertical",
     on_open = function(term)
-        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><c-3>",
-            { remap = true, silent = true, buffer = term.bufnr })
+        vim.keymap.set({ "n", "i", "t" }, "<c-3>", "<cmd>exit<CR><cmd>lua _HORIZONTAL_TERM()<CR>)",
+            { silent = true, buffer = term.bufnr })
     end,
     count = 2,
 }
@@ -87,8 +87,8 @@ vim.keymap.set({ "n", "i", "t" }, "<c-2>", _VERTICAL_TERM, { silent = true })
 local horizontal_term = Terminal:new {
     direction = "horizontal",
     on_open = function(term)
-        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><c-2>",
-            { remap = true, silent = true, buffer = term.bufnr })
+        vim.keymap.set({ "n", "i", "t" }, "<c-2>", "<cmd>exit<CR><cmd>lua _VERTICAL_TERM()<CR>",
+            { silent = true, buffer = term.bufnr })
     end,
     count = 3,
 }
