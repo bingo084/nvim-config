@@ -48,8 +48,8 @@ keymap('v', '<', '<gv', opts)
 -- Paste without replace clipboard
 keymap('v', 'p', '"_dP', opts)
 -- Move text up and down
-keymap('v', '<C-A-j>', '<cmd>m \'>+1<CR>gv=gv', opts)
-keymap('v', '<C-A-k>', '<cmd>m \'<-2<CR>gv=gv', opts)
+keymap('v', '<C-A-j>', ':m \'>+1<CR>gv=gv', opts)
+keymap('v', '<C-A-k>', ':m \'<-2<CR>gv=gv', opts)
 keymap('n', '<C-A-j>', '<cmd>m .+1<CR>==', opts)
 keymap('n', '<C-A-k>', '<cmd>m .-2<CR>==', opts)
 keymap('i', '<C-A-j>', '<Esc><cmd>m .+1<CR>==gi', opts)
