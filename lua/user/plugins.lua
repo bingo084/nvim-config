@@ -66,10 +66,9 @@ return require('packer').startup(function(use)
     use 'rmagatti/session-lens'
 
     -- LSP
-    -- Configurations for Nvim LSP
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    -- simple to use language server installer
-    use 'williamboman/nvim-lsp-installer'
     -- for formatters and linters
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'ray-x/lsp_signature.nvim'
