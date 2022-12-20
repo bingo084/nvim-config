@@ -21,7 +21,7 @@ end
 
 mason.setup()
 mason_lspconfig.setup({
-    ensure_installed = { "jsonls", "sumneko_lua", "yamlls", "bashls", }
+    ensure_installed = { "jdtls", "jsonls", "sumneko_lua", "yamlls", "bashls", }
 })
 
 local on_attach = function(_, bufnr)
