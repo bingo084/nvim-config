@@ -103,7 +103,7 @@ M.on_attach = function(client, bufnr)
     lsp_highlight_document(client)
     attach_navic(client, bufnr)
 
-    if client.name == "jdt.ls" then
+    if client.name == "jdtls" then
         -- TODO: instantiate capabilities in java file later
         M.capabilities.textDocument.completion.completionItem.snippetSupport = false
         vim.lsp.codelens.refresh()
