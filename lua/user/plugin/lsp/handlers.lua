@@ -1,13 +1,11 @@
 local M = {}
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
+    vim.notify("cmp_nvim_lsp is not found!")
     return
 end
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 M.setup = function()
     local icons = require "user.icons"
@@ -104,8 +102,6 @@ M.on_attach = function(client, bufnr)
     attach_navic(client, bufnr)
 
     if client.name == "jdtls" then
-        -- TODO: instantiate capabilities in java file later
-        M.capabilities.textDocument.completion.completionItem.snippetSupport = false
         vim.lsp.codelens.refresh()
         if JAVA_DAP_ACTIVE then
             require("jdtls").setup_dap { hotcodereplace = "auto" }

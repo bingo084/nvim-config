@@ -2,14 +2,11 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt_local.cmdheight = 2 -- more space in the neovim command line for displaying messages
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_cmp_ok then
+local handlers_status_ok, handlers = pcall(require, "user.plugin.lsp.handlers")
+if not handlers_status_ok then
+    vim.notify("handlers is not found!")
     return
 end
-capabilities.textDocument.completion.completionItem.snippetSupport = false
-capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
@@ -42,24 +39,16 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
 
--- TODO: Testing
-
 JAVA_DAP_ACTIVE = true
 
 local bundles = {}
 
 if JAVA_DAP_ACTIVE then
-    vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/vscode-java-test/server/*.jar"), "\n"))
-    vim.list_extend(
-        bundles,
-        vim.split(
-            vim.fn.glob(
-                home ..
-                "/.config/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-            ),
-            "\n"
-        )
-    )
+    vim.list_extend(bundles,
+        vim.split(vim.fn.glob("/Users/bingo/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar")
+            , "\n"))
+    vim.list_extend(bundles,
+        vim.split(vim.fn.glob("/Users/bingo/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"), "\n"))
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
@@ -105,8 +94,8 @@ local config = {
         workspace_dir,
     },
 
-    on_attach = require("user.plugin.lsp.handlers").on_attach,
-    capabilities = capabilities,
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
 
     -- 💀
     -- This is the default if not provided, you can remove it. Or adjust as needed.
