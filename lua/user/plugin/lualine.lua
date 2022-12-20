@@ -5,6 +5,12 @@ if not status_ok then
     return
 end
 
+local navic_status_ok, navic = pcall(require, "nvim-navic")
+if not navic_status_ok then
+    vim.notify("navic is not found!")
+    return
+end
+
 -- check if value in table
 local function contains(t, value)
     for _, v in pairs(t) do
@@ -139,7 +145,7 @@ lualine.setup {
     sections = {
         lualine_a = { mode },
         lualine_b = { branch },
-        lualine_c = { diagnostics },
+        lualine_c = { { navic.get_location, cond = navic.is_available }, diagnostics },
         lualine_x = { diff },
         lualine_y = { lanuage_server, "encoding", "fileformat", "filetype" },
         lualine_z = { "progress", "location" },

@@ -53,6 +53,8 @@ return packer.startup({ function(use)
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
+    use 'SmiteshP/nvim-navic'
+    use 'RRethy/vim-illuminate'
     -- for formatters and linters
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'ray-x/lsp_signature.nvim'
