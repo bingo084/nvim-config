@@ -86,6 +86,9 @@ telescope.setup {
 
                 ["<C-u>"] = actions.results_scrolling_up,
                 ["<C-d>"] = actions.results_scrolling_down,
+
+                ["K"] = actions.preview_scrolling_up,
+                ["J"] = actions.preview_scrolling_down,
             },
 
             n = {
