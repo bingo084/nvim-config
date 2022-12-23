@@ -118,13 +118,49 @@ telescope.setup {
         },
     },
     pickers = {
-        -- Default configuration for builtin pickers goes here:
-        -- picker_name = {
-        --   picker_config_key = value,
-        --   ...
-        -- }
-        -- Now the picker_config_key will be applied every time you call this
-        -- builtin picker
+        buffers = {
+            theme = "dropdown",
+            previewr = false,
+            initial_mode = 'normal',
+        },
+        colorscheme = {
+            theme = "cursor",
+            enable_preview = true,
+        },
+        find_files = {
+            theme = "dropdown",
+            previewr = false,
+        },
+        help_tags = {
+            theme = "dropdown",
+        },
+        live_grep = {
+            theme = "dropdown",
+        },
+        grep_string = {
+            theme = "dropdown",
+        },
+        git_branches = {
+            theme = "ivy",
+        },
+        git_commits = {
+            theme = "ivy",
+        },
+        git_bcommits = {
+            theme = "ivy",
+        },
+        lsp_definitions = {
+            theme = "dropdown",
+            path_display = { "tail" },
+        },
+        lsp_implementations = {
+            theme = "dropdown",
+            path_display = { "tail" },
+        },
+        lsp_references = {
+            theme = "dropdown",
+            path_display = { "tail" },
+        },
     },
     extensions = {
         media_files = {
