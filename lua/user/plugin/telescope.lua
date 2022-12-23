@@ -133,5 +133,10 @@ telescope.setup {
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg", -- find command (defaults to `fd`)
         },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+            }
+        }
     },
 }
+require("telescope").load_extension("ui-select")

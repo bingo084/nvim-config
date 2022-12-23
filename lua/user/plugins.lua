@@ -87,6 +87,7 @@ return packer.startup({ function(use)
             'nvim-lua/plenary.nvim'
         }
     }
+    use 'nvim-telescope/telescope-ui-select.nvim'
     -- Treesitter
     use 'nvim-treesitter/nvim-treesitter'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
