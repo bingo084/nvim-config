@@ -1,12 +1,12 @@
 local navic_status_ok, navic = pcall(require, "nvim-navic")
 if not navic_status_ok then
-    vim.notify("navic is not found!")
-    return
+	vim.notify("navic is not found!")
+	return
 end
 
-navic.setup {
-    highlight = true,
-}
+navic.setup({
+	highlight = true,
+})
 vim.api.nvim_set_hl(0, "NavicIconsFile", { link = "CmpItemKindFile" })
 vim.api.nvim_set_hl(0, "NavicIconsModule", { link = "CmpItemKindModule" })
 vim.api.nvim_set_hl(0, "NavicIconsClass", { link = "CmpItemKindClass" })
