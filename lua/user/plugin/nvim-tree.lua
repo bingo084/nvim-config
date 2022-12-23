@@ -91,8 +91,8 @@ nvim_tree.setup {
         show_on_dirs = true,
         icons = {
             hint = icons.diagnostics.Hint,
-            info = icons.diagnostics.Information,
-            warning = icons.diagnostics.Warning,
+            info = icons.diagnostics.Info,
+            warning = icons.diagnostics.Warn,
             error = icons.diagnostics.Error,
         },
     },

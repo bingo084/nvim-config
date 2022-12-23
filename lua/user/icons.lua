@@ -99,8 +99,8 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
     },
     diagnostics = {
       Error = "",
-      Warning = "",
-      Information = "",
+      Warn = "",
+      Info = "",
       Question = "",
       Hint = "",
     },
@@ -203,8 +203,8 @@ else
     },
     diagnostics = {
       Error = " ",
-      Warning = " ",
-      Information = " ",
+      Warn = " ",
+      Info = " ",
       Question = " ",
       Hint = " ",
     },

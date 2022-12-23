@@ -36,8 +36,8 @@ local diagnostics = {
     sections = { "error", "warn", "info", "hint" },
     symbols = {
         error = icons.diagnostics.Error .. " ",
-        warn = icons.diagnostics.Warning .. " ",
-        info = icons.diagnostics.Information .. " ",
+        warn = icons.diagnostics.Warn .. " ",
+        info = icons.diagnostics.Info .. " ",
         hint = icons.diagnostics.Hint .. " ",
     },
     update_in_insert = false,
