@@ -1,10 +1,17 @@
 local M = {}
 
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_cmp_ok then
+local cmp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_status_ok then
     vim.notify("cmp_nvim_lsp is not found!")
     return
 end
+
+local which_key_status_ok, which_key = pcall(require, "which-key")
+if not which_key_status_ok then
+    vim.notify('which_key is not found!')
+    return
+end
+
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 M.setup = function()
@@ -53,19 +60,38 @@ end
 
 local function lsp_keymaps(bufnr)
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<leader>lk', function() vim.diagnostic.goto_prev({ border = "rounded" }) end, bufopts)
-    vim.keymap.set('n', '<leader>lj', function() vim.diagnostic.goto_next({ border = "rounded" }) end, bufopts)
-    vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+    local opts = {
+        mode = "n",
+        prefix = "",
+        buffer = bufnr,
+        silent = true,
+        noremap = true,
+        nowait = true,
+    }
+    local mappings = {
+        g = {
+            name = "Goto",
+            d = { "<cmd>Telescope lsp_definitions<CR>", "Definition" },
+            D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+            i = { "<cmd>Telescope lsp_implementations<CR>", "Implementation" },
+            r = { "<cmd>Telescope lsp_references<CR>", "References" },
+        },
+        ["<leader>"] = {
+            k = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Hover" },
+            l = {
+                name = "Lsp",
+                a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+                f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
+                F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
+                j = { "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "Next Diagnostic" },
+                k = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "Prev Diagnostic" },
+                r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+                s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
+                t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
+            },
+        }
+    }
+    which_key.register(mappings, opts)
 end
 
 M.on_attach = function(client, bufnr)
