@@ -136,6 +136,6 @@ function M.remove_augroup(name)
     end
 end
 
-vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.plugin.lsp.handlers").toggle_format_on_save()' ]]
 
 return M
