@@ -123,7 +123,7 @@ telescope.setup {
     pickers = {
         buffers = {
             theme = "dropdown",
-            previewr = false,
+            previewer = false,
             initial_mode = 'normal',
         },
         colorscheme = {
@@ -132,7 +132,7 @@ telescope.setup {
         },
         find_files = {
             theme = "dropdown",
-            previewr = false,
+            previewer = false,
         },
         help_tags = {
             theme = "dropdown",
