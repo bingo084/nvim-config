@@ -15,5 +15,6 @@ null_ls.setup({
 	sources = {
 		formatting.stylua,
 		formatting.google_java_format,
+		formatting.yamlfmt,
 	},
 })
