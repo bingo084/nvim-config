@@ -129,6 +129,3 @@ nvim_tree.setup({
 		require_confirm = false,
 	},
 })
-vim.keymap.set("n", "<leader>mn", require("nvim-tree.marks.navigation").next)
-vim.keymap.set("n", "<leader>mp", require("nvim-tree.marks.navigation").prev)
-vim.keymap.set("n", "<leader>ms", require("nvim-tree.marks.navigation").select)

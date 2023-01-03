@@ -192,7 +192,7 @@ local mappings = {
 	l = {
 		name = "Lsp",
 		c = { "<cmd>lua require('user.plugin.lsp').server_capabilities()<cr>", "Get Capabilities" },
-		d = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
+		d = { "<cmd>lua require('user.functions').toggle_diagnostics()<cr>", "Toggle Diagnostics" },
 		h = { "<cmd>IlluminateToggle<cr>", "Toggle Doc HL" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>Mason<cr>", "Installer Info" },
@@ -202,6 +202,11 @@ local mappings = {
 		R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
 		u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
 		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	},
+
+	m = {
+		name = "Markdown",
+		p = { "<cmd>MarkdownPreviewToggle<CR>", "Toggle Markdown Preview" },
 	},
 
 	o = {
