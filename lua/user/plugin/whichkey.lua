@@ -243,7 +243,7 @@ local mappings = {
 		["3"] = { ":3ToggleTerm<cr>", "3" },
 		["4"] = { ":4ToggleTerm<cr>", "4" },
 		b = { "<cmd>lua _BTOP_TOGGLE()<cr>", "Btop" },
-		f = { "<cmd>lua _FLOAT_TERM()<cr>", "Float" },
+		["="] = { "<cmd>lua _FLOAT_TERM()<cr>", "Float" },
 		["-"] = { "<cmd>lua _HORIZONTAL_TERM()<cr>", "Horizontal" },
 		["\\"] = { "<cmd>lua _VERTICAL_TERM()<cr>", "Vertical" },
 	},

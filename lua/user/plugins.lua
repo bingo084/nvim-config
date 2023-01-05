@@ -105,6 +105,7 @@ return packer.startup({
 				vim.fn["mkdp#util#install"]()
 			end,
 		})
+		use("dhruvasagar/vim-table-mode")
 		-- Motion
 		use("ggandor/leap.nvim")
 		-- Surround
