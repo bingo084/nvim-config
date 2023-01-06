@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 keymap("", "<Space>", "<Nop>", opts)
 -- clear hlight search
 keymap("n", "<CR>", "<cmd>nohlsearch<CR><CR>", opts)
+keymap("i", "<S-CR>", "<Esc>o", opts)
 -- tab
 -- keymap('n', '<leader>c', '<cmd>tabc<CR>', opts)
 -- keymap('n', '<leader>o', '<cmd>tabo<CR>', opts)
