@@ -36,3 +36,8 @@ for k, v in pairs(options) do
 end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
+-- disable automatic comment insertion
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "*" },
+	command = "set formatoptions-=ro",
+})
