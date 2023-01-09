@@ -69,12 +69,12 @@ telescope.setup({
 
 		mappings = {
 			i = {
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
+				["<C-n>"] = actions.move_selection_next,
+				["<C-p>"] = actions.move_selection_previous,
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 
-				["<C-c>"] = actions.close,
+				["<C-e>"] = actions.close,
 				["<Esc>"] = actions.close,
 
 				["<CR>"] = actions.select_default,
@@ -82,13 +82,11 @@ telescope.setup({
 				["<C-\\>"] = actions.select_vertical,
 				["<C-t>"] = actions.select_tab,
 
-				["<C-p>"] = layout.toggle_preview,
-
 				["<C-u>"] = actions.results_scrolling_up,
 				["<C-d>"] = actions.results_scrolling_down,
 
-				["K"] = actions.preview_scrolling_up,
-				["J"] = actions.preview_scrolling_down,
+				["<C-b>"] = actions.preview_scrolling_up,
+				["<C-f>"] = actions.preview_scrolling_down,
 			},
 
 			n = {
@@ -102,19 +100,22 @@ telescope.setup({
 				["gg"] = actions.move_to_top,
 				["G"] = actions.move_to_bottom,
 
-				["<C-c>"] = actions.close,
-				["<Esc>"] = actions.close,
-				["q"] = actions.close,
+				["<C-e>"] = actions.close,
+                ["<Esc>"] = actions.close,
+                ["q"] = actions.close,
 
-				["<CR>"] = actions.select_default,
-				["<C-->"] = actions.select_horizontal,
-				["<C-\\>"] = actions.select_vertical,
-				["<C-t>"] = actions.select_tab,
+                ["<CR>"] = actions.select_default,
+                ["<C-->"] = actions.select_horizontal,
+                ["<C-\\>"] = actions.select_vertical,
+                ["<C-t>"] = actions.select_tab,
 
-				["<C-p>"] = layout.toggle_preview,
+                ["<C-p>"] = layout.toggle_preview,
 
-				["<C-u>"] = actions.results_scrolling_up,
-				["<C-d>"] = actions.results_scrolling_down,
+                ["<C-u>"] = actions.results_scrolling_up,
+                ["<C-d>"] = actions.results_scrolling_down,
+
+                ["<C-b>"] = actions.preview_scrolling_up,
+				["<C-f>"] = actions.preview_scrolling_down,
 
 				["?"] = actions.which_key,
 			},
