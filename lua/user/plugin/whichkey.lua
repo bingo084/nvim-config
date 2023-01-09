@@ -229,11 +229,12 @@ local mappings = {
 
 	s = {
 		name = "Session",
-		s = { "<cmd>SaveSession<cr>", "Save" },
-		r = { "<cmd>RestoreSession<cr>", "Restore" },
-		x = { "<cmd>DeleteSession<cr>", "Delete" },
-		f = { "<cmd>SearchSession<cr>", "Find" },
 		d = { "<cmd>Autosession delete<cr>", "Find Delete" },
+		e = { [[<cmd>lua require("luasnip.loaders.from_lua").edit_snippet_files()<cr>]], "edit snip" },
+		f = { "<cmd>SearchSession<cr>", "Find" },
+		r = { "<cmd>RestoreSession<cr>", "Restore" },
+		s = { "<cmd>SaveSession<cr>", "Save" },
+		x = { "<cmd>DeleteSession<cr>", "Delete" },
 	},
 
 	t = {
