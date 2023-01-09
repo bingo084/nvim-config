@@ -67,6 +67,8 @@ return packer.startup({
 		use("folke/tokyonight.nvim")
 		use("Mofiqul/dracula.nvim")
 		use("catppuccin/nvim")
+		use("Mofiqul/vscode.nvim")
+		use("tomasiser/vim-code-dark")
 		-- cmp plugins
 		use("hrsh7th/nvim-cmp") -- The completion plugin
 		use("hrsh7th/cmp-buffer") -- buffer completions

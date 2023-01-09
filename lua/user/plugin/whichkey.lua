@@ -138,6 +138,8 @@ local mappings = {
 		name = "Buffer",
 		a = { "<cmd>%bdelete!<CR>", "Close All" },
 		c = { "<cmd>Bdelete!<CR>", "Close Current" },
+		j = { "<cmd>BufferLineCloseLeft<CR>", "Close Left" },
+		k = { "<cmd>BufferLineCloseRight<CR>", "Close Right" },
 		o = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close Others" },
 	},
 

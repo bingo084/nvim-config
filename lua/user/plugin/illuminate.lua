@@ -8,6 +8,3 @@ require("illuminate").configure({
 	-- See `:help mode()` for possible values
 	modes_denylist = { "v", "V" },
 })
-vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
