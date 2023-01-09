@@ -39,6 +39,8 @@ local unmap_key = function(term)
 	if vim.fn.mapcheck("jk", "t") ~= "" then
 		vim.keymap.del("t", "<esc>", { buffer = term.bufnr })
 		vim.keymap.del("t", "jk", { buffer = term.bufnr })
+		vim.keymap.del("t", "<c-j>", { buffer = term.bufnr })
+		vim.keymap.del("t", "<c-k>", { buffer = term.bufnr })
 	end
 end
 
