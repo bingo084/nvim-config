@@ -54,6 +54,11 @@ function _BTOP_TOGGLE()
 	btop:toggle()
 end
 
+local lazydocker = Terminal:new({ cmd = "lazydocker", on_open = unmap_key, hidden = true })
+function _LAZYDOCKER_TOGGLE()
+	lazydocker:toggle()
+end
+
 local float_term = Terminal:new({
 	direction = "float",
 	on_open = function(term)
