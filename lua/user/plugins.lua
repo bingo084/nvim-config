@@ -73,14 +73,14 @@ return packer.startup({
 		use("hrsh7th/nvim-cmp") -- The completion plugin
 		use("hrsh7th/cmp-buffer") -- buffer completions
 		use("hrsh7th/cmp-path") -- path completions
-		use("hrsh7th/cmp-nvim-lua") -- path completions
+		use("hrsh7th/cmp-nvim-lua")
 		use("hrsh7th/cmp-cmdline")
 		use("saadparwaiz1/cmp_luasnip")
 		use("hrsh7th/cmp-nvim-lsp")
 		use("hrsh7th/cmp-emoji")
 		use("onsails/lspkind.nvim")
 		-- snippets
-		use("L3MON4D3/LuaSnip") --snippet engine 
+		use("L3MON4D3/LuaSnip")
 		-- Java
 		use("mfussenegger/nvim-jdtls")
 		-- Dap
@@ -114,6 +114,8 @@ return packer.startup({
 		use("ggandor/leap.nvim")
 		-- Surround
 		use("kylechui/nvim-surround")
+		-- Notify
+		use("rcarriga/nvim-notify")
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if packer_bootstrap then

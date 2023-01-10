@@ -41,3 +41,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*" },
 	command = "set formatoptions-=ro",
 })
+
+vim.notify = require("notify")
