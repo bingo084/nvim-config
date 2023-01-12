@@ -45,9 +45,10 @@ let g:mkdp_echo_preview_url = 0
 " this function will receive url as param
 " default is empty
 function OpenMarkdownPreview (url)
-    execute "silent ! open -a 'Google Chrome' " . a:url
-    execute "silent ! yabai -m window  $(yabai -m query --windows --space 2 | jq '[.[].id]|max') --space 1"
-    execute "silent ! yabai -m space --focus 1"
+    execute "silent ! open -na 'Google Chrome' --args --new-window " . a:url
+    sleep 500m
+    " execute "silent ! yabai -m window  $(yabai -m query --windows --space 2 | jq '[.[].id]|max') --space 1"
+    " execute "silent ! yabai -m space --focus 1"
     execute "silent ! yabai -m window --focus prev"
 endfunction
 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
