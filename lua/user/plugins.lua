@@ -116,6 +116,8 @@ return packer.startup({
 		use("kylechui/nvim-surround")
 		-- Notify
 		use("rcarriga/nvim-notify")
+        -- Icon finder
+        use("ziontee113/icon-picker.nvim")
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if packer_bootstrap then
