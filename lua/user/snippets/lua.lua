@@ -176,8 +176,7 @@ local autosnippets = {
 		f(function(_, snip)
 			return snip.captures[2]
 		end),
-		t({ [[")]], "" }),
-		i(1, ""),
+		t([[")]]),
 	}, {
 		condition = function()
 			local buf_name = vim.api.nvim_buf_get_name(0)
