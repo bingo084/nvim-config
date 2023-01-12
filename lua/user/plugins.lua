@@ -118,6 +118,8 @@ return packer.startup({
 		use("rcarriga/nvim-notify")
         -- Icon finder
         use("ziontee113/icon-picker.nvim")
+        -- vim.ui change
+        use("stevearc/dressing.nvim")
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if packer_bootstrap then
