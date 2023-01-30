@@ -8,9 +8,6 @@ return {
 		hijack_directories = {
 			enable = false,
 		},
-		ignore_ft_on_setup = {
-			"alpha",
-		},
 		sync_root_with_cwd = true,
 		renderer = {
 			full_name = true,
