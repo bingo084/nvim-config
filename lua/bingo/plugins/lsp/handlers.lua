@@ -39,10 +39,6 @@ M.setup = function()
 end
 
 local function lsp_keymaps(bufnr)
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
-	vim.cmd(
-		[[ command! LspToggleAutoFormat execute 'lua require("bingo.plugins.lsp.handlers").toggle_format_on_save()' ]]
-	)
 	local function nmap(key, action, desc)
 		vim.keymap.set("n", key, action, { noremap = true, silent = true, buffer = bufnr, desc = desc })
 	end
@@ -53,8 +49,12 @@ local function lsp_keymaps(bufnr)
 	nmap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Hover")
 	nmap("<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action")
 	nmap("<leader>ld", "<cmd>lua require('bingo.functions').toggle_diagnostics()<cr>", "Toggle Diagnostics")
-	nmap("<leader>lf", "<cmd>Format<CR>", "Format")
-	nmap("<leader>lF", "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat")
+	nmap("<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", "Format")
+	nmap(
+		"<leader>lF",
+		"<cmd>lua require('bingo.plugins.lsp.handlers').toggle_format_on_save()<cr>",
+		"Toggle Autoformat"
+	)
 	nmap("<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "Next Diagnostic")
 	nmap("<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "Prev Diagnostic")
 	nmap("<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix")
