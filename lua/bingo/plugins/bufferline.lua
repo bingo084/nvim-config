@@ -15,6 +15,60 @@ return {
 			tab_size = 10,
 			offsets = { { filetype = "NvimTree", text = "EXPLORER", text_align = "left" } },
 			show_close_icon = false,
+			separator_style = { "", "" },
+		},
+		highlights = {
+			fill = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLineNC" },
+			},
+			background = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			buffer_visible = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			buffer_selected = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "Normal" },
+				bold = true,
+			},
+			numbers = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			numbers_visible = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			numbers_selected = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "Normal" },
+				bold = true,
+			},
+			modified = {
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			modified_visible = {
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			modified_selected = {
+				bg = { attribute = "bg", highlight = "Normal" },
+			},
+			close_button = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			close_button_selected = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "Normal" },
+			},
+			close_button_visible = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
 		},
 	},
 	keys = {

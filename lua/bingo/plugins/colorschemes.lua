@@ -19,9 +19,6 @@ return add_keys({
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		init = function()
-			vim.cmd.colorscheme("catppuccin")
-		end,
 		opts = {
 			flavour = "mocha", -- latte, frappe, macchiato, mocha
 			show_end_of_buffer = false, -- show the '~' characters after the end of buffers
@@ -72,6 +69,13 @@ return add_keys({
 	},
 	{
 		"Mofiqul/vscode.nvim",
+		init = function()
+			vim.cmd.colorscheme("vscode")
+			-- Illuminate color
+			vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#474747" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#474747" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#474747" })
+		end,
 		config = function()
 			vim.g.vscode_italic_comment = 1
 		end,
