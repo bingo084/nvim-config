@@ -55,6 +55,7 @@ local snippets = {
 			}
 		)
 	),
+	s("ignoreLineLength", t("<!-- markdownlint-disable MD013 -->")),
 }
 local autosnippets = {}
 return snippets, autosnippets
