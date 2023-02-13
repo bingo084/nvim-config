@@ -40,16 +40,16 @@ local snippets = {
             ]],
 			{
 				c(1, {
-                    t("bash"),
-                    t("dockerfile"),
+					t("bash"),
+					t("dockerfile"),
 					t("java"),
-                    t("json"),
+					t("json"),
 					t("mermaid"),
 					t("mysql"),
 					t("nginx"),
 					t("properties"),
-                    t("shell"),
-                    t("yaml"),
+					t("shell"),
+					t("yaml"),
 				}),
 				i(2, "code"),
 			}
