@@ -36,42 +36,41 @@ return {
 		{
 			"<C-j>",
 			function()
-				if require("luasnip").expand_or_jumpable() then
-					require("luasnip").expand_or_jump()
-				end
+				return require("luasnip").expand_or_jumpable() and [[<cmd>lua require("luasnip").expand_or_jump()<CR>]]
+					or "<C-j>"
 			end,
 			mode = { "i", "s" },
+			expr = true,
 		},
 		{
 			"<C-k>",
 			function()
-				if require("luasnip").jumpable(-1) then
-					require("luasnip").jump(-1)
-				end
+				return require("luasnip").jumpable(-1) and [[<cmd>lua require("luasnip").jump(-1)<CR>]] or "<C-k>"
 			end,
 			mode = { "i", "s" },
+			expr = true,
 		},
 		{
 			"<C-l>",
 			function()
-				if require("luasnip").choice_active() then
-					require("luasnip").change_choice(1)
-				end
+				return require("luasnip").choice_active() and [[<cmd>lua require("luasnip").change_choice(1)<CR>]]
+					or "<C-l>"
 			end,
 			mode = { "i", "s" },
+			expr = true,
 		},
 		{
 			"<C-h>",
 			function()
-				if require("luasnip").choice_active() then
-					require("luasnip.extras.select_choice")()
-				end
+				return require("luasnip").choice_active() and [[<cmd>lua require("luasnip.extras.select_choice")()<CR>]]
+					or "<C-h>"
 			end,
 			mode = { "i", "s" },
+			expr = true,
 		},
 		{
 			"<leader>se",
-			[[<cmd>lua require("luasnip.loaders.from_lua").edit_snippet_files()<cr>]],
+			[[<cmd>lua require("luasnip.loaders.from_lua").edit_snippet_files()<CR>]],
 			desc = "Snip Edit",
 		},
 	},
