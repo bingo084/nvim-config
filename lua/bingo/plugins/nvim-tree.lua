@@ -46,6 +46,6 @@ return {
 			cmd = "trash",
 		},
 	},
-	cmd = "NvimTreeOpen",
+	cmd = { "NvimTreeOpen", "NvimTreeClose" },
 	keys = { { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" } },
 }
