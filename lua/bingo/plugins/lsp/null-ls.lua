@@ -21,6 +21,9 @@ return {
 			"<cmd>lua require('bingo.plugins.lsp.handlers').toggle_format_on_save()<cr>",
 			desc = "Toggle Autoformat",
 		},
+		{ "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", desc = "Next Diagnostic" },
+		{ "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", desc = "Prev Diagnostic" },
+		{ "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix" },
 	},
 	event = "LspAttach",
 }
