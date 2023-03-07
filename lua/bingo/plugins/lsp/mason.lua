@@ -18,7 +18,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-        commit = "1712672",
+		commit = "1a2d5f5",
 		config = function()
 			local handlers = require("bingo.plugins.lsp.handlers")
 			local opts = {}
