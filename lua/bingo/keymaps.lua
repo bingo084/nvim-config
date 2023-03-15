@@ -35,8 +35,8 @@ map("n", "<leader>-", "<cmd>split<cr>", "Split")
 -- Quit write and quit
 map("n", "<leader>w", "<cmd>w<CR>", "Write")
 map("n", "<leader>W", "<cmd>wall<CR>", "Write All")
-map("n", "<leader>q", '<cmd>qall<CR>', "Quit")
-map("n", "<leader>Q", '<cmd>qall!<CR>', "Quit")
+map("n", "<leader>q", "<cmd>qall<CR>", "Quit")
+map("n", "<leader>Q", "<cmd>qall!<CR>", "Quit")
 -- Toggle some options
 map("n", "<leader>ow", '<cmd>lua require("bingo.functions").toggle_option("wrap")<cr>', "Toggle Wrap")
 map(
