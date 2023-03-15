@@ -15,10 +15,6 @@ return {
 			local opts = { noremap = true, buffer = 0 }
 			vim.keymap.set({ "n", "t" }, "<esc>", "<cmd>exit<CR>", opts)
 			vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-			vim.keymap.set("t", "<c-h>", [[<cmd>wincmd h<CR>]], opts)
-			vim.keymap.set("t", "<c-j>", [[<cmd>wincmd j<CR>]], opts)
-			vim.keymap.set("t", "<c-k>", [[<cmd>wincmd k<CR>]], opts)
-			vim.keymap.set("t", "<c-l>", [[<cmd>wincmd l<CR>]], opts)
 		end
 
 		vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
@@ -28,8 +24,6 @@ return {
 			if vim.fn.mapcheck("jk", "t") ~= "" then
 				vim.keymap.del("t", "<esc>", { buffer = term.bufnr })
 				vim.keymap.del("t", "jk", { buffer = term.bufnr })
-				vim.keymap.del("t", "<c-j>", { buffer = term.bufnr })
-				vim.keymap.del("t", "<c-k>", { buffer = term.bufnr })
 			end
 		end
 
