@@ -59,9 +59,7 @@ return {
 				::continue::
 			end
 		end,
-		keys = {
-			i = { "<cmd>LspInfo<cr>", "Info" },
-		},
+		keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
 	},
 	{ "b0o/SchemaStore.nvim", lazy = true },
 }
