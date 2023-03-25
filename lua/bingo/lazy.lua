@@ -13,9 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 -- remap space as leader key
 vim.g.mapleader = " "
 local config = {
-	defaults = {
-		version = "*",
-	},
 	checker = {
 		-- automatically check for plugin updates
 		enabled = true,
