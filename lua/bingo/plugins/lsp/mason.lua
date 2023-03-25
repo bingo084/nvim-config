@@ -1,7 +1,7 @@
 local servers = {
 	"jdtls",
 	"jsonls",
-	"sumneko_lua",
+	"lua_ls",
 	"yamlls",
 	"bashls",
 }
@@ -14,13 +14,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = { ensure_installed = {
-			"jdtls",
-			"jsonls",
-			"lua_ls",
-			"yamlls",
-			"bashls",
-		} },
+		opts = { ensure_installed = servers },
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -46,7 +40,7 @@ return {
 					opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
 				end
 
-				if server == "sumneko_lua" then
+				if server == "lua_ls" then
 					local lua_ls_opts = require("bingo.plugins.lsp.settings.lua_ls")
 					opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
 				end
