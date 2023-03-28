@@ -1,13 +1,13 @@
 return {
 	"RRethy/vim-illuminate",
+	enabled = false,
 	opts = {
 		filetypes_denylist = {
 			"alpha",
 			"NvimTree",
 		},
-		-- modes_denylist: modes to not illuminate, this overrides modes_allowlist
-		-- See `:help mode()` for possible values
-		-- modes_denylist = { "v", "V" },
+		large_file_cutoff = 5000,
+		large_file_overrides = nil,
 	},
 	config = function(_, opts)
 		require("illuminate").configure({ opts })
