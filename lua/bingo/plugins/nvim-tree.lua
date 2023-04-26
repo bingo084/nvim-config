@@ -10,6 +10,7 @@ return {
 		},
 		sync_root_with_cwd = true,
 		renderer = {
+			group_empty = true,
 			full_name = true,
 			highlight_git = true,
 			highlight_opened_files = "all",
