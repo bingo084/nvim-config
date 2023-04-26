@@ -2,6 +2,10 @@ return {
 	"rmagatti/auto-session",
 	lazy = false,
 	config = function()
+		local function clear_nvim_tree_state()
+			vim.g.NvimTreeSetup = nil
+			vim.g.NvimTreeRequired = nil
+		end
 		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,globals"
 		require("auto-session").setup({
 			log_level = "info",
@@ -14,7 +18,7 @@ return {
 			auto_session_use_git_branch = nil,
 			-- the configs below are lua only
 			bypass_session_save_file_types = { "alpha" },
-			pre_save_cmds = { "NvimTreeClose" },
+			pre_save_cmds = { "NvimTreeClose", clear_nvim_tree_state },
 		})
 	end,
 	keys = {
