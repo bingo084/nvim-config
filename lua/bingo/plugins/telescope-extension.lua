@@ -26,6 +26,7 @@ return {
 			})
 			require("telescope").load_extension("session-lens")
 		end,
+	    cmd = "SearchSession",
 		keys = {
 			{ "<leader>fs", "<cmd>Telescope session-lens search_session<cr>", desc = "Find Sessions" },
 		},
