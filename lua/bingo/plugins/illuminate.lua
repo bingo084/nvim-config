@@ -1,6 +1,5 @@
 return {
 	"RRethy/vim-illuminate",
-	enabled = false,
 	opts = {
 		filetypes_denylist = {
 			"alpha",
