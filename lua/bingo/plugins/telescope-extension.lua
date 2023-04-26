@@ -19,9 +19,6 @@ return {
 		dependencies = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
 		config = function()
 			require("session-lens").setup({
-				path_display = { "shorten" },
-				-- theme_conf = { border = false },
-				previewer = false,
 				prompt_title = "Sessions",
 			})
 			require("telescope").load_extension("session-lens")
