@@ -23,5 +23,9 @@ local config = {
 }
 require("lazy").setup("bingo.plugins", config)
 local map = require("bingo.functions").map
+map("n", "<leader>pc", "<cmd>Lazy check<cr>", "Plugin Check")
+map("n", "<leader>pd", "<cmd>Lazy debug<cr>", "Plugin Debug")
 map("n", "<leader>ph", "<cmd>Lazy<cr>", "Plugin Home")
+map("n", "<leader>pl", "<cmd>Lazy log<cr>", "Plugin Log")
 map("n", "<leader>pp", "<cmd>Lazy profile<cr>", "Plugin Profile")
+map("n", "<leader>pu", "<cmd>Lazy update<cr>", "Plugin Update")
