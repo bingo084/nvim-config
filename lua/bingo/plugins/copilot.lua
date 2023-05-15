@@ -14,5 +14,9 @@ return {
 				dismiss = "<C-b>",
 			},
 		},
+		filetypes = {
+			markdown = true,
+		},
 	},
+	event = { "InsertEnter" },
 }
