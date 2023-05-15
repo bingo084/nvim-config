@@ -89,8 +89,6 @@ return {
 			sorting = {
 				priority_weight = 2,
 				comparators = {
-					-- require("copilot_cmp.comparators").prioritize,
-					-- require("copilot_cmp.comparators").score,
 					compare.offset,
 					compare.exact,
 					-- compare.scopes,
@@ -101,8 +99,6 @@ return {
 					compare.sort_text,
 					compare.length,
 					compare.order,
-					-- require("copilot_cmp.comparators").prioritize,
-					-- require("copilot_cmp.comparators").score,
 				},
 			},
 		})
