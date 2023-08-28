@@ -2,7 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		"p00f/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		"windwp/nvim-ts-autotag",
 	},
 	build = ":TSUpdate",
