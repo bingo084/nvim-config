@@ -10,6 +10,7 @@ return {
 				formatting.yamlfmt,
 				formatting.shfmt,
 				formatting.markdownlint,
+                formatting.jsonnetfmt,
 				diagnostics.markdownlint,
 			},
 		}
