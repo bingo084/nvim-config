@@ -8,8 +8,8 @@ return {
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = "all", -- one of "all" or a list of languages
 			sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+			auto_install = true, -- Automatically install missing parsers when entering buffer
 			ignore_install = { "" }, -- List of parsers to ignore installing
 			highlight = {
 				-- use_languagetree = true,
