@@ -72,8 +72,8 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>k", "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
-		{ "<leader>j", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer" },
+		{ "<C-'>", "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
+		{ "<C-;>", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer" },
 		{ "<leader>ba", "<cmd>%bdelete!<CR>", desc = "Close All Buffer" },
 		{ "<leader>bj", "<cmd>BufferLineCloseLeft<CR>", desc = "Close Left Buffer" },
 		{ "<leader>bk", "<cmd>BufferLineCloseRight<CR>", desc = "Close Right Buffer" },
