@@ -18,9 +18,9 @@ return {
 		})
 	end,
 	keys = {
-		{ "<leader>sd", "<cmd>DeleteSession<cr>", desc = "Delete Session" },
+		{ "<leader>sd", "<cmd>SessionDelete<cr>", desc = "Delete Session" },
 		{ "<leader>sD", "<cmd>Autosession delete<cr>", desc = "Find Session and Delete" },
-		{ "<leader>sr", "<cmd>RestoreSession<cr>", desc = "Restore Session" },
-		{ "<leader>ss", "<cmd>SaveSession<cr>", desc = "Save Session" },
+		{ "<leader>sr", "<cmd>SessionRestore<cr>", desc = "Restore Session" },
+		{ "<leader>ss", "<cmd>SessionSave<cr>", desc = "Save Session" },
 	},
 }
