@@ -4,6 +4,7 @@ local servers = {
 	"lua_ls",
 	"yamlls",
 	"bashls",
+	"rust_analyzer",
 }
 
 return {
@@ -43,6 +44,11 @@ return {
 				if server == "lua_ls" then
 					local lua_ls_opts = require("bingo.plugins.lsp.settings.lua_ls")
 					opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
+				end
+
+				if server == "rust_analyzer" then
+					local rust_analyzer_opts = require("bingo.plugins.lsp.settings.rust_analyzer")
+					opts = vim.tbl_deep_extend("force", rust_analyzer_opts, opts)
 				end
 
 				if server == "jdtls" then
