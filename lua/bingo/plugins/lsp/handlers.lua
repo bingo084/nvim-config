@@ -39,28 +39,29 @@ M.setup = function()
 end
 
 local function lsp_keymaps(bufnr)
-	local function nmap(key, action, desc)
-		vim.keymap.set("n", key, action, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+	local function map(mode, key, action, desc)
+		vim.keymap.set(mode, key, action, { noremap = true, silent = true, buffer = bufnr, desc = desc })
 	end
-	nmap("gd", "<cmd>Telescope lsp_definitions<CR>", "Goto Definition")
-	nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration")
-	nmap("gi", "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
-	nmap("gr", "<cmd>Telescope lsp_references<CR>", "Goto References")
-	nmap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Hover")
-	nmap("<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action")
-	nmap("<leader>ld", "<cmd>lua require('bingo.functions').toggle_diagnostics()<cr>", "Toggle Diagnostics")
-	nmap("<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", "Format")
-	nmap(
+	map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", "Goto Definition")
+	map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration")
+	map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
+	map("n", "gr", "<cmd>Telescope lsp_references<CR>", "Goto References")
+	map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Hover")
+	map({ "n", "v" }, "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action")
+	map("n", "<leader>ld", "<cmd>lua require('bingo.functions').toggle_diagnostics()<cr>", "Toggle Diagnostics")
+	map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", "Format")
+	map(
+		"n",
 		"<leader>lF",
 		"<cmd>lua require('bingo.plugins.lsp.handlers').toggle_format_on_save()<cr>",
 		"Toggle Autoformat"
 	)
-	nmap("<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "Next Diagnostic")
-	nmap("<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "Prev Diagnostic")
-	nmap("<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix")
-	nmap("<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
-	nmap("<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help")
-	nmap("<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition")
+	map("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "Next Diagnostic")
+	map("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "Prev Diagnostic")
+	map("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix")
+	map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
+	map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help")
+	map("n", "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition")
 end
 
 M.on_attach = function(client, bufnr)
