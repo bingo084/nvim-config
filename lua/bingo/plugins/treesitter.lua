@@ -23,10 +23,6 @@ return {
 					enable = true,
 				},
 				indent = { enable = true, disable = { "python", "css", "rust", "java" } },
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
 				autotag = {
 					enable = true,
 					disable = { "xml", "markdown" },
