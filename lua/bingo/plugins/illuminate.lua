@@ -6,6 +6,7 @@ return {
 				"alpha",
 				"NvimTree",
 			},
+			modes_denylist = { "v" },
 			large_file_cutoff = 5000,
 			large_file_overrides = nil,
 		})
