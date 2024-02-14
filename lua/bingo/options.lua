@@ -23,11 +23,14 @@ local options = {
 	smartindent = true, --智能锁进
 	cindent = true,
 	autoindent = true, --自动缩进
-	tabstop = 4, --Tab宽度
+	tabstop = 2, --Tab宽度
 	expandtab = true, --空格替换Tab
-	shiftwidth = 4, --每次Shift调整的缩进
+	shiftwidth = 2, --每次Shift调整的缩进
 	showtabline = 2,
 	wrap = false, --不自动换行
+	undofile = true, --保存撤销历史
+	signcolumn = "yes",
+	colorcolumn = "80",
 }
 --应用上面配置
 vim.opt.shortmess:append("c")
