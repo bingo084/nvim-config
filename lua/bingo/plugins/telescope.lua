@@ -9,10 +9,11 @@ return {
 		local icons = require("bingo.icons")
 
 		require("telescope").setup({
-			defaults = {
+			defaults = require("telescope.themes").get_dropdown({
 				prompt_prefix = " " .. icons.ui.Telescope .. " ",
 				selection_caret = " ",
 				path_display = { "smart" },
+				dynamic_preview_title = true,
 				mappings = {
 					i = {
 						["<C-n>"] = actions.move_selection_next,
@@ -66,10 +67,9 @@ return {
 						["?"] = actions.which_key,
 					},
 				},
-			},
+			}),
 			pickers = {
 				buffers = {
-					theme = "dropdown",
 					previewer = false,
 					initial_mode = "normal",
 				},
@@ -78,17 +78,7 @@ return {
 					enable_preview = true,
 				},
 				find_files = {
-					theme = "dropdown",
 					previewer = false,
-				},
-				help_tags = {
-					theme = "dropdown",
-				},
-				live_grep = {
-					theme = "dropdown",
-				},
-				grep_string = {
-					theme = "dropdown",
 				},
 				git_branches = {
 					theme = "ivy",
@@ -100,15 +90,12 @@ return {
 					theme = "ivy",
 				},
 				lsp_definitions = {
-					theme = "dropdown",
 					path_display = { "tail" },
 				},
 				lsp_implementations = {
-					theme = "dropdown",
 					path_display = { "tail" },
 				},
 				lsp_references = {
-					theme = "dropdown",
 					path_display = { "tail" },
 				},
 			},
