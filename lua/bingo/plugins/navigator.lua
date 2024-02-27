@@ -1,3 +1,5 @@
+local function ui() return require("harpoon").ui end
+local function list() return require("harpoon"):list() end
 return {
 	{
 		"ThePrimeagen/harpoon",
@@ -6,57 +8,28 @@ return {
 		config = function()
 			local harpoon = require("harpoon")
 			local extensions = require("harpoon.extensions")
-
-			harpoon:setup({
-				settings = {
-					save_on_toggle = true,
-				},
-			})
-
-			vim.keymap.set("n", "<C-m>", function()
-				harpoon:list():append()
-			end)
-			vim.keymap.set("n", "<C-e>", function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end)
-
-			vim.keymap.set("n", "<C-h>", function()
-				harpoon:list():select(1)
-			end)
-			vim.keymap.set("n", "<C-j>", function()
-				harpoon:list():select(2)
-			end)
-			vim.keymap.set("n", "<C-k>", function()
-				harpoon:list():select(3)
-			end)
-			vim.keymap.set("n", "<C-l>", function()
-				harpoon:list():select(4)
-			end)
-
-			vim.keymap.set("n", "<C-;>", function()
-				harpoon:list():prev()
-			end)
-			vim.keymap.set("n", "<C-'>", function()
-				harpoon:list():next()
-			end)
-
+			harpoon:setup({ settings = { save_on_toggle = true } })
 			harpoon:extend({
 				UI_CREATE = function(cx)
-					vim.keymap.set("n", "<C-v>", function()
-						harpoon.ui:select_menu_item({ vsplit = true })
-					end, { buffer = cx.bufnr })
-
-					vim.keymap.set("n", "<C-s>", function()
-						harpoon.ui:select_menu_item({ split = true })
-					end, { buffer = cx.bufnr })
-
-					vim.keymap.set("n", "<C-t>", function()
-						harpoon.ui:select_menu_item({ tabedit = true })
-					end, { buffer = cx.bufnr })
+					local function menu_map(key, opt)
+						vim.keymap.set("n", key, function() ui():select_menu_item(opt) end, { buffer = cx.bufnr })
+					end
+					menu_map("<C-v>", { vsplit = true })
+					menu_map("<C-s>", { split = true })
+					menu_map("<C-t>", { tabedit = true })
 				end,
 			})
-
 			harpoon:extend(extensions.builtins.navigate_with_number())
 		end,
+		keys = {
+			{ "<C-e>", function() ui():toggle_quick_menu(list()) end, desc = "Harpoon Menu" },
+			{ "<C-m>", function() list():append() end, desc = "Harpoon Append" },
+			{ "<C-h>", function() list():select(1) end, desc = "Harpoon Select 1" },
+			{ "<C-j>", function() list():select(2) end, desc = "Harpoon Select 2" },
+			{ "<C-k>", function() list():select(3) end, desc = "Harpoon Select 3" },
+			{ "<C-l>", function() list():select(4) end, desc = "Harpoon Select 4" },
+			{ "<C-;>", function() list():prev() end, desc = "Harpoon Prev" },
+			{ "<C-'>", function() list():next() end, desc = "Harpoon next" },
+		},
 	},
 }
