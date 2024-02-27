@@ -3,7 +3,7 @@ local map = require("bingo.functions").map
 vim.g.mapleader = " "
 map("", "<Space>", "<Nop>", "Leader Key")
 -- clear hlight search
-map("n", "<CR>", "<cmd>nohlsearch<CR><CR>", "Clear Highlight")
+map("n", "<Esc><Esc>", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>", "Clear Highlight")
 map("i", "<S-CR>", "<Esc>o", "New Line")
 -- Resize with arrows
 map("n", "<C-Up>", "<cmd>resize +2<CR>", "Resize Window Higher")
