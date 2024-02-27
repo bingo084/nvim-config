@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-cmdline",
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
@@ -48,7 +47,6 @@ return {
 					mode = "symbol_text",
 					menu = {
 						nvim_lsp = "[Lsp]",
-						nvim_lua = "[Lua]",
 						luasnip = "[Luasnip]",
 						buffer = "[Buffer]",
 						path = "[Path]",
@@ -80,7 +78,6 @@ return {
 			},
 			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "nvim_lua" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },

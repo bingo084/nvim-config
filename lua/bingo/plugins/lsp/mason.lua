@@ -19,6 +19,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { { "folke/neodev.nvim", opts = {} } },
 		config = function()
 			local handlers = require("bingo.plugins.lsp.handlers")
 			local opts = {}
