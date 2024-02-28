@@ -1,5 +1,9 @@
 local function ui() return require("harpoon").ui end
 local function list() return require("harpoon"):list() end
+local function oil() return require("oil") end
+local function oil_select(opts)
+	return oil().select(vim.tbl_extend("force", { split = "belowright", close = true }, opts))
+end
 return {
 	{
 		"ThePrimeagen/harpoon",
@@ -30,6 +34,68 @@ return {
 			{ "<C-l>", function() list():select(4) end, desc = "Harpoon Select 4" },
 			{ "<C-;>", function() list():prev() end, desc = "Harpoon Prev" },
 			{ "<C-'>", function() list():next() end, desc = "Harpoon next" },
+		},
+	},
+	{
+		"stevearc/oil.nvim",
+		init = function(plugin)
+			-- https://github.com/kevinm6/nvim/blob/00e154d74711601a9d3d73fb5e0308d22076d828/lua/plugins/editor/oil.lua#L147
+			if vim.fn.argc() == 1 then
+				local argv = tostring(vim.fn.argv(0))
+				local stat = vim.loop.fs_stat(argv)
+				local remote_dir_args = vim.startswith(argv, "ssh")
+				if stat and stat.type == "directory" or remote_dir_args then
+					require("lazy").load({ plugins = { plugin.name } })
+				end
+			end
+			if not require("lazy.core.config").plugins[plugin.name]._.loaded then
+				vim.api.nvim_create_autocmd("BufNew", {
+					callback = function(args)
+						if vim.fn.isdirectory(args.file) == 1 then
+							require("lazy").load({ plugins = { plugin.name } })
+							return true
+						end
+					end,
+				})
+			end
+		end,
+		opts = {
+			delete_to_trash = true,
+			keymaps = {
+				["<C-h>"] = false,
+				["<C-s>"] = function() oil_select({ horizontal = true }) end,
+				["<C-v>"] = function() oil_select({ vertical = true }) end,
+				["<C-p>"] = function()
+					local float = vim.api.nvim_win_get_config(0).relative ~= ""
+					oil().close()
+					if float then
+						oil().open()
+						oil_select({ preview = true, close = false })
+					else
+						oil().open_float()
+					end
+				end,
+				["q"] = "actions.close",
+				["<leader>e"] = "actions.close",
+				["<Esc><Esc>"] = "actions.close",
+			},
+			float = {
+				max_height = 16,
+				win_options = {
+					winblend = 8,
+				},
+				override = function(conf)
+					conf.row = (vim.o.lines - conf.height - 4)
+					return conf
+				end,
+			},
+			adapter_aliases = {
+				["ssh://"] = "oil-ssh://",
+			},
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "<leader>e", function() oil().open_float() end, desc = "Explorer" },
 		},
 	},
 }
