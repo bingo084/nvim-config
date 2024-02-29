@@ -100,7 +100,6 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("notify")
 	end,
 	cmd = "Telescope",
 	keys = {
@@ -112,7 +111,7 @@ return {
 		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Find Keymaps" },
 		{ "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Find Last Search" },
 		{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Find Man Pages" },
-		{ "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Find Notify" },
+		{ "<leader>fn", "<cmd>Telescope noice<cr>", desc = "Find Notify" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Find Recent File" },
 		{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Find Registers" },
 		{ "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },

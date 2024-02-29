@@ -40,13 +40,24 @@ end
 
 local function lsp_keymaps(bufnr)
 	local function map(mode, key, action, desc)
-		vim.keymap.set(mode, key, action, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+		vim.keymap.set(mode, key, action, { silent = true, buffer = bufnr, desc = desc })
 	end
 	map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", "Goto Definition")
 	map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration")
 	map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
 	map("n", "gr", "<cmd>Telescope lsp_references<CR>", "Goto References")
 	map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Hover")
+	map({ "n", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end, "Signature Help")
+	local function scroll_map(key, row, desc)
+		vim.keymap.set({ "n", "i", "s" }, key, function()
+			if not require("noice.lsp").scroll(row) then
+				return key
+			end
+		end, { silent = true, expr = true, buffer = bufnr, desc = desc })
+	end
+	scroll_map("<C-d>", 4, "Scroll Down")
+	scroll_map("<C-u>", -4, "Scroll Up")
+
 	map({ "n", "v" }, "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action")
 	map("n", "<leader>ld", "<cmd>lua require('bingo.functions').toggle_diagnostics()<cr>", "Toggle Diagnostics")
 	map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", "Format")
@@ -59,7 +70,6 @@ local function lsp_keymaps(bufnr)
 	map("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "Next Diagnostic")
 	map("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "Prev Diagnostic")
 	map("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix")
-	map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
 	map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help")
 	map("n", "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition")
 end
