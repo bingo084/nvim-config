@@ -18,36 +18,27 @@ return add_keys({
 	"Mofiqul/dracula.nvim",
 	{
 		"catppuccin/nvim",
-		init = function()
-			vim.cmd.colorscheme("catppuccin")
-		end,
+		init = function() vim.cmd.colorscheme("catppuccin") end,
 		name = "catppuccin",
 		opts = {
-			flavour = "macchiato", -- latte, frappe, macchiato, mocha
-			show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+			flavour = "macchiato",
+			transparent_background = true,
+			show_end_of_buffer = true,
 			term_colors = true,
 			integrations = {
-				cmp = true,
+				alpha = true,
 				gitsigns = true,
-				illuminate = true,
+				harpoon = true,
+				indent_blankline = {
+					enabled = true,
+				},
 				leap = true,
 				markdown = true,
 				mason = true,
-				notify = true,
-				nvimtree = true,
-				telescope = true,
-				treesitter = true,
-				treesitter_context = true,
-				ts_rainbow = true,
-				which_key = true,
-				dap = {
-					enabled = true,
-					enable_ui = true,
-				},
-				indent_blankline = {
-					enabled = true,
-					colored_indent_levels = false,
-				},
+				noice = true,
+				cmp = true,
+				dap = true,
+				dap_ui = true,
 				native_lsp = {
 					enabled = true,
 					virtual_text = {
@@ -62,11 +53,25 @@ return add_keys({
 						warnings = { "underline" },
 						information = { "underline" },
 					},
+					inlay_hints = {
+						background = true,
+					},
 				},
 				navic = {
 					enabled = true,
-					custom_bg = "NONE",
 				},
+				notify = true,
+				treesitter_context = true,
+				treesitter = true,
+				rainbow_delimiters = true,
+				telescope = {
+					enabled = true,
+				},
+				illuminate = {
+					enabled = true,
+					lsp = true,
+				},
+				which_key = true,
 			},
 		},
 	},
@@ -79,9 +84,7 @@ return add_keys({
 			-- vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#474747" })
 			-- vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#474747" })
 		end,
-		config = function()
-			vim.g.vscode_italic_comment = 1
-		end,
+		config = function() vim.g.vscode_italic_comment = 1 end,
 	},
 	"tomasiser/vim-code-dark",
 	{
