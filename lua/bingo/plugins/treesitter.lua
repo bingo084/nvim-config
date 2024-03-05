@@ -32,6 +32,10 @@ return {
 		event = "VeryLazy",
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "VeryLazy",
+	},
+	{
 		"HiPhish/rainbow-delimiters.nvim",
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")

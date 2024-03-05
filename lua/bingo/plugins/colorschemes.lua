@@ -37,7 +37,7 @@ return add_keys({
 				nvimtree = true,
 				telescope = true,
 				treesitter = true,
-				treesitter_context = false,
+				treesitter_context = true,
 				ts_rainbow = true,
 				which_key = true,
 				dap = {
