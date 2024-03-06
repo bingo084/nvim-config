@@ -14,14 +14,6 @@ return {
 						width = 0.5,
 						height = 0.3,
 					},
-					win_options = {
-						winblend = 8,
-					},
-				},
-				hover = {
-					win_options = {
-						winblend = 8,
-					},
 				},
 			},
 		},

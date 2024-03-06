@@ -81,9 +81,6 @@ return {
 			},
 			float = {
 				max_height = 16,
-				win_options = {
-					winblend = 8,
-				},
 				override = function(conf)
 					conf.row = (vim.o.lines - conf.height - 4)
 					return conf
