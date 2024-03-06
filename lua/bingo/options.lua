@@ -39,8 +39,15 @@ for k, v in pairs(options) do
 end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
--- disable automatic comment insertion
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*" },
+	desc = "Disable automatic comment insertion",
 	command = "set formatoptions-=ro",
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_on_yank", {}),
+	desc = "Highlight when yanking (copying) text",
+	callback = function() vim.highlight.on_yank() end,
 })
