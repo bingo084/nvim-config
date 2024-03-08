@@ -1,53 +1,43 @@
-local options = {
-	-- appearance
-	showcmd = true, --右下角显示命令
-	showmode = false, --右下角显示模式
-	number = true, --行号
-	relativenumber = true, --相对行号
-	cmdheight = 1, --Number of screen lines to use for the command-line.
-	termguicolors = true, --如果安装第三方主题，必须设置为true
-	scrolloff = 8, --Minimal number of screen lines to keep above and below the cursor.
-	conceallevel = 0, --隐藏字符语法高亮
-	fileencoding = "utf-8", --utf8编码
-	cursorline = true, --高亮当前行
-	cursorcolumn = false, --不高亮当前列
-	-- clipboard
-	clipboard = "unnamedplus", --同步系统剪贴板
-	mouse = "a", --允许鼠标
-	-- search
-	ignorecase = true, --查找时忽略大小写
-	smartcase = true, --智能大小写
-	hlsearch = true, --高亮搜索
-	showmatch = true,
-	-- indent
-	smartindent = true, --智能锁进
-	cindent = true,
-	autoindent = true, --自动缩进
-	tabstop = 2, --Tab宽度
-	expandtab = true, --空格替换Tab
-	shiftwidth = 2, --每次Shift调整的缩进
-	showtabline = 2,
-	wrap = false, --不自动换行
-	undofile = true, --保存撤销历史
-	signcolumn = "yes",
-	colorcolumn = "80",
-}
---应用上面配置
-vim.opt.shortmess:append("c")
-for k, v in pairs(options) do
-	vim.opt[k] = v
-end
+vim.g.use_nerd_font = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = "a"
+vim.opt.showmode = false
+-- Sync clipboard between OS and Neovim.
+vim.opt.clipboard = "unnamedplus"
+vim.opt.breakindent = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+-- Sets how neovim will display certain whitespace in the editor.
+vim.opt.list = true
+vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.opt.showmatch = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "*" },
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("disable-comment-auto-insertion", {}),
+	callback = function() vim.opt.formatoptions:remove({ "r", "o" }) end,
 	desc = "Disable automatic comment insertion",
-	command = "set formatoptions-=ro",
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_on_yank", {}),
-	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("highlight-on-yank", {}),
 	callback = function() vim.highlight.on_yank() end,
+	desc = "Highlight when yanking (copying) text",
 })
