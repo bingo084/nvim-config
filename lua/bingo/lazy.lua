@@ -5,27 +5,33 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
--- remap space as leader key
-vim.g.mapleader = " "
-local config = {
-	checker = {
-		-- automatically check for plugin updates
-		enabled = true,
-		concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-		notify = true, -- get a notification when new updates are found
-		frequency = 3600, -- check for updates every hour
+
+require("lazy").setup("bingo.plugins", {
+	defaults = {
+		version = "*",
 	},
-}
-require("lazy").setup("bingo.plugins", config)
+	install = {
+		colorscheme = { "catppuccin" },
+	},
+	ui = {
+		border = "rounded",
+	},
+	checker = {
+		enabled = true,
+		frequency = 86400,
+	},
+})
+
 local map = require("bingo.functions").map
-map("n", "<leader>pc", "<cmd>Lazy check<cr>", "Plugin Check")
-map("n", "<leader>pd", "<cmd>Lazy debug<cr>", "Plugin Debug")
-map("n", "<leader>ph", "<cmd>Lazy<cr>", "Plugin Home")
-map("n", "<leader>pl", "<cmd>Lazy log<cr>", "Plugin Log")
-map("n", "<leader>pp", "<cmd>Lazy profile<cr>", "Plugin Profile")
-map("n", "<leader>pu", "<cmd>Lazy update<cr>", "Plugin Update")
+local lazy = require("lazy")
+map("n", "<leader>pc", function() lazy.check() end, "[P]lugin [C]heck")
+map("n", "<leader>pd", function() lazy.debug() end, "[P]lugin [D]ebug")
+map("n", "<leader>ph", function() lazy.home() end, "[P]lugin [H]ome")
+map("n", "<leader>pl", function() lazy.log() end, "[P]lugin [L]og")
+map("n", "<leader>pp", function() lazy.profile() end, "[P]lugin [P]rofile")
+map("n", "<leader>pu", function() lazy.update() end, "[P]lugin [U]pdate")
