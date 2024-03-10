@@ -4,7 +4,6 @@ local function map(mode, key, action, desc)
 end
 -- Remap space as leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 map("", "<Space>", "<Nop>", "Leader Key")
 -- Clear hlight search
 local clear_cmd = "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>"
