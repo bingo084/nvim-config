@@ -204,7 +204,10 @@ vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_co
 vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
-local map = require("bingo.utils").map
+local function map(mode,key, action, desc)
+	local opts = { desc = desc }
+	vim.keymap.set(mode, key, action, opts)
+end
 map("n", "<leader>Lo", "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports")
 map("n", "<leader>Lv", "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable")
 map("n", "<leader>Lc", "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant")

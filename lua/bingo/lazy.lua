@@ -27,11 +27,14 @@ require("lazy").setup("bingo.plugins", {
 	},
 })
 
-local map = require("bingo.utils").map
+local function nmap(key, action, desc)
+	local opts = { desc = desc }
+	vim.keymap.set("n", key, action, opts)
+end
 local lazy = require("lazy")
-map("n", "<leader>pc", function() lazy.check() end, "[P]lugin [C]heck")
-map("n", "<leader>pd", function() lazy.debug() end, "[P]lugin [D]ebug")
-map("n", "<leader>ph", function() lazy.home() end, "[P]lugin [H]ome")
-map("n", "<leader>pl", function() lazy.log() end, "[P]lugin [L]og")
-map("n", "<leader>pp", function() lazy.profile() end, "[P]lugin [P]rofile")
-map("n", "<leader>pu", function() lazy.update() end, "[P]lugin [U]pdate")
+nmap("<leader>pc", function() lazy.check() end, "[P]lugin [C]heck")
+nmap("<leader>pd", function() lazy.debug() end, "[P]lugin [D]ebug")
+nmap("<leader>ph", function() lazy.home() end, "[P]lugin [H]ome")
+nmap("<leader>pl", function() lazy.log() end, "[P]lugin [L]og")
+nmap("<leader>pp", function() lazy.profile() end, "[P]lugin [P]rofile")
+nmap("<leader>pu", function() lazy.update() end, "[P]lugin [U]pdate")

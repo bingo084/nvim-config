@@ -1,4 +1,3 @@
--- local map = require("bingo.functions").map
 local function map(mode, key, action, desc)
 	local opts = { desc = desc }
 	vim.keymap.set(mode, key, action, opts)
