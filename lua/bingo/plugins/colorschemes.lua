@@ -21,7 +21,7 @@ return add_keys({
 		init = function() vim.cmd.colorscheme("catppuccin") end,
 		name = "catppuccin",
 		opts = {
-			flavour = "macchiato",
+			flavour = "frappe",
 			transparent_background = true,
 			show_end_of_buffer = true,
 			term_colors = true,
