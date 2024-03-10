@@ -6,7 +6,7 @@ vim.cmd([[
     call feedkeys("\<esc>`.")
   endfunction
   function TestI()
-    let b:caret = winsaveview()    
+    let b:caret = winsaveview()
     %SnipRun
     call winrestview(b:caret)
   endfunction
@@ -55,24 +55,21 @@ function M.get_word_length()
 	return #word
 end
 
-function M.toggle_option(option)
-	local value = not vim.api.nvim_get_option_value(option, {})
-	vim.opt[option] = value
-	vim.notify(option .. " set to " .. tostring(value))
-end
-
-function M.toggle_tabline()
-	local value = vim.api.nvim_get_option_value("showtabline", {})
-
-	if value == 2 then
-		value = 0
-	else
-		value = 2
+-- toggle option value
+---@param values? {[1]:any, [2]:any}
+function M.toggle_option(option, values)
+	local function notify(msg) vim.notify(msg, vim.log.levels.INFO, { title = "Options" }) end
+	if values then
+		if vim.opt[option]:get() == values[1] then
+			vim.opt[option] = values[2]
+		else
+			vim.opt[option] = values[1]
+		end
+		return notify("Set " .. option .. " to " .. tostring(vim.opt[option]:get()))
 	end
-
-	vim.opt.showtabline = value
-
-	vim.notify("showtabline" .. " set to " .. tostring(value))
+	vim.opt[option] = not vim.opt[option]:get()
+	local action = vim.opt[option]:get() and "Enabled " or "Disabled "
+	notify(action .. option)
 end
 
 local diagnostics_active = true
@@ -85,9 +82,7 @@ function M.toggle_diagnostics()
 	end
 end
 
-function M.isempty(s)
-	return s == nil or s == ""
-end
+function M.isempty(s) return s == nil or s == "" end
 
 function M.get_buf_option(opt)
 	local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
@@ -98,8 +93,6 @@ function M.get_buf_option(opt)
 	end
 end
 
-function M.map(mode, key, action, desc)
-	vim.keymap.set(mode, key, action, { desc = desc })
-end
+function M.map(mode, key, action, desc) vim.keymap.set(mode, key, action, { desc = desc }) end
 
 return M

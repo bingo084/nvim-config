@@ -27,7 +27,7 @@ require("lazy").setup("bingo.plugins", {
 	},
 })
 
-local map = require("bingo.functions").map
+local map = require("bingo.utils").map
 local lazy = require("lazy")
 map("n", "<leader>pc", function() lazy.check() end, "[P]lugin [C]heck")
 map("n", "<leader>pd", function() lazy.debug() end, "[P]lugin [D]ebug")
