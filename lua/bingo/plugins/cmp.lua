@@ -14,10 +14,8 @@ return {
 		local mapping = cmp.mapping
 		local select = cmp.SelectBehavior.Select
 		local compare = require("cmp.config.compare")
-		local icons = require("bingo.icons")
 
 		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-		vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 		vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 		vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
@@ -53,23 +51,18 @@ return {
 						emoji = "[Emoji]",
 					},
 					symbol_map = {
-						Copilot = icons.git.Octoface,
-						Emoji = icons.misc.Smiley,
-						Snippet = icons.kind.Snippet,
+						Copilot = "",
+						Emoji = "",
+						Snippet = "",
 					},
 					before = function(entry, vim_item)
-						if entry.source.name == "cmp_tabnine" then
-							vim_item.kind = icons.misc.Robot
-							vim_item.kind_hl_group = "CmpItemKindTabnine"
-						end
-
 						if entry.source.name == "copilot" then
-							vim_item.kind = icons.git.Octoface
+							vim_item.kind = ""
 							vim_item.kind_hl_group = "CmpItemKindCopilot"
 						end
 
 						if entry.source.name == "emoji" then
-							vim_item.kind = icons.misc.Smiley
+							vim_item.kind = ""
 							vim_item.kind_hl_group = "CmpItemKindEmoji"
 						end
 						return vim_item

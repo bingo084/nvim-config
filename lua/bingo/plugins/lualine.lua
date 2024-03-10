@@ -25,17 +25,15 @@ return {
 			icon = "",
 		}
 
-		local icons = require("bingo.icons")
-
 		local diagnostics = {
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn", "info", "hint" },
 			symbols = {
-				error = icons.diagnostics.Error .. " ",
-				warn = icons.diagnostics.Warn .. " ",
-				info = icons.diagnostics.Info .. " ",
-				hint = icons.diagnostics.Hint .. " ",
+				error = " ",
+				warn = " ",
+				info = " ",
+				hint = "󱠂 ",
 			},
 			update_in_insert = false,
 			always_visible = false,
@@ -44,9 +42,9 @@ return {
 		local diff = {
 			"diff",
 			symbols = {
-				added = icons.git.Add .. " ",
-				modified = icons.git.Mod .. " ",
-				removed = icons.git.Remove .. " ",
+				added = " ",
+				modified = " ",
+				removed = " ",
 			},
 		}
 
@@ -119,9 +117,8 @@ return {
 				if client_names_str_len ~= 0 then
 					language_servers = "[" .. client_names_str .. "]"
 				end
-				if copilot_active then
-					language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface
-				end
+        local copilot_icon = copilot_active and "" or ""
+        language_servers = language_servers .. "%#SLCopilot# " .. copilot_icon
 
 				if client_names_str_len == 0 and not copilot_active then
 					return ""

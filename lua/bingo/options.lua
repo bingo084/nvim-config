@@ -1,4 +1,3 @@
-vim.g.use_nerd_font = true
 local opt = vim.opt
 opt.number = true
 opt.relativenumber = true

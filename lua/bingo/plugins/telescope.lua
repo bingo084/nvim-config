@@ -6,11 +6,10 @@ return {
 	config = function()
 		local layout = require("telescope.actions.layout")
 		local actions = require("telescope.actions")
-		local icons = require("bingo.icons")
 
 		require("telescope").setup({
 			defaults = require("telescope.themes").get_dropdown({
-				prompt_prefix = " " .. icons.ui.Telescope .. " ",
+				prompt_prefix = " 󰍉 ",
 				selection_caret = " ",
 				path_display = { "smart" },
 				dynamic_preview_title = true,
