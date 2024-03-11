@@ -6,8 +6,7 @@ end
 vim.g.mapleader = " "
 map("", "<Space>", "<Nop>", "Leader Key")
 -- Clear hlight search
-local clear_cmd = "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>"
-map("n", "<Esc>", clear_cmd, "Clear Highlight")
+map("n", "<Esc>", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>", "Clear Highlight")
 map("i", "<S-CR>", "<Esc>o", "New Line")
 -- Press jk fast to enter
 map("i", "jk", "<ESC>", "Esc")
