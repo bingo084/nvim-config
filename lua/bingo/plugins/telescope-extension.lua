@@ -15,20 +15,6 @@ return {
 		},
 	},
 	{
-		"rmagatti/session-lens",
-		dependencies = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-		config = function()
-			require("session-lens").setup({
-				prompt_title = "Sessions",
-			})
-			require("telescope").load_extension("session-lens")
-		end,
-	    cmd = "SearchSession",
-		keys = {
-			{ "<leader>fs", "<cmd>Telescope session-lens search_session<cr>", desc = "Find Sessions" },
-		},
-	},
-	{
 		"ziontee113/icon-picker.nvim",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",

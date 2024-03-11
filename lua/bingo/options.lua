@@ -29,3 +29,4 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.colorcolumn = "120"
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
