@@ -46,4 +46,9 @@ return {
 			{ "<leader>oh", function() require("illuminate").toggle() end, desc = "Toggle Doc HL" },
 		},
 	},
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true,
+	},
 }
