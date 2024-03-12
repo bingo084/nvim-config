@@ -14,54 +14,71 @@ return {
 			local cmp = require("cmp")
 			local mapping = cmp.mapping
 			local select = cmp.SelectBehavior.Select
-			local compare = require("cmp.config.compare")
+			local replace = cmp.ConfirmBehavior.Replace
+			local luasnip = require("luasnip")
 
-			vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 			vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
-			vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
 			cmp.setup({
 				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-					end,
+					expand = function(args) luasnip.lsp_expand(args.body) end,
 				},
-				mapping = mapping.preset.insert({
-					["<C-b>"] = mapping.scroll_docs(-1),
-					["<C-f>"] = mapping.scroll_docs(1),
-					["<C-Space>"] = mapping(mapping.complete(), { "i", "c" }),
-					["<C-e>"] = mapping(mapping.abort(), { "i", "c" }),
-					["<CR>"] = { i = mapping.confirm({ select = true }), c = mapping.confirm() },
-					["<Tab>"] = mapping(
-						mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-						{ "i", "c" }
-					),
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				mapping = {
+					["<A-d>"] = mapping.scroll_docs(1),
+					["<A-u>"] = mapping.scroll_docs(-1),
 					["<C-p>"] = mapping(mapping.select_prev_item({ behavior = select }), { "i", "c" }),
 					["<C-n>"] = mapping(mapping.select_next_item({ behavior = select }), { "i", "c" }),
-					["<C-u>"] = mapping(mapping.select_prev_item({ behavior = select, count = 10 }), { "i", "c" }),
+					["<C-e>"] = mapping(mapping.abort(), { "i", "c" }),
+					-- ["<CR>"] = { i = mapping.confirm({ select = true }), c = mapping.confirm() },
+					["<C-y>"] = mapping.confirm({ select = true }),
+					["<C-Space>"] = mapping(mapping.complete({}), { "i", "c" }),
 					["<C-d>"] = mapping(mapping.select_next_item({ behavior = select, count = 10 }), { "i", "c" }),
-				}),
+					["<C-u>"] = mapping(mapping.select_prev_item({ behavior = select, count = 10 }), { "i", "c" }),
+					["<Tab>"] = mapping(mapping.confirm({ behavior = replace, select = true }), { "i", "c" }),
+					["<C-j>"] = mapping(function(fallback)
+						if luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<C-k>"] = mapping(function(fallback)
+						if luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<C-l>"] = mapping(function(fallback)
+						if luasnip.choice_active() then
+							luasnip.change_choice(1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<C-f>"] = mapping(function(fallback)
+						if luasnip.choice_active() then
+							require("luasnip.extras.select_choice")()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+				},
 				formatting = {
 					format = require("lspkind").cmp_format({
 						mode = "symbol_text",
 						menu = {
 							nvim_lsp = "[Lsp]",
-							luasnip = "[Luasnip]",
+							luasnip = "[LuaSnip]",
 							buffer = "[Buffer]",
 							path = "[Path]",
 							emoji = "[Emoji]",
 						},
-						symbol_map = {
-							Copilot = "",
-							Emoji = "",
-							Snippet = "",
-						},
 						before = function(entry, vim_item)
-							if entry.source.name == "copilot" then
-								vim_item.kind = ""
-								vim_item.kind_hl_group = "CmpItemKindCopilot"
-							end
-
 							if entry.source.name == "emoji" then
 								vim_item.kind = ""
 								vim_item.kind_hl_group = "CmpItemKindEmoji"
@@ -77,29 +94,16 @@ return {
 					{ name = "path" },
 					{ name = "emoji" },
 				},
-				sorting = {
-					priority_weight = 2,
-					comparators = {
-						compare.offset,
-						compare.exact,
-						-- compare.scopes,
-						compare.score,
-						compare.recently_used,
-						compare.locality,
-						compare.kind,
-						compare.sort_text,
-						compare.length,
-						compare.order,
-					},
-				},
 			})
 
+			---@diagnostic disable-next-line: param-type-mismatch, missing-fields
 			cmp.setup.cmdline({ "/", "?" }, {
 				sources = {
 					{ name = "buffer" },
 				},
 			})
 
+			---@diagnostic disable-next-line: missing-fields
 			cmp.setup.cmdline(":", {
 				sources = {
 					{ name = "path" },
@@ -113,7 +117,6 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
 		opts = {
 			check_ts = true,
 			map_c_h = true,
@@ -123,6 +126,57 @@ return {
 				javascript = { "string", "template_string" },
 				java = false,
 			},
+		},
+		event = "InsertEnter",
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		opts = {
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				debounce = 75,
+				keymap = {
+					accept = "<C-f>",
+					accept_word = "<A-f>",
+					accept_line = "<C-l>",
+					next = "<C-n>",
+					prev = "<C-p>",
+					dismiss = "<C-b>",
+				},
+			},
+			filetypes = {
+				markdown = true,
+			},
+		},
+		event = "InsertEnter",
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		config = function()
+			local types = require("luasnip.util.types")
+			require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })
+			require("luasnip").setup({
+				update_events = "TextChanged,TextChangedI",
+				region_check_events = "CursorMoved",
+				enable_autosnippets = true,
+				ext_opts = {
+					[types.choiceNode] = {
+						active = {
+							virt_text = { { "", "DiagnosticHint" } },
+						},
+					},
+					[types.insertNode] = {
+						active = {
+							virt_text = { { "", "DiagnosticHint" } },
+						},
+					},
+				},
+			})
+		end,
+		keys = {
+			{ "<leader>se", function() require("luasnip.loaders").edit_snippet_files() end, desc = "[S]nip [E]dit" },
 		},
 	},
 }
