@@ -70,8 +70,8 @@ local function lsp_keymaps(bufnr)
 			end
 		end, { silent = true, expr = true, buffer = bufnr, desc = desc })
 	end
-	scroll_map("<C-d>", 4, "Scroll Down")
-	scroll_map("<C-u>", -4, "Scroll Up")
+	scroll_map("<A-d>", 4, "Scroll Down")
+	scroll_map("<A-u>", -4, "Scroll Up")
 
 	map(
 		{ "n", "v" },
