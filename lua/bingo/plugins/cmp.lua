@@ -133,9 +133,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		opts = {
 			suggestion = {
-				enabled = true,
 				auto_trigger = true,
-				debounce = 75,
 				keymap = {
 					accept = "<C-f>",
 					accept_word = "<A-f>",
@@ -146,10 +144,13 @@ return {
 				},
 			},
 			filetypes = {
-				markdown = true,
+				["*"] = true,
 			},
 		},
 		event = "InsertEnter",
+		keys = {
+			{ "<leader>cp", function() require("copilot.panel").open({}) end, desc = "[C]opilot [P]anel" },
+		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
