@@ -95,4 +95,12 @@ return {
 			{ "<leader>e", function() oil().open_float() end, desc = "Explorer" },
 		},
 	},
+	{
+		"ggandor/leap.nvim",
+		config = function() require("leap").add_default_mappings() end,
+		keys = {
+			"s",
+			"S",
+		},
+	},
 }
