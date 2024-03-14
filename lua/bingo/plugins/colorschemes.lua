@@ -1,13 +1,16 @@
 local function add_keys(plugins)
 	for i, v in pairs(plugins) do
+		local keys = {
+			{
+				"<leader>fC",
+				function() require("telescope.builtin").colorscheme() end,
+				desc = "[F]ind [C]olorscheme",
+			},
+		}
 		if type(v) == "string" then
-			plugins[i] = { v, keys = { { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Find Colorscheme" } } }
+			plugins[i] = { v, keys = keys }
 		elseif type(v) == "table" then
-			plugins[i] = vim.tbl_extend(
-				"keep",
-				v,
-				{ keys = { { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Find Colorscheme" } } }
-			)
+			plugins[i] = vim.tbl_extend("keep", v, { keys = keys })
 		end
 	end
 	return plugins

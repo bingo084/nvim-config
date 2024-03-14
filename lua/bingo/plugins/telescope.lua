@@ -1,124 +1,98 @@
+local function builtin() return require("telescope.builtin") end
+local function actions() return require("telescope.actions") end
+local function layout() return require("telescope.actions.layout") end
+local function mappings(map)
+	return vim.tbl_extend("force", {
+		["<C-n>"] = actions().move_selection_next,
+		["<C-p>"] = actions().move_selection_previous,
+		["<C-e>"] = actions().close,
+		["<C-s>"] = actions().select_horizontal,
+		["<C-u>"] = actions().results_scrolling_up,
+		["<C-d>"] = actions().results_scrolling_down,
+		["<A-u>"] = actions().preview_scrolling_up,
+		["<A-d>"] = actions().preview_scrolling_down,
+		["<A-q>"] = actions().send_selected_to_qflist + actions().open_qflist,
+		["<C-j>"] = actions().cycle_history_next,
+		["<C-k>"] = actions().cycle_history_prev,
+		["<A-p>"] = layout().toggle_preview,
+	}, map or {})
+end
 return {
-	"nvim-telescope/telescope.nvim",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-	},
-	config = function()
-		local layout = require("telescope.actions.layout")
-		local actions = require("telescope.actions")
-
-		require("telescope").setup({
-			defaults = require("telescope.themes").get_dropdown({
-				prompt_prefix = " 󰍉 ",
-				selection_caret = " ",
-				path_display = { "smart" },
-				dynamic_preview_title = true,
-				mappings = {
-					i = {
-						["<C-n>"] = actions.move_selection_next,
-						["<C-p>"] = actions.move_selection_previous,
-						["<Down>"] = actions.move_selection_next,
-						["<Up>"] = actions.move_selection_previous,
-
-						["<C-e>"] = actions.close,
-						["<Esc>"] = actions.close,
-
-						["<CR>"] = actions.select_default,
-						["<C-->"] = actions.select_horizontal,
-						["<C-\\>"] = actions.select_vertical,
-						["<C-t>"] = actions.select_tab,
-
-						["<C-u>"] = actions.results_scrolling_up,
-						["<C-d>"] = actions.results_scrolling_down,
-
-						["<C-b>"] = actions.preview_scrolling_up,
-						["<C-f>"] = actions.preview_scrolling_down,
-					},
-
-					n = {
-						["j"] = actions.move_selection_next,
-						["k"] = actions.move_selection_previous,
-						["<Down>"] = actions.move_selection_next,
-						["<Up>"] = actions.move_selection_previous,
-						["H"] = actions.move_to_top,
-						["M"] = actions.move_to_middle,
-						["L"] = actions.move_to_bottom,
-						["gg"] = actions.move_to_top,
-						["G"] = actions.move_to_bottom,
-
-						["<C-e>"] = actions.close,
-						["<Esc>"] = actions.close,
-						["q"] = actions.close,
-
-						["<CR>"] = actions.select_default,
-						["<C-->"] = actions.select_horizontal,
-						["<C-\\>"] = actions.select_vertical,
-						["<C-t>"] = actions.select_tab,
-
-						["<C-p>"] = layout.toggle_preview,
-
-						["<C-u>"] = actions.results_scrolling_up,
-						["<C-d>"] = actions.results_scrolling_down,
-
-						["<C-b>"] = actions.preview_scrolling_up,
-						["<C-f>"] = actions.preview_scrolling_down,
-
-						["?"] = actions.which_key,
-					},
-				},
-			}),
-			pickers = {
-				buffers = {
-					previewer = false,
-					initial_mode = "normal",
-				},
-				colorscheme = {
-					theme = "cursor",
-					enable_preview = true,
-				},
-				find_files = {
-					previewer = false,
-				},
-				git_branches = {
-					theme = "ivy",
-				},
-				git_commits = {
-					theme = "ivy",
-				},
-				git_bcommits = {
-					theme = "ivy",
-				},
-				lsp_definitions = {
-					path_display = { "tail" },
-				},
-				lsp_implementations = {
-					path_display = { "tail" },
-				},
-				lsp_references = {
-					path_display = { "tail" },
-				},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				config = function() require("telescope").load_extension("fzf") end,
 			},
-		})
-	end,
-	cmd = "Telescope",
-	keys = {
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find Buffer" },
-		{ "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Find Colorscheme" },
-		{ "<leader>fC", "<cmd>Telescope commands()<cr>", desc = "Find Commands" },
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
-		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
-		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Find Keymaps" },
-		{ "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Find Last Search" },
-		{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Find Man Pages" },
-		{ "<leader>fn", "<cmd>Telescope noice<cr>", desc = "Find Notify" },
-		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Find Recent File" },
-		{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Find Registers" },
-		{ "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
-		{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find Word" },
-		{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "List branch" },
-		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "List Commit" },
-		{ "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "List Buffer Commit" },
-		{ "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
-		{ "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
+		},
+		config = function()
+			require("telescope").setup({
+				defaults = require("telescope.themes").get_dropdown({
+					scroll_strategy = "limit",
+					prompt_prefix = " 󰍉 ",
+					selection_caret = "  ",
+					entry_prefix = "   ",
+					multi_icon = "  ",
+					path_display = { "smart" },
+					dynamic_preview_title = true,
+					mappings = {
+						i = mappings(),
+						n = mappings({ ["q"] = actions().close, ["H"] = false, ["L"] = false }),
+					},
+				}),
+				pickers = {
+					buffers = {
+						mappings = { n = { ["dd"] = actions().delete_buffer } },
+						previewer = false,
+						initial_mode = "normal",
+					},
+					colorscheme = {
+						theme = "cursor",
+						enable_preview = true,
+					},
+					find_files = {
+						previewer = false,
+					},
+					lsp_definitions = {
+						show_line = false,
+						path_display = { "tail" },
+					},
+					lsp_implementations = {
+						show_line = false,
+						path_display = { "tail" },
+					},
+					lsp_references = {
+						include_declaration = false,
+						show_line = false,
+						path_display = { "tail" },
+					},
+				},
+			})
+		end,
+		cmd = "Telescope",
+		keys = {
+			{ "<leader>fa", function() builtin().autocommands() end, desc = "[F]ind [A]utocommands" },
+			{ "<leader>fb", function() builtin().buffers() end, desc = "[F]ind [B]uffer" },
+			{ "<leader>fc", function() builtin().command_history() end, desc = "[F]ind [C]ommand History" },
+			{ "<leader>ff", function() builtin().find_files() end, desc = "[F]ind [F]ile" },
+			{ "<leader>fh", function() builtin().help_tags() end, desc = "[F]ind [H]elp" },
+			{ "<leader>fH", function() builtin().highlights() end, desc = "[F]ind [H]ighlights" },
+			{ "<leader>fk", function() builtin().keymaps() end, desc = "[F]ind [K]eymaps" },
+			{ "<leader>fl", function() builtin().resume() end, desc = "[F]ind [L]ast Search" },
+			{ "<leader>fm", function() builtin().man_pages() end, desc = "[F]ind [M]an Pages" },
+			{ "<leader>fn", function() builtin().noice() end, desc = "[F]ind [N]otify" },
+			{ "<leader>fo", function() builtin().vim_options() end, desc = "[F]ind [O]ptions" },
+			{ "<leader>ft", function() builtin().live_grep() end, desc = "[F]ind [T]ext" },
+			{ "<leader>fw", function() builtin().grep_string() end, desc = "[F]ind [W]ord" },
+		},
+	},
+	{
+		"nvim-telescope/telescope-symbols.nvim",
+		keys = {
+			{ "<leader>fi", function() builtin().symbols() end, desc = "[F]ind [I]con" },
+		},
 	},
 }
