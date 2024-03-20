@@ -1,3 +1,4 @@
+local function ps() return require("persisted") end
 return {
 	"olimorris/persisted.nvim",
 	lazy = false,
@@ -20,8 +21,8 @@ return {
 	},
 	keys = {
 		{ "<leader>fs", "<cmd>Telescope persisted<cr>", desc = "[F]ind [S]ession" },
-		{ "<leader>sd", "<cmd>SessionDelete<CR>", desc = "[S]ession [D]elete" },
-		{ "<leader>sl", "<cmd>SessionLoad<CR>", desc = "[S]ession [L]oad" },
-		{ "<leader>ss", "<cmd>SessionSave<CR>", desc = "[S]ession [S]ave" },
+		{ "<leader>sd", function() ps().delete() end, desc = "[S]ession [D]elete" },
+		{ "<leader>sl", function() ps().load() end, desc = "[S]ession [L]oad" },
+		{ "<leader>ss", function() ps().save() end, desc = "[S]ession [S]ave" },
 	},
 }
