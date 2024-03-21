@@ -1,6 +1,11 @@
 return {
 	{
 		"alker0/chezmoi.vim",
+		init = function()
+			if os.getenv("CHEZMOI") == "1" then
+				require("notify")("Using chezmoi edit file")
+			end
+		end,
 		cond = function() return vim.fn.expand("%:p"):match("chezmoi") ~= nil end,
 		config = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
 	},
