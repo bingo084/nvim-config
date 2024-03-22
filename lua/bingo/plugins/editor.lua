@@ -146,4 +146,13 @@ return {
 			{ "<leader>oR", function() require("rainbow-delimiters").toggle(0) end, desc = "Toggle Rainbow" },
 		},
 	},
+	{
+		"iamcco/markdown-preview.nvim",
+		build = function() vim.fn["mkdp#util#install"]() end,
+		ft = { "markdown" },
+		keys = {
+			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle [M]arkdown [P]review" },
+		},
+	},
+	{ "dhruvasagar/vim-table-mode", cmd = "TableModeEnable" },
 }
