@@ -58,7 +58,6 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		dependencies = { "HiPhish/rainbow-delimiters.nvim" },
 		config = function()
 			require("ibl").setup({
 				indent = { char = "▏", tab_char = "▏" },
@@ -117,5 +116,39 @@ return {
 			end,
 		},
 		event = "VeryLazy",
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"windwp/nvim-ts-autotag",
+			"nvim-treesitter/nvim-treesitter-context",
+		},
+		build = ":TSUpdate",
+		config = function()
+			---@diagnostic disable-next-line: missing-fields
+			require("nvim-treesitter.configs").setup({
+				auto_install = true,
+				highlight = { enable = true },
+				autopairs = { enable = true },
+				indent = { enable = true },
+				autotag = { enable = true },
+			})
+		end,
+		event = "VeryLazy",
+	},
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		version = false,
+		main = "rainbow-delimiters.setup",
+		opts = {
+			query = {
+				lua = "rainbow-blocks",
+			},
+		},
+		event = "BufReadPost",
+		keys = {
+			{ "<leader>oR", function() require("rainbow-delimiters").toggle(0) end, desc = "Toggle Rainbow" },
+		},
 	},
 }
