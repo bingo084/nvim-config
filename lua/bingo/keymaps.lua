@@ -11,8 +11,8 @@ map("i", "<S-CR>", "<Esc>o", "New Line")
 -- Press jk fast to enter
 map("i", "jk", "<ESC>", "Esc")
 -- Easier move header and tail
-map("n", "<S-h>", "0", "Goto Line Head")
-map("v", "<S-h>", "0", "Goto Line Head")
+map("n", "<S-h>", "^", "Goto Line Head")
+map("v", "<S-h>", "^", "Goto Line Head")
 map("n", "<S-l>", "$", "Goto Line End")
 map("v", "<S-l>", "$", "Goto Line End")
 -- Easier indent
