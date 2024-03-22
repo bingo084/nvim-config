@@ -147,6 +147,11 @@ return {
 		},
 	},
 	{
+		"echasnovski/mini.ai",
+		config = true,
+		event = "VeryLazy",
+	},
+	{
 		"iamcco/markdown-preview.nvim",
 		build = function() vim.fn["mkdp#util#install"]() end,
 		ft = { "markdown" },
