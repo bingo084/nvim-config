@@ -21,6 +21,18 @@ local branch = {
 	"branch",
 	icon = { "", color = { fg = mocha.peach } },
 }
+local filetype = {
+	"filetype",
+	icon_only = true,
+	padding = { left = 1, right = 0 },
+}
+local filename = {
+	"filename",
+	newfile_status = true,
+	symbols = { modified = "", readonly = "", unnamed = "", newfile = "" },
+	color = function() return { fg = vim.bo.modified and mocha.red or mocha.blue } end,
+	padding = { left = 0, right = 1 },
+}
 local copilot = {
 	"copilot",
 	symbols = {
@@ -79,10 +91,10 @@ return {
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { branch },
+			lualine_b = { branch, filetype, filename },
 			lualine_c = { navic, diagnostics },
 			lualine_x = { diff, lazy },
-			lualine_y = { lanuage_server, copilot, "encoding", "fileformat", "filetype" },
+			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
 			lualine_z = { "progress", "location" },
 		},
 		extensions = { "lazy", "man", "mason", "nvim-dap-ui", "oil", "toggleterm" },
