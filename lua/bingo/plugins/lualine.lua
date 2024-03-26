@@ -1,4 +1,4 @@
-local mocha = require("catppuccin.palettes.mocha")
+local color = require("catppuccin.palettes.frappe")
 local mode = { "mode", icon = "" }
 local diagnostics = {
 	"diagnostics",
@@ -11,7 +11,7 @@ local diff = {
 local lazy = {
 	require("lazy.status").updates,
 	cond = require("lazy.status").has_updates,
-	color = { fg = mocha.peach },
+	color = { fg = color.peach },
 }
 local navic = {
 	function() return require("nvim-navic").get_location end,
@@ -19,7 +19,7 @@ local navic = {
 }
 local branch = {
 	"branch",
-	icon = { "", color = { fg = mocha.peach } },
+	icon = { "", color = { fg = color.peach } },
 }
 local filetype = {
 	"filetype",
@@ -30,7 +30,7 @@ local filename = {
 	"filename",
 	newfile_status = true,
 	symbols = { modified = "", readonly = "", unnamed = "", newfile = "" },
-	color = function() return { fg = vim.bo.modified and mocha.red or mocha.blue } end,
+	color = function() return { fg = vim.bo.modified and color.red or color.blue } end,
 	padding = { left = 0, right = 1 },
 }
 local copilot = {
@@ -39,14 +39,14 @@ local copilot = {
 		status = {
 			icons = { enabled = "", sleep = "", disabled = "", warning = "", unknown = "" },
 			hl = {
-				enabled = mocha.green,
-				sleep = mocha.sky,
-				disabled = mocha.subtext0,
-				warning = mocha.peach,
-				unknown = mocha.red,
+				enabled = color.green,
+				sleep = color.sky,
+				disabled = color.subtext0,
+				warning = color.peach,
+				unknown = color.red,
 			},
 		},
-		spinner_color = mocha.teal,
+		spinner_color = color.teal,
 	},
 	show_colors = true,
 }
