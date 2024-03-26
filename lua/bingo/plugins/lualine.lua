@@ -28,9 +28,23 @@ local filetype = {
 }
 local filename = {
 	"filename",
-	newfile_status = true,
-	symbols = { modified = "", readonly = "", unnamed = "", newfile = "" },
-	color = function() return { fg = vim.bo.modified and color.red or color.blue } end,
+	symbols = { unnamed = "" },
+	file_status = false,
+	color = function()
+		local function is_new_file()
+			local filename = vim.fn.expand("%")
+			return filename ~= "" and vim.bo.buftype == "" and vim.fn.filereadable(filename) == 0
+		end
+		if vim.bo.modified then
+			return { fg = color.red }
+		elseif vim.bo.readonly then
+			return { fg = color.overlay1 }
+		elseif is_new_file() then
+			return { fg = color.green }
+		else
+			return { fg = color.blue }
+		end
+	end,
 	padding = { left = 0, right = 1 },
 }
 local copilot = {
