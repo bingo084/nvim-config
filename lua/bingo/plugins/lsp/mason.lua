@@ -1,66 +1,74 @@
-local servers = {
-	"jdtls",
-	"jsonls",
-	"lua_ls",
-	"yamlls",
-	"bashls",
-	"rust_analyzer",
-}
-
 return {
 	{
-		"williamboman/mason.nvim",
-		config = true,
-		keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = { ensure_installed = servers },
-	},
-	{
 		"neovim/nvim-lspconfig",
-		dependencies = { { "folke/neodev.nvim", opts = {} } },
+		dependencies = {
+			{ "folke/neodev.nvim", opts = {} },
+			{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
+			{
+				"williamboman/mason.nvim",
+				config = true,
+				keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
+			},
+		},
+		lazy = false,
 		config = function()
+			local servers = {
+				bashls = {},
+				jsonls = { settings = { json = { schemas = require("schemastore").json.schemas() } } },
+				lua_ls = {
+					settings = { Lua = { completion = { callSnippet = "Replace" }, format = { enable = false } } },
+				},
+				yamlls = {},
+				rust_analyzer = {},
+			}
 			local handlers = require("bingo.plugins.lsp.handlers")
-			local opts = {}
 			handlers.setup()
-			for _, server in pairs(servers) do
-				opts = {
-					on_attach = handlers.on_attach,
-					capabilities = handlers.capabilities,
-				}
-
-				server = vim.split(server, "@")[1]
-
-				if server == "jsonls" then
-					local jsonls_opts = require("bingo.plugins.lsp.settings.jsonls")
-					opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-				end
-
-				if server == "yamlls" then
-					local yamlls_opts = require("bingo.plugins.lsp.settings.yamlls")
-					opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
-				end
-
-				if server == "lua_ls" then
-					local lua_ls_opts = require("bingo.plugins.lsp.settings.lua_ls")
-					opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
-				end
-
-				if server == "rust_analyzer" then
-					local rust_analyzer_opts = require("bingo.plugins.lsp.settings.rust_analyzer")
-					opts = vim.tbl_deep_extend("force", rust_analyzer_opts, opts)
-				end
-
-				if server == "jdtls" then
-					goto continue
-				end
-
-				require("lspconfig")[server].setup(opts)
-				::continue::
+			for _, lsp in ipairs(vim.tbl_keys(servers)) do
+				servers[lsp]["on_attach"] = handlers.on_attach
+				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
+				require("lspconfig")[lsp].setup(servers[lsp])
 			end
 		end,
 		keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
 	},
 	{ "b0o/SchemaStore.nvim", lazy = true },
+	{ "mfussenegger/nvim-jdtls", lazy = true },
+	{
+		"nvimtools/none-ls.nvim",
+		opts = function()
+			local formatting = require("null-ls").builtins.formatting
+			local diagnostics = require("null-ls").builtins.diagnostics
+			return {
+				sources = {
+					formatting.stylua,
+					formatting.google_java_format,
+					formatting.yamlfmt,
+					formatting.shfmt,
+					formatting.markdownlint,
+					diagnostics.markdownlint,
+				},
+			}
+		end,
+		keys = {
+			{ "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, desc = "[F]ormat" },
+			{
+				"<leader>lF",
+				function() require("bingo.plugins.lsp.handlers").toggle_format_on_save() end,
+				desc = "Toggle Autoformat",
+			},
+			{ "]d", function() vim.diagnostic.goto_next() end, desc = "Next [D]iagnostic" },
+			{ "[d", function() vim.diagnostic.goto_prev() end, desc = "Prev [D]iagnostic" },
+			{ "<leader>lq", function() vim.diagnostic.setloclist() end, desc = "Quickfix" },
+		},
+		event = "LspAttach",
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = "LspAttach",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		opts = { automatic_installation = true },
+	},
 }
