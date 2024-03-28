@@ -51,11 +51,6 @@ return {
 		end,
 		keys = {
 			{ "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, desc = "[F]ormat" },
-			{
-				"<leader>lF",
-				function() require("bingo.plugins.lsp.handlers").toggle_format_on_save() end,
-				desc = "Toggle Autoformat",
-			},
 			{ "]d", function() vim.diagnostic.goto_next() end, desc = "Next [D]iagnostic" },
 			{ "[d", function() vim.diagnostic.goto_prev() end, desc = "Prev [D]iagnostic" },
 			{ "<leader>lq", function() vim.diagnostic.setloclist() end, desc = "Quickfix" },
