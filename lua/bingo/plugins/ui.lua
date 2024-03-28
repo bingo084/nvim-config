@@ -42,7 +42,7 @@ return {
 		"smjonas/inc-rename.nvim",
 		opts = {},
 		keys = {
-			{ "<leader>lr", ":IncRename ", desc = "Rename" },
+			{ "<leader>lr", ":IncRename <C-r><C-w>", desc = "Rename" },
 		},
 	},
 }
