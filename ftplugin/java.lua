@@ -95,8 +95,14 @@ local config = {
 		workspace_dir,
 	},
 
-	on_attach = handlers.on_attach,
-	capabilities = handlers.capabilities,
+	on_attach = function(client, bufnr)
+		vim.lsp.codelens.refresh()
+		if JAVA_DAP_ACTIVE then
+			require("jdtls").setup_dap({ hotcodereplace = "auto" })
+			require("jdtls.dap").setup_dap_main_class_configs()
+		end
+	end,
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
 	-- 💀
 	-- This is the default if not provided, you can remove it. Or adjust as needed.
@@ -204,7 +210,7 @@ vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_co
 vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
-local function map(mode,key, action, desc)
+local function map(mode, key, action, desc)
 	local opts = { desc = desc }
 	vim.keymap.set(mode, key, action, opts)
 end
