@@ -13,10 +13,6 @@ local lazy = {
 	cond = require("lazy.status").has_updates,
 	color = { fg = color.peach },
 }
-local navic = {
-	function() return require("nvim-navic").get_location end,
-	cond = function() return require("nvim-navic").is_available end,
-}
 local branch = {
 	"branch",
 	icon = { "", color = { fg = color.peach } },
@@ -94,7 +90,6 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		{ "SmiteshP/nvim-navic", opts = { highlight = true } },
 		"AndreM222/copilot-lualine",
 	},
 	opts = {
@@ -106,7 +101,7 @@ return {
 		sections = {
 			lualine_a = { mode },
 			lualine_b = { branch, filetype, filename },
-			lualine_c = { navic, diagnostics },
+			lualine_c = { diagnostics },
 			lualine_x = { diff, lazy },
 			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
 			lualine_z = { "progress", "location" },

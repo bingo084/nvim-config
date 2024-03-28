@@ -65,7 +65,6 @@ end
 
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
-	require("nvim-navic").attach(client, bufnr)
 
 	if client.name == "jdtls" then
 		vim.lsp.codelens.refresh()

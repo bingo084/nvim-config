@@ -60,9 +60,6 @@ return add_keys({
 						background = true,
 					},
 				},
-				navic = {
-					enabled = true,
-				},
 				notify = true,
 				treesitter_context = true,
 				treesitter = true,
