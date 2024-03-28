@@ -38,10 +38,10 @@ return {
 					local function map(mode, key, action, desc)
 						vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = desc })
 					end
-					map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
-					map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-					map("n", "gi", vim.lsp.buf.implementation, "Goto Implementation")
-					map("n", "gr", vim.lsp.buf.references, "Goto References")
+					map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", "Goto Definition")
+					map("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>", "Goto Declaration")
+					map("n", "gr", "<cmd>Lspsaga finder<CR>", "Goto References And Implementation")
+					map({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", "Code Action")
 					map("n", "K", vim.lsp.buf.hover, "Show Hover")
 					map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, "Signature Help")
 					local function scroll_map(key, row, desc)
@@ -53,8 +53,6 @@ return {
 					end
 					scroll_map("<A-d>", 4, "Scroll Down")
 					scroll_map("<A-u>", -4, "Scroll Up")
-					map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
-					map("n", "<leader>lt", vim.lsp.buf.type_definition, "Type Definition")
 				end,
 			})
 		end,
@@ -82,9 +80,9 @@ return {
 		end,
 		keys = {
 			{ "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, desc = "[F]ormat" },
-			{ "<leader>ld", vim.diagnostic.open_float, desc = "Quickfix" },
-			{ "]d", vim.diagnostic.goto_next, desc = "Next [D]iagnostic" },
-			{ "[d", vim.diagnostic.goto_prev, desc = "Prev [D]iagnostic" },
+			{ "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "Quickfix" },
+			{ "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Next [D]iagnostic" },
+			{ "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Prev [D]iagnostic" },
 			{ "<leader>lq", vim.diagnostic.setloclist, desc = "Quickfix" },
 		},
 		event = "VeryLazy",
@@ -94,5 +92,31 @@ return {
 		event = "VeryLazy",
 		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
 		opts = { automatic_installation = true },
+	},
+	{
+		"nvimdev/lspsaga.nvim",
+		config = function()
+			require("lspsaga").setup({
+				ui = {
+					expand = "",
+					collapse = "",
+					lines = { "└", "├", "│", "─", "┌" },
+					code_action = "󰌵",
+				},
+				lightbulb = { virtual_text = false },
+				finder = {
+					keys = {
+						shuttle = { "<A-l>", "<A-h>" },
+						toggle_or_open = { "o", "<CR>" },
+						vsplit = "<C-v>",
+						split = "<C-s>",
+						tabe = "<C-t>",
+						close = "<A-w>",
+					},
+				},
+				implement = { enable = true },
+			})
+		end,
+		event = "LspAttach",
 	},
 }
