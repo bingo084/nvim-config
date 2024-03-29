@@ -119,4 +119,17 @@ return {
 		end,
 		event = "LspAttach",
 	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		opts = {},
+		keys = {
+			{ "<leader>xf", ":Refactor extract ", mode = "x", desc = "e[X]tract [F]unction" },
+			{ "<leader>xF", ":Refactor extract_to_file ", mode = "x", desc = "e[X]tract [F]unction to file" },
+			{ "<leader>xv", ":Refactor extract_var ", mode = "x", desc = "e[X]tract [V]ariable" },
+			{ "<leader>iv", ":Refactor inline_var", mode = { "n", "x" }, desc = "[I]nline [V]ariable" },
+			{ "<leader>if", ":Refactor inline_func", desc = "[I]nline [F]unction" },
+			{ "<leader>xb", ":Refactor extract_block", desc = "[E]xtract [B]lock" },
+			{ "<leader>xB", ":Refactor extract_block_to_file", desc = "[E]xtract [B]lock to file" },
+		},
+	},
 }
