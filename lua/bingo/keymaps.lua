@@ -44,6 +44,16 @@ map("n", "<leader>w", "<cmd>w<CR>", "Write")
 map("n", "<leader>W", "<cmd>wall<CR>", "Write All")
 map("n", "<leader>q", "<cmd>qall<CR>", "Quit all")
 map("n", "<leader>Q", "<cmd>qall!<CR>", "Quit all force")
+-- Quickfix
+map("n", "]q", "<cmd>cnext<CR>", "Next [Q]uickfix")
+map("n", "[q", "<cmd>cprev<CR>", "Prev [Q]uickfix")
+map("n", "]Q", "<cmd>clast<CR>", "Last [Q]uickfix")
+map("n", "[Q", "<cmd>cfirst<CR>", "First [Q]uickfix")
+-- Loclist
+map("n", "]l", "<cmd>lnext<CR>", "Next [L]oclist")
+map("n", "[l", "<cmd>lprev<CR>", "Prev [L]oclist")
+map("n", "]L", "<cmd>llast<CR>", "Last [L]oclist")
+map("n", "[L", "<cmd>lfirst<CR>", "First [L]oclist")
 -- Toggle some options
 local function toggle(opt, val)
 	return function() require("bingo.utils").toggle_option(opt, val) end
