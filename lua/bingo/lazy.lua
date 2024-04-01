@@ -19,7 +19,7 @@ require("lazy").setup("bingo.plugins", {
 		colorscheme = { "catppuccin" },
 	},
 	ui = {
-		border = "solid",
+		border = "rounded",
 	},
 	checker = {
 		enabled = true,
