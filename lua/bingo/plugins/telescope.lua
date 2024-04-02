@@ -87,7 +87,6 @@ return {
 			{ "<leader>fk", function() builtin().keymaps() end, desc = "[F]ind [K]eymaps" },
 			{ "<leader>fl", function() builtin().resume() end, desc = "[F]ind [L]ast Search" },
 			{ "<leader>fm", function() builtin().man_pages() end, desc = "[F]ind [M]an Pages" },
-			{ "<leader>fn", function() builtin().noice() end, desc = "[F]ind [N]otify" },
 			{ "<leader>fo", function() builtin().vim_options() end, desc = "[F]ind [O]ptions" },
 			{ "<leader>ft", function() builtin().live_grep() end, desc = "[F]ind [T]ext" },
 			{ "<leader>fw", function() builtin().grep_string() end, desc = "[F]ind [W]ord" },

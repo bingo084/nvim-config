@@ -36,6 +36,7 @@ return {
 				mode = "c",
 			},
 			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Notification Clear" },
+			{ "<leader>fn", function() require("noice").cmd("telescope") end, desc = "[F]ind [N]otify" },
 		},
 	},
 	{
