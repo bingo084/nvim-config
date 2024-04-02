@@ -1,6 +1,7 @@
 return {
 	{
 		"folke/noice.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 		event = "VeryLazy",
 		opts = {
 			lsp = {
@@ -10,30 +11,15 @@ return {
 					["cmp.entry.get_documentation"] = true,
 				},
 			},
-			presets = {
-				long_message_to_split = true,
-				inc_rename = true,
-				lsp_doc_border = true,
-			},
-			views = {
-				popup = {
-					size = {
-						width = 0.5,
-						height = 0.3,
-					},
-				},
-			},
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
+			presets = { long_message_to_split = true, inc_rename = true, lsp_doc_border = true },
+			views = { popup = { size = { width = 0.5, height = 0.3 } } },
 		},
 		keys = {
 			{
 				"<S-Enter>",
 				function() require("noice").redirect(vim.fn.getcmdline()) end,
-				desc = "Redirect Cmdline",
 				mode = "c",
+				desc = "Redirect Cmdline",
 			},
 			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Notification Clear" },
 			{ "<leader>fn", function() require("noice").cmd("telescope") end, desc = "[F]ind [N]otify" },
@@ -42,8 +28,6 @@ return {
 	{
 		"smjonas/inc-rename.nvim",
 		opts = {},
-		keys = {
-			{ "<leader>lr", ":IncRename <C-r><C-w>", desc = "Rename" },
-		},
+		keys = { { "<leader>lr", ":IncRename <C-r><C-w>", desc = "Rename" } },
 	},
 }
