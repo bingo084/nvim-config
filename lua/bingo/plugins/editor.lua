@@ -3,7 +3,7 @@ return {
 		"alker0/chezmoi.vim",
 		init = function()
 			if os.getenv("CHEZMOI") == "1" then
-				require("notify")("Using chezmoi edit file")
+				require("notify")("Chezmoi edit file")
 			end
 		end,
 		cond = function() return vim.fn.expand("%:p"):match("chezmoi") ~= nil end,
