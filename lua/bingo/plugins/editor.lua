@@ -6,7 +6,7 @@ return {
 				require("notify")("Chezmoi edit file")
 			end
 		end,
-		cond = function() return vim.fn.expand("%:p"):match("chezmoi") ~= nil end,
+		cond = function() return vim.fn.getcwd():match("chezmoi") ~= nil end,
 		config = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
 	},
 	{
