@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
 	{
 		"alker0/chezmoi.vim",
@@ -117,6 +118,7 @@ return {
 		dependencies = {
 			"windwp/nvim-ts-autotag",
 			"nvim-treesitter/nvim-treesitter-context",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
 		config = function()
@@ -127,6 +129,20 @@ return {
 				autopairs = { enable = true },
 				indent = { enable = true },
 				autotag = { enable = true },
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+						},
+					},
+				},
 			})
 		end,
 		event = "VeryLazy",
@@ -145,11 +161,6 @@ return {
 		keys = {
 			{ "<leader>oR", function() require("rainbow-delimiters").toggle(0) end, desc = "Toggle Rainbow" },
 		},
-	},
-	{
-		"echasnovski/mini.ai",
-		config = true,
-		event = "VeryLazy",
 	},
 	{
 		"iamcco/markdown-preview.nvim",
