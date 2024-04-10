@@ -171,4 +171,27 @@ return {
 		},
 	},
 	{ "dhruvasagar/vim-table-mode", cmd = "TableModeEnable" },
+	{
+		"JuanZoran/Trans.nvim",
+		dependencies = { "kkharji/sqlite.lua" },
+		build = function() require("Trans").install() end,
+		opts = {
+			frontend = {
+				default = {
+					title = {
+						{ "", "TransTitleRound" },
+						{ "󰊿 Trans", "TransTitle" },
+						{ "", "TransTitleRound" },
+					},
+					auto_play = false,
+				},
+				hover = { keymaps = { pin = "<A-p>", close = "q" }, icon = { notfound = "󰠗" } },
+			},
+		},
+		keys = {
+			{ "mm", vim.cmd.Translate, mode = { "n", "x" }, desc = "󰗊 Translate" },
+			{ "mk", vim.cmd.TransPlay, mode = { "n", "x" }, desc = " Auto Play" },
+			{ "mi", vim.cmd.TranslateInput, desc = "󰊿 Translate From Input" },
+		},
+	},
 }
