@@ -43,7 +43,7 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
----@type LazyPluginSpec[]
+---@type LazySpec[]
 return {
 	{
 		"folke/noice.nvim",
