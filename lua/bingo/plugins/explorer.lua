@@ -27,7 +27,7 @@ return {
 		end,
 		keys = {
 			{ "<C-e>", function() ui():toggle_quick_menu(list()) end, desc = "Harpoon Menu" },
-			{ "<C-m>", function() list():append() end, desc = "Harpoon Append" },
+			{ "<C-m>", function() list():add() end, desc = "Harpoon Append" },
 			{ "<C-h>", function() list():select(1) end, desc = "Harpoon Select 1" },
 			{ "<C-j>", function() list():select(2) end, desc = "Harpoon Select 2" },
 			{ "<C-k>", function() list():select(3) end, desc = "Harpoon Select 3" },
