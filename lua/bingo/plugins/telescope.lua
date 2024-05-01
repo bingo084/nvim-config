@@ -82,6 +82,11 @@ return {
 			{ "<leader>fb", function() builtin().buffers() end, desc = "[F]ind [B]uffer" },
 			{ "<leader>fc", function() builtin().command_history() end, desc = "[F]ind [C]ommand History" },
 			{ "<leader>ff", function() builtin().find_files() end, desc = "[F]ind [F]ile" },
+			{
+				"<leader>fF",
+				function() builtin().find_files({ hidden = true, no_ignore = true }) end,
+				desc = "[F]ind All [F]ile",
+			},
 			{ "<leader>fh", function() builtin().help_tags() end, desc = "[F]ind [H]elp" },
 			{ "<leader>fH", function() builtin().highlights() end, desc = "[F]ind [H]ighlights" },
 			{ "<leader>fk", function() builtin().keymaps() end, desc = "[F]ind [K]eymaps" },
