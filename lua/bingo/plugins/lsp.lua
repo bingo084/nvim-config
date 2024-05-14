@@ -19,6 +19,7 @@ return {
 				},
 				yamlls = {},
 				rust_analyzer = {},
+				taplo = {},
 			}
 			for _, lsp in ipairs(vim.tbl_keys(servers)) do
 				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
