@@ -127,7 +127,12 @@ return {
 				java = false,
 			},
 		},
-		event = "InsertEnter",
+		lazy = true,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {},
+		lazy = true,
 	},
 	{
 		"zbirenbaum/copilot.lua",

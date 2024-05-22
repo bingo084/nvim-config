@@ -128,7 +128,6 @@ return {
 				highlight = { enable = true },
 				autopairs = { enable = true },
 				indent = { enable = true },
-				autotag = { enable = true },
 				textobjects = {
 					select = {
 						enable = true,
