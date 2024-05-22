@@ -154,10 +154,12 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
 		build = "make install_jsregexp",
 		config = function()
 			local types = require("luasnip.util.types")
 			require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })
+			require("luasnip.loaders.from_vscode").lazy_load()
 			require("luasnip").setup({
 				update_events = "TextChanged,TextChangedI",
 				region_check_events = "CursorMoved",
