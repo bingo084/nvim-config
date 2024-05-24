@@ -21,6 +21,7 @@ return {
 				rust_analyzer = {},
 				taplo = {},
 				html = {},
+				cssls = {},
 			}
 			for _, lsp in ipairs(vim.tbl_keys(servers)) do
 				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
