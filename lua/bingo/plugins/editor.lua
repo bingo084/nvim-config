@@ -148,7 +148,6 @@ return {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		version = false,
 		main = "rainbow-delimiters.setup",
 		opts = {
 			query = {

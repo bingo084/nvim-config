@@ -11,7 +11,6 @@ return {
 			"hrsh7th/cmp-emoji",
 			"onsails/lspkind.nvim",
 		},
-		version = false,
 		config = function()
 			local cmp = require("cmp")
 			local mapping = cmp.mapping
