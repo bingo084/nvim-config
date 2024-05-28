@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -14,7 +15,7 @@ return {
 				bashls = {},
 				jsonls = { settings = { json = { schemas = require("schemastore").json.schemas() } } },
 				lua_ls = {
-					before_init = function(...) require("neodev.lsp").before_init(...) end,
+					on_new_config = function(...) require("neodev.lsp").on_new_config(...) end,
 					settings = { Lua = { completion = { callSnippet = "Replace" }, format = { enable = false } } },
 				},
 				yamlls = {},
