@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
 	{
 		"hrsh7th/nvim-cmp",
@@ -10,6 +11,7 @@ return {
 			"hrsh7th/cmp-emoji",
 			"onsails/lspkind.nvim",
 		},
+		version = false,
 		config = function()
 			local cmp = require("cmp")
 			local mapping = cmp.mapping
