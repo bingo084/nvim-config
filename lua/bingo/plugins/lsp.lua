@@ -24,6 +24,7 @@ return {
 				html = {},
 				cssls = {},
 				tsserver = {},
+				volar = {},
 			}
 			for _, lsp in ipairs(vim.tbl_keys(servers)) do
 				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
@@ -81,6 +82,7 @@ return {
 					formatting.shfmt,
 					formatting.markdownlint,
 					diagnostics.markdownlint,
+					formatting.prettier,
 				},
 			}
 		end,
