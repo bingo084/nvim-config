@@ -63,7 +63,7 @@ return {
 					map("n", "gD", vim.lsp.buf.type_definition, "Goto Declaration")
 					map("n", "gi", vim.lsp.buf.implementation, "Goto References And Implementation")
 					map("n", "gr", vim.lsp.buf.references, "Goto References And Implementation")
-					map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
+					map({ "n", "v" ,"i"}, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
 					map("n", "K", vim.lsp.buf.hover, "Show Hover")
 					map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, "Signature Help")
 					local function scroll_map(key, row, desc)
