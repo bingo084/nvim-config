@@ -1,30 +1,28 @@
 return {
 	"folke/which-key.nvim",
+	---@class wk.Opts
 	opts = {
-		window = {
-			border = "rounded",
-		},
-		layout = {
-			align = "center",
+		---@type false | "classic" | "modern" | "helix"
+		preset = "modern",
+		--- You can add any mappings here, or use `require('which-key').add()` later
+		---@type wk.Spec
+		spec = {
+			{ "<leader>c", group = "Copilot" },
+			{ "<leader>d", group = "Debug" },
+			{ "<leader>f", group = "Find" },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>i", group = "Inline" },
+			{ "<leader>l", group = "Lsp" },
+			{ "<leader>m", group = "Markdown" },
+			{ "<leader>n", group = "Notification" },
+			{ "<leader>o", group = "Options" },
+			{ "<leader>p", group = "Plugin" },
+			{ "<leader>r", group = "Reload" },
+			{ "<leader>s", group = "Session" },
+			{ "<leader>t", group = "Terminal" },
+			{ "<leader>T", group = "Treesitter" },
+			{ "<leader>x", group = "Extract" },
 		},
 	},
-	config = function(_, opts)
-		local which_key = require("which-key")
-		local mappings = {
-			b = { name = "Buffer" },
-			d = { name = "Debug" },
-			f = { name = "Find" },
-			g = { name = "Git" },
-			l = { name = "Lsp" },
-			m = { name = "Markdown" },
-			o = { name = "Options" },
-			p = { name = "Plugin" },
-			s = { name = "Session" },
-			t = { name = "Terminal" },
-			T = { name = "Treesitter" },
-		}
-		which_key.setup(opts)
-		which_key.register(mappings, { prefix = "<leader>" })
-	end,
 	event = "VeryLazy",
 }
