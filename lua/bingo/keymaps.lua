@@ -25,20 +25,6 @@ map("n", "<C-A-j>", "<cmd>m .+1<CR>==", "Move Line Down")
 map("n", "<C-A-k>", "<cmd>m .-2<CR>==", "Move Line Up")
 map("i", "<C-A-j>", "<Esc><cmd>m .+1<CR>==gi", "Move Line Down")
 map("i", "<C-A-k>", "<Esc><cmd>m .-2<CR>==gi", "Move Line Up")
--- Easier wincmd
-map({ "n", "i", "t" }, "<A-h>", "<cmd>KittyNavigateLeft<CR>", "Move to left window")
-map({ "n", "i", "t" }, "<A-j>", "<cmd>KittyNavigateDown<CR>", "Move to down window")
-map({ "n", "i", "t" }, "<A-k>", "<cmd>KittyNavigateUp<CR>", "Move to up window")
-map({ "n", "i", "t" }, "<A-l>", "<cmd>KittyNavigateRight<CR>", "Move to right window")
-map({ "n", "i", "t" }, "<A-w>", "<cmd>wincmd c<CR>", "Close current window")
--- Resize with arrows
-map("n", "<A-S-k>", "<cmd>resize +2<CR>", "Resize Window Higher")
-map("n", "<A-S-j>", "<cmd>resize -2<CR>", "Resize Window Lower")
-map("n", "<A-S-h>", "<cmd>vertical resize -2<CR>", "Resize Window Thinner")
-map("n", "<A-S-l>", "<cmd>vertical resize +2<CR>", "Resize Window Wider")
--- Split window
-map("n", "<A-v>", "<cmd>vsplit<cr>", "Vsplit")
-map("n", "<A-s>", "<cmd>split<cr>", "Split")
 -- Quit write and quit
 map("n", "<leader>w", "<cmd>w<CR>", "Write")
 map("n", "<leader>W", "<cmd>wall<CR>", "Write All")

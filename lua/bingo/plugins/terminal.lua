@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
 	{
 		"akinsho/toggleterm.nvim",
@@ -36,9 +37,29 @@ return {
 		},
 	},
 	{
-		"knubie/vim-kitty-navigator",
-		init = function() vim.g.kitty_navigator_no_mappings = 1 end,
-		build = "cp ./*.py ~/.config/kitty/",
-		cmd = { "KittyNavigateLeft", "KittyNavigateDown", "KittyNavigateUp", "KittyNavigateRight" },
+		"mrjones2014/smart-splits.nvim",
+		build = "./kitty/install-kittens.bash",
+		---@type SmartSplitsConfig
+		opts = { ---@diagnostic disable-line:missing-fields
+			default_amount = 2,
+			at_edge = "split",
+		},
+		event = "VeryLazy",
+		keys = function()
+			local function ss() return require("smart-splits") end
+			local mode = { "n", "i", "t" }
+			return {
+				{ "<A-h>", function() ss().move_cursor_left() end, mode = mode, desc = "Move to left window" },
+				{ "<A-j>", function() ss().move_cursor_down() end, mode = mode, desc = "Move to down window" },
+				{ "<A-k>", function() ss().move_cursor_up() end, mode = mode, desc = "Move to up window" },
+				{ "<A-l>", function() ss().move_cursor_right() end, mode = mode, desc = "Move to right window" },
+				{ "<A-S-h>", function() ss().swap_buf_left() end, mode = mode, desc = "Swap window left" },
+				{ "<A-S-j>", function() ss().swap_buf_down() end, mode = mode, desc = "Swap window down" },
+				{ "<A-S-k>", function() ss().swap_buf_up() end, mode = mode, desc = "Swap window up" },
+				{ "<A-S-l>", function() ss().swap_buf_right() end, mode = mode, desc = "Swap window right" },
+				{ "<A-r>", function() ss().start_resize_mode() end, mode = mode, desc = "Start Resize window mode" },
+				{ "<A-w>", "<cmd>close<cr>", mode = mode, desc = "Close window" },
+			}
+		end,
 	},
 }
