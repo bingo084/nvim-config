@@ -38,6 +38,7 @@ return {
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
+		version = "*",
 		build = "./kitty/install-kittens.bash",
 		---@type SmartSplitsConfig
 		opts = { ---@diagnostic disable-line:missing-fields
