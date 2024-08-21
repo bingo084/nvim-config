@@ -1,9 +1,8 @@
 ---@type LazySpec
 return {
-	{ "mfussenegger/nvim-dap", version = "*", lazy = true },
+	{ "mfussenegger/nvim-dap", lazy = true },
 	{
 		"rcarriga/nvim-dap-ui",
-		version = "*",
 		opts = {
 			icons = { expanded = "▾", collapsed = "▸" },
 			layouts = {

@@ -1,7 +1,8 @@
----@type LazySpec[]
+---@type LazySpec
 return {
 	{
 		"akinsho/toggleterm.nvim",
+		version = false,
 		config = function()
 			require("toggleterm").setup({
 				direction = "float",
@@ -38,7 +39,6 @@ return {
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
-		version = "*",
 		build = "./kitty/install-kittens.bash",
 		---@type SmartSplitsConfig
 		opts = { ---@diagnostic disable-line:missing-fields

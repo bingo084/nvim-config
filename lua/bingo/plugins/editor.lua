@@ -1,4 +1,4 @@
----@type LazySpec[]
+---@type LazySpec
 return {
 	{
 		"alker0/chezmoi.vim",
@@ -23,6 +23,7 @@ return {
 		dependencies = {
 			{ "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
 		},
+		version = false,
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("Comment").setup({
@@ -49,13 +50,11 @@ return {
 	},
 	{
 		"kylechui/nvim-surround",
-		version = "*",
 		event = "VeryLazy",
 		config = true,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		version = "*",
 		config = function()
 			require("ibl").setup({
 				indent = { char = "▏", tab_char = "▏" },
@@ -83,7 +82,6 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		version = "*",
 		opts = {
 			preview_config = { border = "rounded" },
 			on_attach = function(bufnr)
@@ -123,6 +121,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
+		version = false,
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
@@ -151,7 +150,6 @@ return {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		version = "*",
 		main = "rainbow-delimiters.setup",
 		opts = {
 			query = {
@@ -166,15 +164,16 @@ return {
 	{
 		"iamcco/markdown-preview.nvim",
 		build = function() vim.fn["mkdp#util#install"]() end,
+		version = false,
 		ft = { "markdown" },
 		keys = {
 			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle [M]arkdown [P]review" },
 		},
 	},
-	{ "dhruvasagar/vim-table-mode", version = "*",cmd = "TableModeEnable" },
+	{ "dhruvasagar/vim-table-mode", cmd = "TableModeEnable" },
 	{
 		"JuanZoran/Trans.nvim",
-		dependencies = { "kkharji/sqlite.lua" },
+		dependencies = { { "kkharji/sqlite.lua", version = false } },
 		build = function() require("Trans").install() end,
 		opts = {
 			frontend = {

@@ -60,7 +60,6 @@ return {
 				})
 			end
 		end,
-		version = "*",
 		opts = {
 			delete_to_trash = true,
 			keymaps = {

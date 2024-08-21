@@ -3,15 +3,13 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "williamboman/mason-lspconfig.nvim", version = "*", opts = { automatic_installation = true } },
+			{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
 			{
 				"williamboman/mason.nvim",
-				version = "*",
 				config = true,
 				keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
 			},
 		},
-		version = "*",
 		config = function()
 			local servers = {
 				bashls = {},
@@ -94,7 +92,7 @@ return {
 		},
 	},
 	{ "Bilal2453/luvit-meta", lazy = true },
-	{ "mfussenegger/nvim-jdtls", lazy = true },
+	{ "mfussenegger/nvim-jdtls", version = false, lazy = true },
 	{
 		"nvimtools/none-ls.nvim",
 		opts = function()
@@ -124,7 +122,6 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		version = "*",
 		event = "VeryLazy",
 		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
 		opts = { automatic_installation = true },

@@ -17,14 +17,13 @@ local function add_keys(plugins)
 	return plugins
 end
 return add_keys({
-	"morhetz/gruvbox",
-	{ "folke/tokyonight.nvim", version = "*" },
+	{ "morhetz/gruvbox", version = false },
+	"folke/tokyonight.nvim",
 	"Mofiqul/dracula.nvim",
 	{
 		"catppuccin/nvim",
 		init = function() vim.cmd.colorscheme("catppuccin") end,
 		name = "catppuccin",
-		version = "*",
 		opts = {
 			flavour = "frappe",
 			transparent_background = true,

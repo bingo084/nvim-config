@@ -22,7 +22,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{ "nvim-lua/plenary.nvim", version = false },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -33,7 +33,6 @@ return {
 				config = function() require("telescope").load_extension("ui-select") end,
 			},
 		},
-		version = "*",
 		config = function()
 			require("telescope").setup({
 				defaults = require("telescope.themes").get_dropdown({

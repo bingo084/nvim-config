@@ -15,6 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("bingo.plugins", {
+	defaults = {
+		version = "*",
+	},
 	install = {
 		colorscheme = { "catppuccin" },
 	},
