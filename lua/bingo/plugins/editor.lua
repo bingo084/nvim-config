@@ -49,11 +49,13 @@ return {
 	},
 	{
 		"kylechui/nvim-surround",
+		version = "*",
 		event = "VeryLazy",
 		config = true,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		version = "*",
 		config = function()
 			require("ibl").setup({
 				indent = { char = "▏", tab_char = "▏" },
@@ -81,6 +83,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		version = "*",
 		opts = {
 			preview_config = { border = "rounded" },
 			on_attach = function(bufnr)
@@ -148,6 +151,7 @@ return {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		version = "*",
 		main = "rainbow-delimiters.setup",
 		opts = {
 			query = {
@@ -167,7 +171,7 @@ return {
 			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle [M]arkdown [P]review" },
 		},
 	},
-	{ "dhruvasagar/vim-table-mode", cmd = "TableModeEnable" },
+	{ "dhruvasagar/vim-table-mode", version = "*",cmd = "TableModeEnable" },
 	{
 		"JuanZoran/Trans.nvim",
 		dependencies = { "kkharji/sqlite.lua" },

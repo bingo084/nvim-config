@@ -4,6 +4,7 @@ local function oil() return require("oil") end
 local function oil_select(opts)
 	return oil().select(vim.tbl_extend("force", { split = "belowright", close = true }, opts))
 end
+---@type LazySpec
 return {
 	{
 		"ThePrimeagen/harpoon",
@@ -59,6 +60,7 @@ return {
 				})
 			end
 		end,
+		version = "*",
 		opts = {
 			delete_to_trash = true,
 			keymaps = {

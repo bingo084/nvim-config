@@ -1,3 +1,4 @@
+---@param plugins LazySpec[]
 local function add_keys(plugins)
 	for i, v in pairs(plugins) do
 		local keys = {
@@ -17,12 +18,13 @@ local function add_keys(plugins)
 end
 return add_keys({
 	"morhetz/gruvbox",
-	"folke/tokyonight.nvim",
+	{ "folke/tokyonight.nvim", version = "*" },
 	"Mofiqul/dracula.nvim",
 	{
 		"catppuccin/nvim",
 		init = function() vim.cmd.colorscheme("catppuccin") end,
 		name = "catppuccin",
+		version = "*",
 		opts = {
 			flavour = "frappe",
 			transparent_background = true,

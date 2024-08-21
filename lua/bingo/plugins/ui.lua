@@ -47,7 +47,8 @@ vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 return {
 	{
 		"folke/noice.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+		dependencies = { { "MunifTanjim/nui.nvim", version = "*" }, { "rcarriga/nvim-notify", version = "*" } },
+		version = "*",
 		event = "VeryLazy",
 		opts = {
 			lsp = {

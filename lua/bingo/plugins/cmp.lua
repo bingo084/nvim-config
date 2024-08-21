@@ -162,6 +162,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		build = "make install_jsregexp",
+		version = "*",
 		config = function()
 			local types = require("luasnip.util.types")
 			require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })

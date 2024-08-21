@@ -1,5 +1,7 @@
+---@type LazySpec
 return {
 	"folke/which-key.nvim",
+	version = "*",
 	---@class wk.Opts
 	opts = {
 		---@type false | "classic" | "modern" | "helix"

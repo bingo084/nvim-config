@@ -3,13 +3,15 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
+			{ "williamboman/mason-lspconfig.nvim", version = "*", opts = { automatic_installation = true } },
 			{
 				"williamboman/mason.nvim",
+				version = "*",
 				config = true,
 				keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
 			},
 		},
+		version = "*",
 		config = function()
 			local servers = {
 				bashls = {},
@@ -63,7 +65,7 @@ return {
 					map("n", "gD", vim.lsp.buf.type_definition, "Goto Declaration")
 					map("n", "gi", vim.lsp.buf.implementation, "Goto References And Implementation")
 					map("n", "gr", vim.lsp.buf.references, "Goto References And Implementation")
-					map({ "n", "v" ,"i"}, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
+					map({ "n", "v", "i" }, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
 					map("n", "K", vim.lsp.buf.hover, "Show Hover")
 					map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, "Signature Help")
 					local function scroll_map(key, row, desc)
@@ -113,6 +115,7 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		version = "*",
 		event = "VeryLazy",
 		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
 		opts = { automatic_installation = true },

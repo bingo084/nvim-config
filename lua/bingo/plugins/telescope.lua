@@ -17,6 +17,7 @@ local function mappings(map)
 		["<A-p>"] = layout().toggle_preview,
 	}, map or {})
 end
+---@type LazySpec
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -32,6 +33,7 @@ return {
 				config = function() require("telescope").load_extension("ui-select") end,
 			},
 		},
+		version = "*",
 		config = function()
 			require("telescope").setup({
 				defaults = require("telescope.themes").get_dropdown({
