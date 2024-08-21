@@ -17,7 +17,6 @@ return {
 				bashls = {},
 				jsonls = { settings = { json = { schemas = require("schemastore").json.schemas() } } },
 				lua_ls = {
-					on_new_config = function(...) require("neodev.lsp").on_new_config(...) end,
 					settings = { Lua = { completion = { callSnippet = "Replace" }, format = { enable = false } } },
 				},
 				yamlls = {},
@@ -84,7 +83,17 @@ return {
 		keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
 	},
 	{ "b0o/SchemaStore.nvim", lazy = true },
-	{ "folke/neodev.nvim", lazy = true, opts = { lspconfig = false } },
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "lazy.nvim", words = { "LazySpec" } },
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 	{ "mfussenegger/nvim-jdtls", lazy = true },
 	{
 		"nvimtools/none-ls.nvim",

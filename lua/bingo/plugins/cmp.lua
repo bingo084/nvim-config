@@ -69,6 +69,7 @@ return {
 						end
 					end, { "i", "s" }),
 				},
+				---@diagnostic disable-next-line: missing-fields
 				formatting = {
 					format = require("lspkind").cmp_format({
 						mode = "symbol_text",
@@ -78,6 +79,7 @@ return {
 							buffer = "[Buffer]",
 							path = "[Path]",
 							emoji = "[Emoji]",
+							lazydev = "[LazyDev]",
 						},
 						before = function(entry, vim_item)
 							if entry.source.name == "emoji" then
@@ -94,6 +96,7 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "emoji" },
+					{ name = "lazydev", group_index = 0 },
 				},
 			})
 
