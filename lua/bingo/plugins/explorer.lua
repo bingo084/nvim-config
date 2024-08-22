@@ -38,62 +38,21 @@ return {
 		},
 	},
 	{
-		"stevearc/oil.nvim",
-		init = function(plugin)
-			-- https://github.com/kevinm6/nvim/blob/00e154d74711601a9d3d73fb5e0308d22076d828/lua/plugins/editor/oil.lua#L147
-			if vim.fn.argc() == 1 then
-				local argv = tostring(vim.fn.argv(0))
-				local stat = vim.loop.fs_stat(argv)
-				local remote_dir_args = vim.startswith(argv, "ssh")
-				if stat and stat.type == "directory" or remote_dir_args then
-					require("lazy").load({ plugins = { plugin.name } })
-				end
-			end
-			if not require("lazy.core.config").plugins[plugin.name]._.loaded then
-				vim.api.nvim_create_autocmd("BufNew", {
-					callback = function(args)
-						if vim.fn.isdirectory(args.file) == 1 then
-							require("lazy").load({ plugins = { plugin.name } })
-							return true
-						end
-					end,
-				})
-			end
-		end,
+		"mikavilpas/yazi.nvim",
+		---@module "yazi"
+		---@type YaziConfig
 		opts = {
-			delete_to_trash = true,
+			open_for_directories = true,
+			open_multiple_tabs = true,
+			floating_window_scaling_factor = 0.8,
 			keymaps = {
-				["<C-h>"] = false,
-				["<C-s>"] = function() oil_select({ horizontal = true }) end,
-				["<C-v>"] = function() oil_select({ vertical = true }) end,
-				["<C-p>"] = function()
-					local float = vim.api.nvim_win_get_config(0).relative ~= ""
-					oil().close()
-					if float then
-						oil().open()
-						oil_select({ preview = true, close = false })
-					else
-						oil().open_float()
-					end
-				end,
-				["q"] = "actions.close",
-				["<leader>e"] = "actions.close",
-				["<Esc><Esc>"] = "actions.close",
-			},
-			float = {
-				max_height = 16,
-				override = function(conf)
-					conf.row = (vim.o.lines - conf.height - 4)
-					return conf
-				end,
-			},
-			adapter_aliases = {
-				["ssh://"] = "oil-ssh://",
+				show_help = "~",
 			},
 		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VeryLazy",
 		keys = {
-			{ "<leader>e", function() oil().open_float() end, desc = "Explorer" },
+			{ "<leader>e", "<cmd>Yazi<cr>", desc = "Open yazi at the current file" },
+			{ "<leader>E", "<cmd>Yazi cwd<cr>", desc = "Open the file manager in nvim's working directory" },
 		},
 	},
 	{
