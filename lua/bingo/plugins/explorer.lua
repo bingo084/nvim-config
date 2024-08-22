@@ -1,9 +1,5 @@
 local function ui() return require("harpoon").ui end
 local function list() return require("harpoon"):list() end
-local function oil() return require("oil") end
-local function oil_select(opts)
-	return oil().select(vim.tbl_extend("force", { split = "belowright", close = true }, opts))
-end
 ---@type LazySpec
 return {
 	{
