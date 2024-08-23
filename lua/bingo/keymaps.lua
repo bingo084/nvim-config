@@ -40,6 +40,9 @@ map("n", "]l", "<cmd>lnext<CR>", "Next [L]oclist")
 map("n", "[l", "<cmd>lprev<CR>", "Prev [L]oclist")
 map("n", "]L", "<cmd>llast<CR>", "Last [L]oclist")
 map("n", "[L", "<cmd>lfirst<CR>", "First [L]oclist")
+-- Tab
+map("n", "]t", "<cmd>tabnext<CR>", "Next [T]ab")
+map("n", "[t", "<cmd>tabprev<CR>", "Prev [T]ab")
 -- Toggle some options
 local function toggle(opt, val)
 	return function() require("bingo.utils").toggle_option(opt, val) end

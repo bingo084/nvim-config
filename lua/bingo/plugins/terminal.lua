@@ -12,14 +12,12 @@ return {
 			})
 
 			local Terminal = require("toggleterm.terminal").Terminal
-			local lazygit = Terminal:new({ cmd = "lazygit" })
 			local btop = Terminal:new({ cmd = "btop" })
 			local lazydocker = Terminal:new({ cmd = "lazydocker" })
 			local float_term = Terminal:new({ direction = "float" })
 			local vertical_term = Terminal:new({ direction = "vertical" })
 			local horizontal_term = Terminal:new({ direction = "horizontal" })
 
-			function _LAZYGIT_TOGGLE() lazygit:toggle() end
 			function _BTOP_TOGGLE() btop:toggle() end
 			function _LAZYDOCKER_TOGGLE() lazydocker:toggle() end
 			function _FLOAT_TERM() float_term:toggle() end
@@ -33,8 +31,6 @@ return {
 			{ "<leader>tb", function() _BTOP_TOGGLE() end, desc = "Open Btop" },
 			{ "<leader>td", function() _LAZYDOCKER_TOGGLE() end, desc = "Open Lazydocker" },
 			{ "<leader>tf", "<cmd>Lazy load telescope.nvim<Bar>TermSelect<CR>", desc = "[T]erm [F]ind" },
-			{ "<leader>tg", function() _LAZYGIT_TOGGLE() end, desc = "Open Lazygit" },
-			{ "<leader>gg", function() _LAZYGIT_TOGGLE() end, desc = "Open Lazygit" },
 		},
 	},
 	{
