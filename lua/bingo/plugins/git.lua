@@ -80,6 +80,7 @@ return {
 		keys = {
 			{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[D]iff View" },
 			{ "<leader>gl", "<cmd>DiffviewFileHistory<CR>", desc = "[L]og" },
+			{ "<leader>gL", "<cmd>DiffviewFileHistory %<CR>", desc = "[L]og Current File" },
 		},
 	},
 	{
