@@ -47,6 +47,7 @@ return {
 			if not require("lazy.core.config").plugins[plugin.name]._.loaded then
 				vim.api.nvim_create_autocmd("BufNew", {
 					pattern = "*/",
+					group = vim.api.nvim_create_augroup("yazi", {}),
 					callback = function()
 						require("lazy").load({ plugins = { plugin.name } })
 						return true

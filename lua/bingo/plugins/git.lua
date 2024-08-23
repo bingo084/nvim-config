@@ -40,6 +40,7 @@ return {
 		opts = function()
 			vim.api.nvim_create_autocmd("BufWinEnter", {
 				pattern = "diffview://*/log/*/commit_log",
+        group = vim.api.nvim_create_augroup("diffview", {}),
 				callback = function() vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = 0 }) end,
 			})
 			local actions = require("diffview.actions")
