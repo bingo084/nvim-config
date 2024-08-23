@@ -81,40 +81,6 @@ return {
 		},
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			preview_config = { border = "rounded" },
-			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
-				local function map(mode, l, r, desc) vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc }) end
-				local function navimap(l, r, desc)
-					vim.keymap.set("n", l, function()
-						if vim.wo.diff then
-							return l
-						end
-						vim.schedule(r)
-						return "<Ignore>"
-					end, { buffer = bufnr, desc = desc, expr = true })
-				end
-				navimap("]c", gs.next_hunk, "[N]ext [C]hange(hunk)")
-				navimap("[c", gs.prev_hunk, "[P]rev [C]hange(hunk)")
-				map("n", "<leader>gb", gs.blame_line, "[G]it [B]lame")
-				map("n", "<leader>gp", gs.preview_hunk, "[G]it [P]review")
-				map("n", "<leader>gr", gs.reset_hunk, "[G]it [R]eset hunk")
-				map("n", "<leader>gR", gs.reset_buffer, "[G]it [R]eset buffer")
-				map("n", "<leader>gs", gs.stage_hunk, "[G]it [S]tage hunk")
-				map("n", "<leader>gS", gs.stage_buffer, "[G]it [S]tage hunk")
-				local range = { vim.fn.line("."), vim.fn.line("v") }
-				map("v", "<leader>gr", function() gs.reset_hunk(range) end, "[G]it [R]eset hunk")
-				map("v", "<leader>gs", function() gs.stage_hunk(range) end, "[G]it [S]tage hunk")
-				map("n", "<leader>gu", gs.undo_stage_hunk, "[G]it [U]ndo stage hunk")
-				-- Text object
-				map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", "git hunk")
-			end,
-		},
-		event = "VeryLazy",
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-context",

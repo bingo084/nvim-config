@@ -31,6 +31,9 @@ return {
 			"GUnlink",
 			"GBrowse",
 		},
+		keys = {
+			{ "<leader>gg", "<cmd>Git<CR>", desc = "Status" },
+		},
 	},
 	{
 		"sindrets/diffview.nvim",
@@ -75,8 +78,43 @@ return {
 			}
 		end,
 		keys = {
-			{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[D]iff view" },
+			{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[D]iff View" },
 			{ "<leader>gl", "<cmd>DiffviewFileHistory<CR>", desc = "[L]og" },
 		},
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			preview_config = { border = "rounded" },
+			on_attach = function(bufnr)
+				local gitsigns = require("gitsigns")
+				local function map(mode, lhs, rhs, desc) vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc }) end
+				local function navimap(lhs, rhs, desc)
+					vim.keymap.set("n", lhs, function()
+						if vim.wo.diff then
+							return lhs
+						end
+						vim.schedule(rhs)
+						return "<Ignore>"
+					end, { buffer = bufnr, desc = desc, expr = true })
+				end
+				navimap("]c", gitsigns.next_hunk, "[N]ext [C]hange(hunk)")
+				navimap("[c", gitsigns.prev_hunk, "[P]rev [C]hange(hunk)")
+				map("n", "<leader>gb", function() gitsigns.blame_line({ full = true }) end, "[B]lame")
+				map("n", "<leader>gp", gitsigns.preview_hunk, "[P]review Hunk")
+				map("n", "<leader>gr", gitsigns.reset_hunk, "[R]eset Hunk")
+				map("n", "<leader>gs", gitsigns.stage_hunk, "[S]tage Hunk")
+				local range = { vim.fn.line("."), vim.fn.line("v") }
+				map("v", "<leader>gr", function() gitsigns.reset_hunk(range) end, "[R]eset Hunk")
+				map("v", "<leader>gs", function() gitsigns.stage_hunk(range) end, "[S]tage Hunk")
+				map("n", "<leader>gR", gitsigns.reset_buffer, "[R]eset Buffer")
+				map("n", "<leader>gS", gitsigns.stage_buffer, "[S]tage Buffer")
+				map("n", "<leader>gu", gitsigns.undo_stage_hunk, "[U]ndo Stage Hunk")
+				map("n", "<leader>ob", gitsigns.toggle_current_line_blame, "Toggle [b]lame")
+				-- Text object
+				map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", "inner hunk")
+			end,
+		},
+		event = "VeryLazy",
 	},
 }
