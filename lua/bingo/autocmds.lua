@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
+	pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/[^.]*",
 	group = group,
 	callback = function() vim.cmd("!chezmoi apply --source-path %") end,
 	desc = "Chezmoi apply after write",
