@@ -2,6 +2,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		version = false,
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
 			{
@@ -22,7 +23,7 @@ return {
 				taplo = {},
 				html = {},
 				cssls = {},
-				tsserver = {
+				ts_ls = {
 					init_options = {
 						plugins = {
 							{
@@ -39,6 +40,7 @@ return {
 					},
 				},
 				volar = {},
+				hyprls = {},
 			}
 			for _, lsp in ipairs(vim.tbl_keys(servers)) do
 				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
