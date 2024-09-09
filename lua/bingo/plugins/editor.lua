@@ -7,7 +7,11 @@ return {
 				require("notify")("Chezmoi edit file")
 			end
 		end,
-		cond = function() return vim.fn.bufname():match("chezmoi") ~= nil end,
+		cond = function()
+			return os.getenv("CHEZMOI") == "1"
+				or vim.uv.cwd():match("chezmoi")
+				or vim.fn.bufname():match("chezmoi") ~= nil
+		end,
 		config = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
 	},
 	{
