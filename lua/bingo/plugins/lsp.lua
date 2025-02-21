@@ -101,39 +101,6 @@ return {
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{ "mfussenegger/nvim-jdtls", version = false, lazy = true },
 	{
-		"nvimtools/none-ls.nvim",
-		opts = function()
-			local formatting = require("null-ls").builtins.formatting
-			local diagnostics = require("null-ls").builtins.diagnostics
-			return {
-				sources = {
-					formatting.stylua,
-					formatting.google_java_format,
-					formatting.yamlfmt,
-					formatting.shfmt,
-					formatting.markdownlint,
-					diagnostics.markdownlint,
-					formatting.prettier,
-				},
-			}
-		end,
-		keys = {
-			{ "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, desc = "[F]ormat" },
-			{ "<leader>ld", vim.diagnostic.open_float, desc = "[D]iagnostic" },
-			{ "]d", vim.diagnostic.goto_next, desc = "Next [D]iagnostic" },
-			{ "[d", vim.diagnostic.goto_prev, desc = "Prev [D]iagnostic" },
-			{ "<leader>ll", vim.diagnostic.setloclist, desc = "[L]oclist" },
-			{ "<leader>lq", vim.diagnostic.setqflist, desc = "[Q]flist" },
-		},
-		event = "VeryLazy",
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = "VeryLazy",
-		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
-		opts = { automatic_installation = true },
-	},
-	{
 		"ThePrimeagen/refactoring.nvim",
 		opts = {},
 		keys = {
