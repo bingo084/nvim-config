@@ -62,16 +62,16 @@ local copilot = {
 }
 local lanuage_server = {
 	function()
-		local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+		local clients = vim.lsp.get_clients({ bufnr = 0 })
 		local client_names = {}
 		for _, client in pairs(clients) do
 			if client.name ~= "copilot" then
 				table.insert(client_names, client.name)
 			end
 		end
-		local sources = require("conform").list_formatters()
-		for _, source in ipairs(sources) do
-			table.insert(client_names, source.name)
+		local formatters = require("conform").list_formatters()
+		for _, formatter in ipairs(formatters) do
+			table.insert(client_names, formatter.name)
 		end
 		local unique_client = {}
 		for _, value in ipairs(client_names) do
@@ -83,7 +83,7 @@ local lanuage_server = {
 		end
 		return "[" .. table.concat(unique_client_names, ", ") .. "]"
 	end,
-	cond = function() return #vim.lsp.get_active_clients({ bufnr = 0 }) ~= 0 end,
+	cond = function() return #vim.lsp.get_clients({ bufnr = 0 }) ~= 0 or #require("conform").list_formatters() ~= 0 end,
 }
 
 return {
