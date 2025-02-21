@@ -47,8 +47,13 @@ return {
 				volar = {},
 				hyprls = {},
 			}
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 			for _, lsp in ipairs(vim.tbl_keys(servers)) do
-				servers[lsp]["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
+				servers[lsp]["capabilities"] = capabilities
 				require("lspconfig")[lsp].setup(servers[lsp])
 			end
 
@@ -70,7 +75,12 @@ return {
 					map("n", "gi", vim.lsp.buf.implementation, "Goto References And Implementation")
 					map("n", "gr", vim.lsp.buf.references, "Goto References And Implementation")
 					map({ "n", "v", "i" }, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
-					map("n", "K", vim.lsp.buf.hover, "Show Hover")
+					map("n", "K", function()
+						local winid = require("ufo").peekFoldedLinesUnderCursor()
+						if not winid then
+							vim.lsp.buf.hover()
+						end
+					end, "Show Hover")
 					map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, "Signature Help")
 					local function scroll_map(key, row, desc)
 						vim.keymap.set({ "n", "i", "s" }, key, function()
