@@ -10,12 +10,18 @@ return {
 			}
 			vim.lsp.config("*", { capabilities = capabilities })
 
-			local signs = { Error = "", Warn = "", Hint = "󱠂", Info = "" }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-			end
-			vim.diagnostic.config({ update_in_insert = true, float = { border = "rounded" } })
+			vim.diagnostic.config({
+				update_in_insert = true,
+				float = { border = "rounded" },
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.HINT] = "󱠂",
+						[vim.diagnostic.severity.INFO] = "",
+					},
+				},
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
