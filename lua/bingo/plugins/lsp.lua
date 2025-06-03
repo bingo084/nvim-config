@@ -2,60 +2,13 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		version = false,
-		dependencies = {
-			{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
-			{
-				"williamboman/mason.nvim",
-				config = true,
-				keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
-			},
-		},
 		config = function()
-			local servers = {
-				bashls = {},
-				jsonls = { settings = { json = { schemas = require("schemastore").json.schemas() } } },
-				lua_ls = {
-					settings = { Lua = { completion = { callSnippet = "Replace" }, format = { enable = false } } },
-				},
-				yamlls = {},
-				rust_analyzer = {},
-				taplo = {},
-				html = {},
-				cssls = {},
-				ts_ls = {
-					init_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vim.uv.os_uname().sysname == "Linux" and "/usr"
-									or "/opt/homebrew" .. "/lib/node_modules/@vue/typescript-plugin",
-								languages = { "javascript", "typescript", "vue" },
-							},
-						},
-					},
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"javascript.jsx",
-						"typescript",
-						"typescriptreact",
-						"typescript.tsx",
-						"vue",
-					},
-				},
-				volar = {},
-				hyprls = {},
-			}
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
 			}
-			for _, lsp in ipairs(vim.tbl_keys(servers)) do
-				servers[lsp]["capabilities"] = capabilities
-				require("lspconfig")[lsp].setup(servers[lsp])
-			end
+			vim.lsp.config("*", { capabilities = capabilities })
 
 			local signs = { Error = "", Warn = "", Hint = "󱠂", Info = "" }
 			for type, icon in pairs(signs) do
@@ -97,6 +50,31 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
 	},
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+		keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = {
+				"bashls",
+				"cssls",
+				"html",
+				"hyprls",
+				"jdtls",
+				"jsonls",
+				"lua_ls",
+				"rust_analyzer",
+				"taplo",
+				"ts_ls",
+				"vue_ls",
+				"yamlls",
+			},
+		},
+		event = { "BufReadPre", "BufNewFile" },
+	},
 	{ "b0o/SchemaStore.nvim", lazy = true },
 	{
 		"folke/lazydev.nvim",
@@ -104,11 +82,10 @@ return {
 		opts = {
 			library = {
 				{ path = "lazy.nvim", words = { "LazySpec" } },
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true },
 	{ "mfussenegger/nvim-jdtls", version = false, lazy = true },
 	{
 		"ThePrimeagen/refactoring.nvim",
