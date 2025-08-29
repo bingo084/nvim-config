@@ -6,6 +6,7 @@ return {
 		---@type conform.setupOpts
 		opts = {
 			formatters_by_ft = {
+				go = { "goimports", lsp_format = "last" },
 				lua = { "stylua" },
 				java = { "google-java-format" },
 				yaml = { "yamlfmt" },

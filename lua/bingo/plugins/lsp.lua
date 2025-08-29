@@ -67,6 +67,7 @@ return {
 			ensure_installed = {
 				"bashls",
 				"cssls",
+				"gopls",
 				"html",
 				"hyprls",
 				"jdtls",
