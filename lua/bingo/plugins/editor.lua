@@ -1,20 +1,6 @@
 ---@type LazySpec
 return {
 	{
-		"alker0/chezmoi.vim",
-		init = function()
-			if os.getenv("CHEZMOI") == "1" then
-				require("notify")("Chezmoi edit file")
-			end
-		end,
-		cond = function()
-			return os.getenv("CHEZMOI") == "1"
-				or vim.uv.cwd():match("chezmoi")
-				or vim.fn.bufname():match("chezmoi") ~= nil
-		end,
-		config = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
-	},
-	{
 		"norcalli/nvim-colorizer.lua",
 		config = function() require("colorizer").setup({ "*" }, { css = true }) end,
 		ft = { "css" },
