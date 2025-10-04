@@ -150,4 +150,9 @@ return {
 			{ "mi", vim.cmd.TranslateInput, desc = "󰊿 Translate From Input" },
 		},
 	},
+	{
+		"Jay-Madden/auto-fix-return.nvim",
+		opts = {},
+		ft = "go",
+	},
 }
