@@ -55,7 +55,7 @@ return {
 			vim.o.foldenable = true
 			vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 		end,
-    ---@module "ufo"
+		---@module "ufo"
 		---@type UfoConfig
 		---@diagnostic disable-next-line: missing-fields
 		opts = {
