@@ -76,6 +76,10 @@ return {
 			fold_virt_text_handler = handler,
 		},
 		event = "VeryLazy",
+		keys = {
+			{ "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+			{ "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+		},
 	},
 	{
 		"chrisgrieser/nvim-origami",
