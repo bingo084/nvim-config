@@ -15,6 +15,7 @@ return {
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
+				sql = { "sql_formatter" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
