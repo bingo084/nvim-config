@@ -155,4 +155,5 @@ return {
 		opts = {},
 		ft = "go",
 	},
+	{ "wakatime/vim-wakatime", lazy = false },
 }
