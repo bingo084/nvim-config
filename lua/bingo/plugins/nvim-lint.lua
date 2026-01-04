@@ -15,8 +15,8 @@ return {
 		end,
 		keys = {
 			{ "<leader>ld", vim.diagnostic.open_float, desc = "[D]iagnostic" },
-			{ "]d", vim.diagnostic.goto_next, desc = "Next [D]iagnostic" },
-			{ "[d", vim.diagnostic.goto_prev, desc = "Prev [D]iagnostic" },
+			{ "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next [D]iagnostic" },
+			{ "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev [D]iagnostic" },
 			{ "<leader>ll", vim.diagnostic.setloclist, desc = "[L]oclist" },
 			{ "<leader>lq", vim.diagnostic.setqflist, desc = "[Q]flist" },
 		},
