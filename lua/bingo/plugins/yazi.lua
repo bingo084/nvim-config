@@ -29,6 +29,8 @@ return {
 		floating_window_scaling_factor = 0.8,
 		keymaps = {
 			show_help = "~",
+			open_file_in_horizontal_split = "<c-s>",
+			grep_in_directory = "<c-x>",
 		},
 	},
 	keys = {
