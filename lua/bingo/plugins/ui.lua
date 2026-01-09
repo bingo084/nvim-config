@@ -48,6 +48,7 @@ return {
 	{
 		"folke/noice.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+		version = false,
 		event = "VeryLazy",
 		opts = {
 			lsp = {
@@ -68,7 +69,7 @@ return {
 				desc = "Redirect Cmdline",
 			},
 			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Notification Clear" },
-			{ "<leader>fn", function() require("noice").cmd("telescope") end, desc = "[F]ind [N]otify" },
+			{ "<leader>fn", function() Snacks.picker.noice() end, desc = "[F]ind [N]otifications" },
 		},
 	},
 	{

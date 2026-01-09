@@ -30,7 +30,7 @@ return {
 			{ [[<c-\>]], function() _VERTICAL_TERM() end, mode = { "n", "i", "t" }, desc = "Open Vertical Term" },
 			{ "<leader>tb", function() _BTOP_TOGGLE() end, desc = "Open Btop" },
 			{ "<leader>td", function() _LAZYDOCKER_TOGGLE() end, desc = "Open Lazydocker" },
-			{ "<leader>tf", "<cmd>Lazy load telescope.nvim<Bar>TermSelect<CR>", desc = "[T]erm [F]ind" },
+			{ "<leader>tf", "<cmd>TermSelect<CR>", desc = "[T]erm [F]ind" },
 		},
 	},
 }

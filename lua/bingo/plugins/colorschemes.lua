@@ -4,8 +4,8 @@ local function add_keys(plugins)
 		local keys = {
 			{
 				"<leader>fC",
-				function() require("telescope.builtin").colorscheme() end,
-				desc = "[F]ind [C]olorscheme",
+				function() Snacks.picker.colorschemes() end,
+				desc = "[F]ind [C]olorschemes",
 			},
 		}
 		if type(v) == "string" then
@@ -65,7 +65,7 @@ return add_keys({
 				treesitter_context = true,
 				treesitter = true,
 				rainbow_delimiters = true,
-				telescope = {
+				snacks = {
 					enabled = true,
 				},
 				illuminate = {
