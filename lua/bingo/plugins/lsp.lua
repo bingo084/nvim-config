@@ -23,16 +23,32 @@ return {
 				},
 			})
 
+			vim.keymap.del({ "n", "x" }, "gra")
+			vim.keymap.del("n", "gri")
+			vim.keymap.del("n", "grn")
+			vim.keymap.del("n", "grr")
+			vim.keymap.del("n", "grt")
+			vim.keymap.del("n", "gO")
+			vim.keymap.del({ "i", "s" }, "<C-s>")
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
 					local function map(mode, key, action, desc)
 						vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = desc })
 					end
-					map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
-					map("n", "gD", vim.lsp.buf.type_definition, "Goto Declaration")
-					map("n", "gi", vim.lsp.buf.implementation, "Goto References And Implementation")
-					map("n", "gr", vim.lsp.buf.references, "Goto References And Implementation")
+					map("n", "gd", vim.lsp.buf.definition, "Goto [D]efinition")
+					map("n", "gD", vim.lsp.buf.declaration, "Goto [D]eclaration")
+					map("n", "gi", vim.lsp.buf.implementation, "Goto [I]mplementation")
+					map("n", "gI", vim.lsp.buf.incoming_calls, "Goto [I]ncoming Calls")
+					map("n", "gO", vim.lsp.buf.outgoing_calls, "Goto [O]utgoing Calls")
+					map(
+						"n",
+						"gr",
+						function() vim.lsp.buf.references({ includeDeclaration = false }) end,
+						"Goto [R]eferences"
+					)
+					map("n", "gy", vim.lsp.buf.type_definition, "Goto [D]eclaration")
 					map({ "n", "v", "i" }, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
 					map("n", "K", function()
 						local winid = require("ufo").peekFoldedLinesUnderCursor()
