@@ -22,7 +22,13 @@ return {
 			},
 			---@type table<string, sidekick.cli.Config|{}>
 			tools = {
-				gemini = { cmd = { "gemini", "-m", "gemini-2.5-pro", "--resume" } },
+				gemini = {
+					cmd = {
+						"bash",
+						"-c",
+						"gemini -m gemini-2.5-pro --resume 2> >(grep -v 'No previous sessions found') || gemini -m gemini-2.5-pro",
+					},
+				},
 			},
 		},
 	},
