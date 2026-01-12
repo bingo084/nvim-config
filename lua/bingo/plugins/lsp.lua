@@ -49,7 +49,12 @@ return {
 						"Goto [R]eferences"
 					)
 					map("n", "gy", vim.lsp.buf.type_definition, "Goto [D]eclaration")
-					map({ "n", "v", "i" }, "<A-Enter>", vim.lsp.buf.code_action, "Code Action")
+					map(
+						{ "n", "v", "i" },
+						"<A-Enter>",
+						function() require("tiny-code-action").code_action({}) end,
+						"Code Action"
+					)
 					map("n", "K", function()
 						local winid = require("ufo").peekFoldedLinesUnderCursor()
 						if not winid then
