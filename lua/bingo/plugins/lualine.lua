@@ -26,10 +26,10 @@ local git_status = {
 	"gitstatus",
 	sections = {
 		{ "ahead", format = "↑{}", hl = color.yellow },
-		{ "behind", format = "↓{} ", hl = color.yellow },
+		{ "behind", format = "↓{}", hl = color.yellow },
 	},
 	sep = "",
-	padding = 0,
+	padding = { left = 0, right = 1 },
 }
 local filetype = {
 	"filetype",
