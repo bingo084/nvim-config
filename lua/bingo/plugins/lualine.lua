@@ -42,8 +42,8 @@ local filename = {
 	file_status = false,
 	color = function()
 		local function is_new_file()
-			local filename = vim.fn.expand("%")
-			return filename ~= "" and vim.bo.buftype == "" and vim.fn.filereadable(filename) == 0
+			local filename = vim.fn.expand("%:p")
+			return filename ~= "" and vim.bo.buftype == "" and vim.uv.fs_stat(filename) == nil
 		end
 		if vim.bo.modified then
 			return { fg = color.peach }
