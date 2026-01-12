@@ -14,8 +14,22 @@ local lazy = {
 	color = { fg = color.peach },
 }
 local branch = {
-	"branch",
+	"gitstatus",
+	sections = {
+		{ "branch", format = "{}" },
+		{ "is_dirty", format = "*" },
+	},
 	icon = { "", color = { fg = color.peach } },
+	sep = "",
+}
+local git_status = {
+	"gitstatus",
+	sections = {
+		{ "ahead", format = "↑{}", hl = color.yellow },
+		{ "behind", format = "↓{} ", hl = color.yellow },
+	},
+	sep = "",
+	padding = 0,
 }
 local filetype = {
 	"filetype",
@@ -41,7 +55,7 @@ local filename = {
 			return { fg = color.blue }
 		end
 	end,
-	padding = { left = 0, right = 1 },
+	padding = 0,
 }
 local copilot = {
 	"copilot",
@@ -91,6 +105,7 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"AndreM222/copilot-lualine",
+		{ "abccsss/nvim-gitstatus", opts = {} },
 	},
 	opts = {
 		options = {
@@ -100,11 +115,11 @@ return {
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { branch, filetype, filename },
-			lualine_c = { diagnostics },
+			lualine_b = { branch, git_status },
+			lualine_c = { filetype, filename, diagnostics },
 			lualine_x = { diff, lazy },
 			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
-			lualine_z = { "progress", "location" },
+			lualine_z = { { "progress", padding = { left = 1 } }, "location" },
 		},
 		extensions = { "lazy", "man", "mason", "nvim-dap-ui", "oil", "toggleterm" },
 	},
