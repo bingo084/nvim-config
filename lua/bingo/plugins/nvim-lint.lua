@@ -8,8 +8,12 @@ return {
 			}
 			require("lint").try_lint()
 			vim.api.nvim_create_autocmd({ "BufReadPost", "TextChanged" }, {
-				callback = function() require("lint").try_lint() end,
 				group = vim.api.nvim_create_augroup("nvim-lint", {}),
+				callback = function(args)
+					if vim.bo[args.buf].buftype == "" then
+						require("lint").try_lint()
+					end
+				end,
 				desc = "Lint on text change",
 			})
 		end,
