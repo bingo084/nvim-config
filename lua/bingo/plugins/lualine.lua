@@ -46,7 +46,7 @@ local filename = {
 			return filename ~= "" and vim.bo.buftype == "" and vim.fn.filereadable(filename) == 0
 		end
 		if vim.bo.modified then
-			return { fg = color.red }
+			return { fg = color.peach }
 		elseif vim.bo.readonly then
 			return { fg = color.overlay1 }
 		elseif is_new_file() then
@@ -56,6 +56,21 @@ local filename = {
 		end
 	end,
 	padding = 0,
+}
+local modified_buffer = {
+	function()
+		local count = 0
+		local buffers = vim.fn.getbufinfo({ buflisted = 1, bufmodified = 1 })
+		for _, buf in ipairs(buffers) do
+			if buf.bufnr ~= vim.api.nvim_get_current_buf() then
+				count = count + 1
+			end
+		end
+		return count > 0 and count or ""
+	end,
+	icon = "󰙏",
+	color = { fg = color.peach },
+	padding = { left = 1, right = 0 },
 }
 local copilot = {
 	"copilot",
@@ -116,7 +131,7 @@ return {
 		sections = {
 			lualine_a = { mode },
 			lualine_b = { branch, git_status },
-			lualine_c = { filetype, filename, diagnostics },
+			lualine_c = { filetype, filename, modified_buffer, diagnostics },
 			lualine_x = { diff, lazy },
 			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
 			lualine_z = { { "progress", padding = { left = 1 } }, "location" },
