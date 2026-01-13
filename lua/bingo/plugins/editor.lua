@@ -143,6 +143,7 @@ return {
 	},
 	{
 		"Jay-Madden/auto-fix-return.nvim",
+		commit = "0104623",
 		opts = {},
 		ft = "go",
 	},
