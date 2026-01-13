@@ -122,6 +122,7 @@ return {
 		},
 		quickfile = {},
 		statuscolumn = { folds = { open = true, git_hl = true } },
+		words = {},
 	},
 	keys = {
 		-- Bufdelete
@@ -180,5 +181,8 @@ return {
 		{ "<leader>f/", function() Snacks.picker.search_history() end, desc = "Search History" },
 		-- Scratch
 		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+		-- Words
+		{ "]w", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+		{ "[w", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
 	},
 }
