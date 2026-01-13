@@ -87,15 +87,6 @@ return {
 				{ pattern = "dismiss", icon = "󱎘", color = "red" },
 				-- Options
 				{ pattern = "option", icon = "", color = "yellow" },
-				{ pattern = "dimming", icon = "󰽐", color = "azure" },
-				{ pattern = "hl", icon = "", color = "orange" },
-				{ pattern = "indent", icon = "", color = "blue" },
-				{ pattern = "cursor", icon = "", color = "cyan" },
-				{ pattern = "number", icon = "", color = "green" },
-				{ pattern = "rainbow", icon = "", color = "purple" },
-				{ pattern = "spell", icon = "󰓆", color = "orange" },
-				{ pattern = "tab", icon = "󰌒", color = "blue" },
-				{ pattern = "wrap", icon = "󰖶", color = "azure" },
 				-- Plugin
 				{ pattern = "plugin", icon = "", color = "orange" },
 				{ pattern = "check", icon = "", color = "azure" },
@@ -112,7 +103,7 @@ return {
 				{ pattern = "docker", icon = "󰡨", color = "blue" },
 				-- Extract
 				{ pattern = "extract", icon = "", color = "yellow" },
-        -- Write
+				-- Write
 				{ pattern = "write", icon = "", color = "green" },
 			},
 		},

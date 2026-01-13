@@ -29,7 +29,50 @@ return {
 					vim.print = _G.dd
 				end
 				-- Create some toggle mappings
+				Snacks.toggle
+					.new({
+						id = "git_blame",
+						name = "Blame",
+						get = function() return require("gitsigns.config").config.current_line_blame end,
+						set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
+					})
+					:map("<leader>ob")
+				Snacks.toggle.option("cursorline"):map("<leader>oc")
+				Snacks.toggle
+					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+					:map("<leader>oC")
 				Snacks.toggle.dim():map("<leader>od")
+				Snacks.toggle.diagnostics():map("<leader>oD")
+				Snacks.toggle
+					.new({
+						id = "illuminate",
+						name = "Illuminate",
+						get = function() return not require("illuminate").is_paused() end,
+						set = function() require("illuminate").toggle() end,
+					})
+					:map("<leader>oh")
+				Snacks.toggle
+					.new({
+						id = "indent",
+						name = "Indent Blankline",
+						get = function() return require("ibl.config").get_config(-1).enabled end,
+						set = function(state) require("ibl").update({ enabled = state }) end,
+					})
+					:map("<leader>oi")
+				Snacks.toggle.inlay_hints():map("<leader>oI")
+				Snacks.toggle.line_number():map("<leader>ol")
+				Snacks.toggle.option("relativenumber"):map("<leader>or")
+				Snacks.toggle
+					.new({
+						id = "rainbow",
+						name = "Rainbow Delimiters",
+						get = function() return require("rainbow-delimiters").is_enabled(0) end,
+						set = function() require("rainbow-delimiters").toggle(0) end,
+					})
+					:map("<leader>oR")
+				Snacks.toggle.option("spell"):map("<leader>os")
+				Snacks.toggle.option("showtabline", { off = 0, on = 2 }):map("<leader>ot")
+				Snacks.toggle.option("wrap"):map("<leader>ow")
 				-- -- Create some custom layouts
 				-- require("snacks.picker.config.layouts").default = {
 				-- 	hidden = { "preview" },

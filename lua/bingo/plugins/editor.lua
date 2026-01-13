@@ -34,9 +34,6 @@ return {
 			})
 		end,
 		event = "VeryLazy",
-		keys = {
-			{ "<leader>oh", function() require("illuminate").toggle() end, desc = "Toggle Doc HL" },
-		},
 	},
 	{
 		"kylechui/nvim-surround",
@@ -66,9 +63,6 @@ return {
 			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 		end,
 		event = "VeryLazy",
-		keys = {
-			{ "<leader>oi", "<cmd>IBLToggle<cr>", desc = "Toggle Indent Blankline" },
-		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -113,9 +107,6 @@ return {
 			},
 		},
 		event = "BufReadPost",
-		keys = {
-			{ "<leader>oR", function() require("rainbow-delimiters").toggle(0) end, desc = "Toggle Rainbow" },
-		},
 	},
 	{
 		"iamcco/markdown-preview.nvim",

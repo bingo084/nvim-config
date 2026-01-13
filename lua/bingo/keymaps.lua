@@ -45,12 +45,3 @@ map("n", "<leader>cl", "<cmd>lclose<CR>", "Close Loclist")
 -- Tab
 map("n", "]t", "<cmd>tabnext<CR>", "Next [T]ab")
 map("n", "[t", "<cmd>tabprev<CR>", "Prev [T]ab")
--- Toggle some options
-local function toggle(opt, val)
-	return function() require("bingo.utils").toggle_option(opt, val) end
-end
-map("n", "<leader>ow", toggle("wrap"), "Toggle Wrap")
-map("n", "<leader>or", toggle("relativenumber"), "Toggle Relative Number")
-map("n", "<leader>ol", toggle("cursorline"), "Toggle Cursorline")
-map("n", "<leader>os", toggle("spell"), "Toggle Spell")
-map("n", "<leader>ot", toggle("showtabline", { 0, 2 }), "Toggle Tabline")

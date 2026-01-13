@@ -111,7 +111,6 @@ return {
 				map("v", "<leader>gs", function() gitsigns.stage_hunk(range) end, "Toggle Stage Hunk")
 				map("n", "<leader>gR", gitsigns.reset_buffer, "Reset Buffer")
 				map("n", "<leader>gS", gitsigns.stage_buffer, "Toggle Stage Buffer")
-				map("n", "<leader>ob", gitsigns.toggle_current_line_blame, "Toggle blame")
 				-- Text object
 				map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", "inner hunk")
 			end,
