@@ -11,7 +11,6 @@ opt.wrap = false
 opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
-opt.signcolumn = "yes"
 opt.updatetime = 250
 opt.timeoutlen = 300
 opt.splitright = true

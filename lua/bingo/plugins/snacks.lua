@@ -76,6 +76,7 @@ return {
 			},
 		},
 		quickfile = {},
+		statuscolumn = { folds = { open = true, git_hl = true } },
 	},
 	keys = {
 		-- Bufdelete
