@@ -8,7 +8,7 @@ return {
 		--- You can add any mappings here, or use `require('which-key').add()` later
 		---@type wk.Spec
 		spec = {
-			{ "<leader>c", group = "Copilot" },
+			{ "<leader>c", group = "[C]opilot/[C]lose" },
 			{ "<leader>d", group = "Debug" },
 			{ "<leader>f", group = "Find" },
 			{ "<leader>g", group = "Git" },

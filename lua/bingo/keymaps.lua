@@ -35,11 +35,13 @@ map("n", "]q", "<cmd>cnext<CR>", "Next [Q]uickfix")
 map("n", "[q", "<cmd>cprev<CR>", "Prev [Q]uickfix")
 map("n", "]Q", "<cmd>clast<CR>", "Last [Q]uickfix")
 map("n", "[Q", "<cmd>cfirst<CR>", "First [Q]uickfix")
+map("n", "<leader>cq", "<cmd>cclose<CR>", "[C]lose [Q]uickfix")
 -- Loclist
 map("n", "]l", "<cmd>lnext<CR>", "Next [L]oclist")
 map("n", "[l", "<cmd>lprev<CR>", "Prev [L]oclist")
 map("n", "]L", "<cmd>llast<CR>", "Last [L]oclist")
 map("n", "[L", "<cmd>lfirst<CR>", "First [L]oclist")
+map("n", "<leader>cl", "<cmd>lclose<CR>", "[C]lose [L]oclist")
 -- Tab
 map("n", "]t", "<cmd>tabnext<CR>", "Next [T]ab")
 map("n", "[t", "<cmd>tabprev<CR>", "Prev [T]ab")
