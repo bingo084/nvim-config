@@ -43,6 +43,7 @@ return {
 					:map("<leader>oC")
 				Snacks.toggle.dim():map("<leader>od")
 				Snacks.toggle.diagnostics():map("<leader>oD")
+				Snacks.toggle.zoom():map("<leader>of")
 				Snacks.toggle
 					.new({
 						id = "illuminate",
@@ -73,6 +74,7 @@ return {
 				Snacks.toggle.option("spell"):map("<leader>os")
 				Snacks.toggle.option("showtabline", { off = 0, on = 2 }):map("<leader>ot")
 				Snacks.toggle.option("wrap"):map("<leader>ow")
+				Snacks.toggle.zen():map("<leader>oz")
 				-- -- Create some custom layouts
 				-- require("snacks.picker.config.layouts").default = {
 				-- 	hidden = { "preview" },
