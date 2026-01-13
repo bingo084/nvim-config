@@ -10,6 +10,7 @@ return {
 	},
 	keys = {
 		{ "<leader>sd", function() ps().delete() end, desc = "Delete" },
+		{ "<leader>fS", function() ps().select() end, desc = "Session" },
 		{ "<leader>sl", function() ps().load() end, desc = "Load" },
 		{ "<leader>ss", function() ps().save() end, desc = "Save" },
 	},
