@@ -43,14 +43,14 @@ return {
 		end,
 		keys = {
 			{ "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
-			{ "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "Debug Continue" },
+			{ "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "Continue" },
 			{ "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step Into" },
-			{ "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", desc = "Last" },
+			{ "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", desc = "Run Last" },
 			{ "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step Over" },
 			{ "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", desc = "Step Out" },
 			{ "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc = "Toggle Repl" },
 			{ "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", desc = "Toggle UI" },
-			{ "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", desc = "Debug Exit" },
+			{ "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", desc = "Exit" },
 		},
 	},
 }

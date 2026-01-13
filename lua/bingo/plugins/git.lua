@@ -40,7 +40,7 @@ return {
 		opts = function()
 			vim.api.nvim_create_autocmd("BufWinEnter", {
 				pattern = "diffview://*/log/*/commit_log",
-        group = vim.api.nvim_create_augroup("diffview", {}),
+				group = vim.api.nvim_create_augroup("diffview", {}),
 				callback = function() vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = 0 }) end,
 			})
 			local actions = require("diffview.actions")
@@ -79,9 +79,9 @@ return {
 			}
 		end,
 		keys = {
-			{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[D]iff View" },
-			{ "<leader>gl", "<cmd>DiffviewFileHistory<CR>", desc = "[L]og" },
-			{ "<leader>gL", "<cmd>DiffviewFileHistory %<CR>", desc = "[L]og Current File" },
+			{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diff View" },
+			{ "<leader>gl", "<cmd>DiffviewFileHistory<CR>", desc = "Log" },
+			{ "<leader>gL", "<cmd>DiffviewFileHistory %<CR>", desc = "Log Current File" },
 		},
 	},
 	{
@@ -100,19 +100,18 @@ return {
 						return "<Ignore>"
 					end, { buffer = bufnr, desc = desc, expr = true })
 				end
-				navimap("]c", gitsigns.next_hunk, "[N]ext [C]hange(hunk)")
-				navimap("[c", gitsigns.prev_hunk, "[P]rev [C]hange(hunk)")
-				map("n", "<leader>gb", function() gitsigns.blame_line({ full = true }) end, "[B]lame")
-				map("n", "<leader>gp", gitsigns.preview_hunk, "[P]review Hunk")
-				map("n", "<leader>gr", gitsigns.reset_hunk, "[R]eset Hunk")
-				map("n", "<leader>gs", gitsigns.stage_hunk, "[S]tage Hunk")
+				navimap("]c", gitsigns.next_hunk, "Next Change(hunk)")
+				navimap("[c", gitsigns.prev_hunk, "Prev Change(hunk)")
+				map("n", "<leader>gb", function() gitsigns.blame_line({ full = true }) end, "Blame")
+				map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
+				map("n", "<leader>gr", gitsigns.reset_hunk, "Reset Hunk")
+				map("n", "<leader>gs", gitsigns.stage_hunk, "Toggle Stage Hunk")
 				local range = { vim.fn.line("."), vim.fn.line("v") }
-				map("v", "<leader>gr", function() gitsigns.reset_hunk(range) end, "[R]eset Hunk")
-				map("v", "<leader>gs", function() gitsigns.stage_hunk(range) end, "[S]tage Hunk")
-				map("n", "<leader>gR", gitsigns.reset_buffer, "[R]eset Buffer")
-				map("n", "<leader>gS", gitsigns.stage_buffer, "[S]tage Buffer")
-				map("n", "<leader>gu", gitsigns.undo_stage_hunk, "[U]ndo Stage Hunk")
-				map("n", "<leader>ob", gitsigns.toggle_current_line_blame, "Toggle [b]lame")
+				map("v", "<leader>gr", function() gitsigns.reset_hunk(range) end, "Reset Hunk")
+				map("v", "<leader>gs", function() gitsigns.stage_hunk(range) end, "Toggle Stage Hunk")
+				map("n", "<leader>gR", gitsigns.reset_buffer, "Reset Buffer")
+				map("n", "<leader>gS", gitsigns.stage_buffer, "Toggle Stage Buffer")
+				map("n", "<leader>ob", gitsigns.toggle_current_line_blame, "Toggle blame")
 				-- Text object
 				map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", "inner hunk")
 			end,

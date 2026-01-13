@@ -18,11 +18,11 @@ return {
 			})
 		end,
 		keys = {
-			{ "<leader>ld", vim.diagnostic.open_float, desc = "[D]iagnostic" },
-			{ "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next [D]iagnostic" },
-			{ "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev [D]iagnostic" },
-			{ "<leader>ll", vim.diagnostic.setloclist, desc = "[L]oclist" },
-			{ "<leader>lq", vim.diagnostic.setqflist, desc = "[Q]flist" },
+			{ "<leader>ld", vim.diagnostic.open_float, desc = "Diagnostic" },
+			{ "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
+			{ "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
+			{ "<leader>ll", vim.diagnostic.setloclist, desc = "Loclist" },
+			{ "<leader>lq", vim.diagnostic.setqflist, desc = "Qflist" },
 		},
 	},
 	{

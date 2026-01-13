@@ -123,7 +123,7 @@ return {
 		version = false,
 		ft = { "markdown" },
 		keys = {
-			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle [M]arkdown [P]review" },
+			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle Preview" },
 		},
 	},
 	{ "dhruvasagar/vim-table-mode", cmd = "TableModeEnable" },

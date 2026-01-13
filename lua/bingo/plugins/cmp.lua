@@ -159,7 +159,7 @@ return {
 		},
 		event = "InsertEnter",
 		keys = {
-			{ "<leader>cp", function() require("copilot.panel").open({}) end, desc = "[C]opilot [P]anel" },
+			{ "<leader>cp", function() require("copilot.panel").open({}) end, desc = "Copilot Panel" },
 		},
 	},
 	{
@@ -189,7 +189,7 @@ return {
 			})
 		end,
 		keys = {
-			{ "<leader>se", function() require("luasnip.loaders").edit_snippet_files() end, desc = "[S]nip [E]dit" },
+			{ "<leader>se", function() require("luasnip.loaders").edit_snippet_files() end, desc = "Snip Edit" },
 		},
 	},
 }

@@ -68,8 +68,8 @@ return {
 				mode = "c",
 				desc = "Redirect Cmdline",
 			},
-			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Notification Clear" },
-			{ "<leader>fn", function() Snacks.picker.noice() end, desc = "[F]ind [N]otifications" },
+			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss" },
+			{ "<leader>fn", function() Snacks.picker.noice() end, desc = "Notifications" },
 		},
 	},
 	{

@@ -28,9 +28,9 @@ return {
 			{ "<c-=>", function() _FLOAT_TERM() end, mode = { "n", "i", "t" }, desc = "Open Float Term" },
 			{ "<c-->", function() _HORIZONTAL_TERM() end, mode = { "n", "i", "t" }, desc = "Open Horizontal Term" },
 			{ [[<c-\>]], function() _VERTICAL_TERM() end, mode = { "n", "i", "t" }, desc = "Open Vertical Term" },
-			{ "<leader>tb", function() _BTOP_TOGGLE() end, desc = "Open Btop" },
-			{ "<leader>td", function() _LAZYDOCKER_TOGGLE() end, desc = "Open Lazydocker" },
-			{ "<leader>tf", "<cmd>TermSelect<CR>", desc = "[T]erm [F]ind" },
+			{ "<leader>tb", function() _BTOP_TOGGLE() end, desc = "Btop" },
+			{ "<leader>td", function() _LAZYDOCKER_TOGGLE() end, desc = "Lazydocker" },
+			{ "<leader>ft", "<cmd>TermSelect<CR>", desc = "Terminal" },
 		},
 	},
 }

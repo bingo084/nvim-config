@@ -80,7 +80,7 @@ return {
 	{
 		"mason-org/mason.nvim",
 		opts = {},
-		keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" } },
+		keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer" } },
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
@@ -119,13 +119,13 @@ return {
 		"ThePrimeagen/refactoring.nvim",
 		opts = {},
 		keys = {
-			{ "<leader>xf", ":Refactor extract ", mode = "x", desc = "e[X]tract [F]unction" },
-			{ "<leader>xF", ":Refactor extract_to_file ", mode = "x", desc = "e[X]tract [F]unction to file" },
-			{ "<leader>xv", ":Refactor extract_var ", mode = "x", desc = "e[X]tract [V]ariable" },
-			{ "<leader>iv", ":Refactor inline_var", mode = { "n", "x" }, desc = "[I]nline [V]ariable" },
-			{ "<leader>if", ":Refactor inline_func", desc = "[I]nline [F]unction" },
-			{ "<leader>xb", ":Refactor extract_block", desc = "[E]xtract [B]lock" },
-			{ "<leader>xB", ":Refactor extract_block_to_file", desc = "[E]xtract [B]lock to file" },
+			{ "<leader>xf", ":Refactor extract ", mode = "x", desc = "Function" },
+			{ "<leader>xF", ":Refactor extract_to_file ", mode = "x", desc = "Function to file" },
+			{ "<leader>xv", ":Refactor extract_var ", mode = "x", desc = "Variable" },
+			{ "<leader>iv", ":Refactor inline_var", mode = { "n", "x" }, desc = "Variable" },
+			{ "<leader>if", ":Refactor inline_func", desc = "Function" },
+			{ "<leader>xb", ":Refactor extract_block", desc = "Block" },
+			{ "<leader>xB", ":Refactor extract_block_to_file", desc = "Block to file" },
 		},
 	},
 }

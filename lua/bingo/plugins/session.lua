@@ -9,8 +9,8 @@ return {
 		ignored_dirs = { { os.getenv("HOME"), exact = true } },
 	},
 	keys = {
-		{ "<leader>sd", function() ps().delete() end, desc = "[S]ession [D]elete" },
-		{ "<leader>sl", function() ps().load() end, desc = "[S]ession [L]oad" },
-		{ "<leader>ss", function() ps().save() end, desc = "[S]ession [S]ave" },
+		{ "<leader>sd", function() ps().delete() end, desc = "Delete" },
+		{ "<leader>sl", function() ps().load() end, desc = "Load" },
+		{ "<leader>ss", function() ps().save() end, desc = "Save" },
 	},
 }

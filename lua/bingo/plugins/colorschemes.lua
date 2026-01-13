@@ -1,13 +1,7 @@
 ---@param plugins LazySpec[]
 local function add_keys(plugins)
 	for i, v in pairs(plugins) do
-		local keys = {
-			{
-				"<leader>fC",
-				function() Snacks.picker.colorschemes() end,
-				desc = "[F]ind [C]olorschemes",
-			},
-		}
+		local keys = { { "<leader>fC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" } }
 		if type(v) == "string" then
 			plugins[i] = { v, keys = keys }
 		elseif type(v) == "table" then
