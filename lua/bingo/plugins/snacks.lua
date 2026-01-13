@@ -75,6 +75,7 @@ return {
 				preview = { keys = picker_common_keys },
 			},
 		},
+		quickfile = {},
 	},
 	keys = {
 		-- Bufdelete
@@ -112,8 +113,26 @@ return {
 		{ "<leader>fn", function() Snacks.picker.notifications() end, desc = "Notifications" },
 		{ "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
 		{ "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
+		{
+			"<leader>fs",
+			function()
+				Snacks.picker.scratch({
+					win = {
+						input = {
+							keys = {
+								["<c-n>"] = { "list_down", mode = { "n", "i" } },
+								["<a-n>"] = { "scratch_new", mode = { "n", "i" } },
+							},
+						},
+					},
+				})
+			end,
+			desc = "Scratch",
+		},
 		{ "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Words" },
 		{ "<leader>fz", function() Snacks.picker.zoxide() end, desc = "Zoxide" },
 		{ "<leader>f/", function() Snacks.picker.search_history() end, desc = "Search History" },
+		-- Scratch
+		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 	},
 }
