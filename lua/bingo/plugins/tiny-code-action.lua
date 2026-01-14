@@ -4,6 +4,13 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	opts = {
 		backend = "delta",
+		backend_opts = {
+			delta = {
+				args = {
+					"--tabs=" .. vim.bo.tabstop,
+				},
+			},
+		},
 		picker = {
 			"buffer",
 			opts = {
