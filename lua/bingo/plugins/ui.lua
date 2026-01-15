@@ -47,10 +47,10 @@ vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 return {
 	{
 		"folke/noice.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-		version = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
 		event = "VeryLazy",
 		opts = {
+			notify = { enabled = false },
 			lsp = {
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -68,8 +68,6 @@ return {
 				mode = "c",
 				desc = "Redirect Cmdline",
 			},
-			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss" },
-			{ "<leader>fn", function() Snacks.picker.noice() end, desc = "Notifications" },
 		},
 	},
 	{

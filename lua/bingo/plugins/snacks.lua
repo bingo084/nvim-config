@@ -119,6 +119,16 @@ return {
 	opts = {
 		bigfile = {},
 		image = {},
+		notifier = {
+			icons = {
+				error = "",
+				warn = "",
+				info = "",
+				debug = "",
+				trace = "",
+			},
+			style = "fancy",
+		},
 		---@class snacks.picker.Config
 		picker = {
 			prompt = " 󰍉 ",
@@ -151,6 +161,9 @@ return {
 		-- Lazygit
 		{ "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
 		{ "<leader>lG", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File" },
+		-- Notifier
+		{ "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss" },
+		{ "<leader>nh", function() Snacks.notifier.show_history() end, desc = "History" },
 		-- Picker
 		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },

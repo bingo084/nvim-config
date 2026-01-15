@@ -14,7 +14,9 @@ return {
 		local ss = require("smart-splits")
 		local function create_resize_submode(modes)
 			local function notify(msg)
-				return function() vim.notify(msg, vim.log.levels.INFO, { title = "Window Resize mode" }) end
+				return function()
+					vim.notify(msg, vim.log.levels.INFO, { id = "resize_mode", title = "Window Resize mode" })
+				end
 			end
 			for _, mode in ipairs(modes) do
 				require("submode").create("WinResize_" .. mode, {
