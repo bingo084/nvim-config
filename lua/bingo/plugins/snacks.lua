@@ -37,7 +37,20 @@ return {
 						set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
 					})
 					:map("<leader>ob")
-				Snacks.toggle.option("cursorline"):map("<leader>oc")
+				Snacks.toggle
+					.new({
+						id = "colorizer",
+						name = "Colorizer",
+						get = function() return require("colorizer").is_buffer_attached(0) end,
+						set = function(state)
+							if state then
+								require("colorizer").attach_to_buffer(0)
+							else
+								require("colorizer").detach_from_buffer(0)
+							end
+						end,
+					})
+					:map("<leader>oc")
 				Snacks.toggle
 					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
 					:map("<leader>oC")
@@ -62,6 +75,7 @@ return {
 					:map("<leader>oi")
 				Snacks.toggle.inlay_hints():map("<leader>oI")
 				Snacks.toggle.line_number():map("<leader>ol")
+				Snacks.toggle.option("cursorline"):map("<leader>oL")
 				Snacks.toggle.option("relativenumber"):map("<leader>or")
 				Snacks.toggle
 					.new({
