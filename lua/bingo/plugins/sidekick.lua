@@ -29,6 +29,7 @@ return {
 						"gemini -m gemini-2.5-pro --resume 2> >(grep -v 'No previous sessions found') || gemini -m gemini-2.5-pro",
 					},
 				},
+				opencode = { cmd = { "opencode", "--continue" } },
 			},
 		},
 	},
