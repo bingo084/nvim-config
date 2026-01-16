@@ -74,8 +74,25 @@ return {
 					})
 					:map("<leader>oi")
 				Snacks.toggle.inlay_hints():map("<leader>oI")
-				Snacks.toggle.line_number():map("<leader>ol")
-				Snacks.toggle.option("cursorline"):map("<leader>oL")
+				Snacks.toggle
+					.new({
+						id = "loclist",
+						name = "Loclist",
+						get = function() return require("quicker").is_open(0) end,
+						set = function() require("quicker").toggle({ loclist = true, focus = true }) end,
+						notify = false,
+					})
+					:map("<leader>ol")
+				Snacks.toggle.line_number():map("<leader>oL")
+				Snacks.toggle
+					.new({
+						id = "quickfix",
+						name = "Quickfix",
+						get = function() return require("quicker").is_open() end,
+						set = function() require("quicker").toggle({ focus = true }) end,
+						notify = false,
+					})
+					:map("<leader>oq")
 				Snacks.toggle.option("relativenumber"):map("<leader>or")
 				Snacks.toggle
 					.new({

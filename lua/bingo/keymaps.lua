@@ -35,13 +35,11 @@ map("n", "]q", "<cmd>cnext<CR>", "Next Qflist")
 map("n", "[q", "<cmd>cprev<CR>", "Prev Qflist")
 map("n", "]Q", "<cmd>clast<CR>", "Last Qflist")
 map("n", "[Q", "<cmd>cfirst<CR>", "First Qflist")
-map("n", "<leader>cq", "<cmd>cclose<CR>", "Close Qflist")
 -- Loclist
 map("n", "]l", "<cmd>lnext<CR>", "Next Loclist")
 map("n", "[l", "<cmd>lprev<CR>", "Prev Loclist")
 map("n", "]L", "<cmd>llast<CR>", "Last Loclist")
 map("n", "[L", "<cmd>lfirst<CR>", "First Loclist")
-map("n", "<leader>cl", "<cmd>lclose<CR>", "Close Loclist")
 -- Tab
 map("n", "]t", "<cmd>tabnext<CR>", "Next [T]ab")
 map("n", "[t", "<cmd>tabprev<CR>", "Prev [T]ab")

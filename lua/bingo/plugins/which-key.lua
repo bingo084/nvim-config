@@ -10,7 +10,7 @@ return {
 		spec = {
 			{ "<leader>a", group = "AI" },
 			{ "<leader>b", group = "Buffer" },
-			{ "<leader>c", group = "Copilot/Close" },
+			{ "<leader>c", group = "Copilot" },
 			{ "<leader>d", group = "Debug" },
 			{ "<leader>f", group = "Find" },
 			{ "<leader>g", group = "Git" },
@@ -31,7 +31,7 @@ return {
 			rules = {
 				-- Buffer
 				{ pattern = "delete", icon = "󰆴", color = "red" },
-				-- Copilot/Close
+				-- Copilot
 				{ pattern = "panel", icon = "", color = "blue" },
 				{ pattern = "list", icon = "", color = "cyan" },
 				{ pattern = "copilot", icon = "", color = "green" },
