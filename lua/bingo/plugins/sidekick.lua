@@ -22,6 +22,7 @@ return {
 			},
 			---@type table<string, sidekick.cli.Config|{}>
 			tools = {
+				cursor = { cmd = { "cursor-agent", "resume" } },
 				gemini = {
 					cmd = {
 						"bash",
