@@ -79,7 +79,14 @@ return {
 						id = "loclist",
 						name = "Loclist",
 						get = function() return require("quicker").is_open(0) end,
-						set = function() require("quicker").toggle({ loclist = true, focus = true }) end,
+						set = function()
+							require("quicker").toggle({
+								loclist = true,
+								focus = true,
+								---@diagnostic disable-next-line: missing-fields
+								open_cmd_mods = { split = "botright" },
+							})
+						end,
 						notify = false,
 					})
 					:map("<leader>ol")
@@ -89,7 +96,10 @@ return {
 						id = "quickfix",
 						name = "Quickfix",
 						get = function() return require("quicker").is_open() end,
-						set = function() require("quicker").toggle({ focus = true }) end,
+						set = function()
+							---@diagnostic disable-next-line: missing-fields
+							require("quicker").toggle({ focus = true, open_cmd_mods = { split = "botright" } })
+						end,
 						notify = false,
 					})
 					:map("<leader>oq")
