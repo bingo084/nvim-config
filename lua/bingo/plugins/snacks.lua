@@ -31,7 +31,6 @@ return {
 				-- Create some toggle mappings
 				Snacks.toggle
 					.new({
-						id = "git_blame",
 						name = "Blame",
 						get = function() return require("gitsigns.config").config.current_line_blame end,
 						set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
@@ -39,7 +38,6 @@ return {
 					:map("<leader>ob")
 				Snacks.toggle
 					.new({
-						id = "colorizer",
 						name = "Colorizer",
 						get = function() return require("colorizer").is_buffer_attached(0) end,
 						set = function(state)
@@ -59,7 +57,6 @@ return {
 				Snacks.toggle.zoom():map("<leader>of")
 				Snacks.toggle
 					.new({
-						id = "illuminate",
 						name = "Illuminate",
 						get = function() return not require("illuminate").is_paused() end,
 						set = function() require("illuminate").toggle() end,
@@ -67,7 +64,6 @@ return {
 					:map("<leader>oh")
 				Snacks.toggle
 					.new({
-						id = "indent",
 						name = "Indent Blankline",
 						get = function() return require("ibl.config").get_config(-1).enabled end,
 						set = function(state) require("ibl").update({ enabled = state }) end,
@@ -76,7 +72,6 @@ return {
 				Snacks.toggle.inlay_hints():map("<leader>oI")
 				Snacks.toggle
 					.new({
-						id = "loclist",
 						name = "Loclist",
 						get = function() return require("quicker").is_open(0) end,
 						set = function()
@@ -93,7 +88,6 @@ return {
 				Snacks.toggle.line_number():map("<leader>oL")
 				Snacks.toggle
 					.new({
-						id = "quickfix",
 						name = "Quickfix",
 						get = function() return require("quicker").is_open() end,
 						set = function()
@@ -106,7 +100,6 @@ return {
 				Snacks.toggle.option("relativenumber"):map("<leader>or")
 				Snacks.toggle
 					.new({
-						id = "rainbow",
 						name = "Rainbow Delimiters",
 						get = function() return require("rainbow-delimiters").is_enabled(0) end,
 						set = function() require("rainbow-delimiters").toggle(0) end,
