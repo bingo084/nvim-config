@@ -30,7 +30,7 @@ return {
 			{ [[<c-\>]], function() _VERTICAL_TERM() end, mode = { "n", "i", "t" }, desc = "Open Vertical Term" },
 			{ "<leader>tb", function() _BTOP_TOGGLE() end, desc = "Btop" },
 			{ "<leader>td", function() _LAZYDOCKER_TOGGLE() end, desc = "Lazydocker" },
-			{ "<leader>ft", "<cmd>TermSelect<CR>", desc = "Terminal" },
+			{ "<leader>fT", "<cmd>TermSelect<CR>", desc = "Terminal" },
 		},
 	},
 }
