@@ -195,6 +195,12 @@ return {
 		{ "<leader>fc", function() Snacks.picker.commands() end, desc = "Commands" },
 		{ "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
 		{ "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+		{ "<leader>fe", function() Snacks.picker.diagnostics({ severity = "ERROR" }) end, desc = "Errors" },
+		{
+			"<leader>fE",
+			function() Snacks.picker.diagnostics_buffer({ severity = "ERROR" }) end,
+			desc = "Buffer Errors",
+		},
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Files" },
 		{ "<leader>fg", function() Snacks.picker.git_status() end, desc = "Git Changes" },
 		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
