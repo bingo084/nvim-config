@@ -59,7 +59,12 @@ return {
 							end,
 						})
 					end, "Goto [R]eferences")
-					map("n", "gy", vim.lsp.buf.type_definition, "Goto [D]eclaration")
+					map(
+						"n",
+						"gy",
+						function() vim.lsp.buf.type_definition({ reuse_win = true }) end,
+						"Goto [D]eclaration"
+					)
 					map(
 						{ "n", "v", "i" },
 						"<A-Enter>",
