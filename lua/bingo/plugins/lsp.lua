@@ -42,12 +42,18 @@ return {
 					map("n", "gi", vim.lsp.buf.implementation, "Goto [I]mplementation")
 					map("n", "gI", vim.lsp.buf.incoming_calls, "Goto [I]ncoming Calls")
 					map("n", "gO", vim.lsp.buf.outgoing_calls, "Goto [O]utgoing Calls")
-					map(
-						"n",
-						"gr",
-						function() vim.lsp.buf.references({ includeDeclaration = false }) end,
-						"Goto [R]eferences"
-					)
+					map("n", "gr", function()
+						vim.lsp.buf.references({ includeDeclaration = false }, {
+							on_list = function(list)
+								vim.fn.setqflist({}, " ", list)
+								if #list.items == 1 then
+									vim.cmd("cfirst")
+								else
+									vim.cmd("botright copen")
+								end
+							end,
+						})
+					end, "Goto [R]eferences")
 					map("n", "gy", vim.lsp.buf.type_definition, "Goto [D]eclaration")
 					map(
 						{ "n", "v", "i" },
