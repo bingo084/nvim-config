@@ -37,9 +37,14 @@ return {
 					local function map(mode, key, action, desc)
 						vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = desc })
 					end
-					map("n", "gd", vim.lsp.buf.definition, "Goto [D]efinition")
-					map("n", "gD", vim.lsp.buf.declaration, "Goto [D]eclaration")
-					map("n", "gi", vim.lsp.buf.implementation, "Goto [I]mplementation")
+					map("n", "gd", function() vim.lsp.buf.definition({ reuse_win = true }) end, "Goto [D]efinition")
+					map("n", "gD", function() vim.lsp.buf.declaration({ reuse_win = true }) end, "Goto [D]eclaration")
+					map(
+						"n",
+						"gi",
+						function() vim.lsp.buf.implementation({ reuse_win = true }) end,
+						"Goto [I]mplementation"
+					)
 					map("n", "gI", vim.lsp.buf.incoming_calls, "Goto [I]ncoming Calls")
 					map("n", "gO", vim.lsp.buf.outgoing_calls, "Goto [O]utgoing Calls")
 					map("n", "gr", function()
