@@ -149,7 +149,7 @@ return {
 			},
 			style = "fancy",
 		},
-		---@class snacks.picker.Config
+		---@type snacks.picker.Config
 		picker = {
 			prompt = " 󰍉 ",
 			win = {

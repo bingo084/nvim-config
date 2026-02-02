@@ -50,6 +50,7 @@ return {
 					map("n", "gr", function()
 						vim.lsp.buf.references({ includeDeclaration = false }, {
 							on_list = function(list)
+								---@diagnostic disable-next-line: param-type-mismatch
 								vim.fn.setqflist({}, " ", list)
 								if #list.items == 1 then
 									vim.cmd("cfirst")
