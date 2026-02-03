@@ -16,6 +16,9 @@ return {
 			opts = {
 				hotkeys = true,
 				auto_accept = true,
+				keymaps = {
+					close = { "q", "<Esc>" },
+				},
 				custom_keys = {
 					{ key = "m", pattern = "Fill match arms" },
 					{ key = "m", pattern = "Consider making this binding mutable: mut" },
