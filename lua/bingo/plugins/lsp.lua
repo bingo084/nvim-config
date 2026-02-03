@@ -3,11 +3,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
+			local capabilities = require("blink.cmp").get_lsp_capabilities({
+				textDocument = { foldingRange = {
+					dynamicRegistration = false,
+					lineFoldingOnly = true,
+				} },
+			})
 			vim.lsp.config("*", { capabilities = capabilities })
 
 			vim.diagnostic.config({
@@ -80,14 +81,19 @@ return {
 					end, "Show Hover")
 					map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, "Signature Help")
 					local function scroll_map(key, row, desc)
+						local cmp_scroll = row > 0 and require("blink-cmp").scroll_documentation_down
+							or require("blink-cmp").scroll_documentation_up
 						vim.keymap.set({ "n", "i", "s" }, key, function()
-							if not require("noice.lsp").scroll(row) then
+							if require("noice.lsp").scroll(row) then
+								return
+							end
+							if not cmp_scroll(math.abs(row)) then
 								return key
 							end
 						end, { silent = true, expr = true, buffer = ev.buf, desc = desc })
 					end
-					scroll_map("<A-d>", 4, "Scroll Down")
-					scroll_map("<A-u>", -4, "Scroll Up")
+					scroll_map("<A-d>", 4, "Documentation Scroll Down")
+					scroll_map("<A-u>", -4, "Documentation Scroll Up")
 				end,
 			})
 		end,
