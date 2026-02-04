@@ -3,6 +3,7 @@ local mode = { "mode", icon = "" }
 local diagnostics = {
 	"diagnostics",
 	symbols = { error = " ", warn = " ", info = " ", hint = "󱠂 " },
+	padding = { left = 1, right = 0 },
 }
 local diff = {
 	"diff",
@@ -115,6 +116,17 @@ local lanuage_server = {
 	cond = function() return #vim.lsp.get_clients({ bufnr = 0 }) ~= 0 or #require("conform").list_formatters() ~= 0 end,
 }
 
+vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+	group = vim.api.nvim_create_augroup("LualineRecordingComponent", {}),
+	callback = function() require("lualine").refresh({ place = { "statusline" } }) end,
+})
+local recording = {
+	function() return vim.fn.reg_recording() end,
+	icon = "",
+	color = { fg = color.maroon },
+	padding = { left = 2, right = 0 },
+}
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
@@ -131,7 +143,7 @@ return {
 		sections = {
 			lualine_a = { mode },
 			lualine_b = { branch, git_status },
-			lualine_c = { filetype, filename, modified_buffer, diagnostics },
+			lualine_c = { filetype, filename, modified_buffer, diagnostics, recording },
 			lualine_x = { diff, lazy },
 			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
 			lualine_z = { { "progress", padding = { left = 1 } }, "location" },
