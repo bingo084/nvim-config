@@ -16,58 +16,17 @@ return add_keys({
 	"Mofiqul/dracula.nvim",
 	{
 		"catppuccin/nvim",
+		version = false,
 		init = function() vim.cmd.colorscheme("catppuccin") end,
 		name = "catppuccin",
 		opts = {
-			flavour = "frappe",
+			flavour = "auto",
+			background = { light = "latte", dark = "frappe" },
 			transparent_background = true,
+			float = { transparent = true, solid = true },
 			show_end_of_buffer = true,
 			term_colors = true,
-			integrations = {
-				alpha = true,
-				gitsigns = true,
-				harpoon = true,
-				indent_blankline = {
-					enabled = true,
-				},
-				leap = true,
-				markdown = true,
-				mason = true,
-				noice = true,
-				cmp = true,
-				dap = true,
-				dap_ui = true,
-				native_lsp = {
-					enabled = true,
-					virtual_text = {
-						errors = { "italic" },
-						hints = { "italic" },
-						warnings = { "italic" },
-						information = { "italic" },
-					},
-					underlines = {
-						errors = { "underline" },
-						hints = { "underline" },
-						warnings = { "underline" },
-						information = { "underline" },
-					},
-					inlay_hints = {
-						background = true,
-					},
-				},
-				notify = true,
-				treesitter_context = true,
-				treesitter = true,
-				rainbow_delimiters = true,
-				snacks = {
-					enabled = true,
-				},
-				illuminate = {
-					enabled = true,
-					lsp = true,
-				},
-				which_key = true,
-			},
+			auto_integrations = true,
 		},
 	},
 	{
