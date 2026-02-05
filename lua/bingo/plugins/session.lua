@@ -3,20 +3,24 @@ return {
 	"olimorris/persisted.nvim",
 	lazy = false,
 	init = function()
+		local lazy_win = nil
+		local group = vim.api.nvim_create_augroup("PersistedHooks", {})
 		vim.api.nvim_create_autocmd("User", {
-			group = vim.api.nvim_create_augroup("PersistedLoadPreFocus", {}),
+			group = group,
 			pattern = "PersistedLoadPre",
 			callback = function()
-				local function is_float(win_id)
-					return vim.wo[win_id].winfixwidth
-						or vim.wo[win_id].winfixheight
-						or vim.api.nvim_win_get_config(win_id).zindex
+				if vim.bo.filetype == "lazy" then
+					vim.api.nvim_win_close(0, false)
+					lazy_win = true
 				end
-				if is_float() then
-					vim.iter(vim.api.nvim_tabpage_list_wins(0))
-						:filter(function(win) return not (is_float(win)) end)
-						:take(1)
-						:each(function(win) vim.api.nvim_set_current_win(win) end)
+			end,
+		})
+		vim.api.nvim_create_autocmd("User", {
+			group = group,
+			pattern = "PersistedLoadPost",
+			callback = function()
+				if lazy_win then
+					require("lazy").home()
 				end
 			end,
 		})
