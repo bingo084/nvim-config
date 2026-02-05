@@ -62,39 +62,6 @@ return {
 		event = "VeryLazy",
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-context",
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		build = ":TSUpdate",
-		version = false,
-		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup({
-				auto_install = true,
-				highlight = { enable = true },
-				autopairs = { enable = true },
-				indent = { enable = true },
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
-						},
-					},
-				},
-			})
-		end,
-		event = "VeryLazy",
-	},
-	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		main = "rainbow-delimiters.setup",
@@ -140,7 +107,6 @@ return {
 	},
 	{
 		"Jay-Madden/auto-fix-return.nvim",
-		commit = "0104623",
 		opts = {},
 		ft = "go",
 	},
