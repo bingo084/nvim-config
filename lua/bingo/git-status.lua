@@ -79,7 +79,6 @@ local function watch_git_dir()
 end
 
 watch_git_dir()
-update_status()
 
 local timer = vim.loop.new_timer()
 
@@ -90,8 +89,9 @@ function M.pause()
 end
 
 function M.resume()
+	update_status()
 	if timer and not timer:is_closing() then
-		timer:start(1000, 60000, fetch_and_update)
+		timer:start(0, 60000, fetch_and_update)
 	end
 end
 
