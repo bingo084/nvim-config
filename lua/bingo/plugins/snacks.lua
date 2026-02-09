@@ -16,7 +16,9 @@ return {
 	priority = 1000,
 	lazy = false,
 	init = function()
+		local group = vim.api.nvim_create_augroup("SnacksCustom", {})
 		vim.api.nvim_create_autocmd("User", {
+			group = group,
 			pattern = "VeryLazy",
 			callback = function()
 				-- https://github.com/folke/snacks.nvim/blob/main/docs/debug.md#-debug
@@ -132,6 +134,16 @@ return {
 				-- 	},
 				-- }
 			end,
+		})
+		vim.api.nvim_create_autocmd("TermOpen", {
+			group = group,
+			pattern = "*lazygit*",
+			callback = function() require("bingo.git-status").pause() end,
+		})
+		vim.api.nvim_create_autocmd("TermClose", {
+			group = group,
+			pattern = "*lazygit*",
+			callback = function() require("bingo.git-status").resume() end,
 		})
 	end,
 	---@module "snacks"
