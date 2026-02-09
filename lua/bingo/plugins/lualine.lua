@@ -15,21 +15,15 @@ local lazy = {
 	color = { fg = color.peach },
 }
 local branch = {
-	"gitstatus",
-	sections = {
-		{ "branch", format = "{}" },
-		{ "is_dirty", format = "*" },
-	},
+	"branch",
 	icon = { "", color = { fg = color.peach } },
-	sep = "",
 }
 local git_status = {
-	"gitstatus",
-	sections = {
-		{ "ahead", format = "↑{}", hl = color.yellow },
-		{ "behind", format = "↓{}", hl = color.yellow },
-	},
-	sep = "",
+	function() return require("bingo.git-status").get_text() end,
+	color = function()
+		local level = require("bingo.git-status").get_level()
+		return { fg = level == 3 and color.red or level == 2 and color.peach or color.yellow }
+	end,
 	padding = { left = 0, right = 1 },
 }
 local filetype = {
@@ -132,7 +126,6 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"AndreM222/copilot-lualine",
-		{ "abccsss/nvim-gitstatus", opts = {} },
 	},
 	opts = {
 		options = {
