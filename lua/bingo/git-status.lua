@@ -82,9 +82,20 @@ watch_git_dir()
 update_status()
 
 local timer = vim.loop.new_timer()
-if timer then
-	timer:start(1000, 60000, fetch_and_update)
+
+function M.pause()
+	if timer and not timer:is_closing() then
+		timer:stop()
+	end
 end
+
+function M.resume()
+	if timer and not timer:is_closing() then
+		timer:start(1000, 60000, fetch_and_update)
+	end
+end
+
+M.resume()
 
 vim.api.nvim_create_autocmd({ "DirChanged" }, {
 	group = vim.api.nvim_create_augroup("BingoGitStatus", { clear = true }),
