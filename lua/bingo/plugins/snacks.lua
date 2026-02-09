@@ -137,12 +137,12 @@ return {
 		})
 		vim.api.nvim_create_autocmd("TermOpen", {
 			group = group,
-			pattern = "*lazygit*",
+			pattern = "lazygit",
 			callback = function() require("bingo.git-status").pause() end,
 		})
 		vim.api.nvim_create_autocmd("TermClose", {
 			group = group,
-			pattern = "*lazygit*",
+			pattern = "lazygit",
 			callback = function() require("bingo.git-status").resume() end,
 		})
 	end,
