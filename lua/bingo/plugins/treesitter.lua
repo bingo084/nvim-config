@@ -5,13 +5,14 @@ return {
 		branch = "main",
 		build = ":TSUpdate",
 		init = function()
-			vim.api.nvim_create_autocmd({ "Filetype" }, {
+			vim.api.nvim_create_autocmd("Filetype", {
 				callback = function(args)
-					if vim.bo[args.buf].buftype ~= "" then
-						return
+					local lang = vim.treesitter.language.get_lang(args.match) or args.match
+					if vim.treesitter.language.add(lang) then
+						require("nvim-treesitter")
+							.install(lang)
+							:await(function() vim.treesitter.start(args.buf, lang) end)
 					end
-					local lang = vim.treesitter.language.get_lang(args.match)
-					require("nvim-treesitter").install(lang):await(function() vim.treesitter.start(args.buf, lang) end)
 				end,
 			})
 		end,
