@@ -22,6 +22,9 @@ local function update_status()
 			end
 		end
 		M.status = new_status
+		if package.loaded.lualine then
+			require("lualine").refresh({ place = { "statusline" } })
+		end
 	end)
 end
 
