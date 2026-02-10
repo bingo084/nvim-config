@@ -5,7 +5,7 @@ M.status = {
 	behind = 0,
 }
 
-local function update_status()
+local function update()
 	vim.system({ "git", "status", "--porcelain=2", "--branch" }, { text = true }, function(job)
 		if job.code ~= 0 then
 			M.status = { ahead = 0, behind = 0 }
@@ -31,7 +31,7 @@ end
 local function fetch_and_update()
 	vim.system({ "git", "fetch" }, { text = true }, function(job)
 		if job.code == 0 then
-			update_status()
+			update()
 		end
 	end)
 end
@@ -45,7 +45,7 @@ local debounced_update = function()
 	end
 	debounce_timer = vim.loop.new_timer()
 	if debounce_timer then
-		debounce_timer:start(100, 0, vim.schedule_wrap(update_status))
+		debounce_timer:start(100, 0, vim.schedule_wrap(update))
 	end
 end
 
@@ -92,7 +92,7 @@ function M.pause()
 end
 
 function M.resume()
-	update_status()
+	update()
 	if timer and not timer:is_closing() then
 		timer:start(0, 60000, fetch_and_update)
 	end
