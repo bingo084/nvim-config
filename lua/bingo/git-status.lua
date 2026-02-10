@@ -72,7 +72,7 @@ local function watch_git_dir()
 			local watcher = vim.uv.new_fs_event()
 			if watcher then
 				table.insert(M.watchers, watcher)
-				watcher:start(path, {}, debounced_update)
+				watcher:start(path, { recursive = true }, debounced_update)
 			end
 		end
 	end)
