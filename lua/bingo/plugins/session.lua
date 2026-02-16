@@ -20,7 +20,7 @@ return {
 			pattern = "PersistedLoadPost",
 			callback = function()
 				if lazy_win then
-					require("lazy").home()
+					require("lazy").install()
 				end
 			end,
 		})
