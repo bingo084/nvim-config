@@ -117,6 +117,7 @@ return {
 				"jdtls",
 				"jsonls",
 				"lua_ls",
+				"postgres_lsp",
 				"rust_analyzer",
 				"taplo",
 				"ts_ls",

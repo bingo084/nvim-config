@@ -67,6 +67,7 @@ return {
 			default = { "lsp", "path", "snippets", "buffer", "emoji", "nerdfont" },
 			per_filetype = {
 				lua = { inherit_defaults = true, "lazydev" },
+				sql = { inherit_defaults = true, "dadbod" },
 			},
 			providers = {
 				lazydev = {
@@ -83,6 +84,11 @@ return {
 					name = "Nerd Fonts",
 					module = "blink-nerdfont",
 					score_offset = -3,
+				},
+				dadbod = {
+					name = "Dadbod",
+					module = "vim_dadbod_completion.blink",
+					score_offset = 100,
 				},
 			},
 		},
