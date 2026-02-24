@@ -3,7 +3,7 @@ return {
 	{
 		"kevinhwang91/nvim-bqf",
 		version = false,
-		dependencies = { { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end } },
+		dependencies = { "junegunn/fzf" },
 		opts = {
 			auto_resize_height = true,
 			preview = { winblend = 0 },
