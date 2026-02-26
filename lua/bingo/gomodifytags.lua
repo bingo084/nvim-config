@@ -30,6 +30,47 @@ local defaults = {
 
 M.config = vim.deepcopy(defaults)
 
+local MASON_PKG = "gomodifytags"
+
+local function is_available() return vim.fn.executable(MASON_PKG) == 1 end
+
+local function try_mason_install()
+	local ok, registry = pcall(require, "mason-registry")
+	if not ok then
+		vim.notify(
+			"gomodifytags: not found. Install via Mason or 'go install github.com/fatih/gomodifytags@latest'",
+			vim.log.levels.WARN
+		)
+		return
+	end
+
+	registry.refresh(vim.schedule_wrap(function()
+		local pkg_ok, pkg = pcall(registry.get_package, MASON_PKG)
+		if not pkg_ok then
+			vim.notify("gomodifytags: not available in Mason registry", vim.log.levels.ERROR)
+			return
+		end
+		if pkg:is_installed() or pkg:is_installing() then
+			return
+		end
+		vim.notify("gomodifytags: installing via Mason...")
+		pkg:install():once(
+			"closed",
+			vim.schedule_wrap(function()
+				if pkg:is_installed() then
+					vim.notify("gomodifytags: installed successfully")
+				else
+					vim.notify("gomodifytags: installation failed, check :MasonLog", vim.log.levels.ERROR)
+				end
+			end)
+		)
+	end))
+end
+
+if not is_available() then
+	try_mason_install()
+end
+
 local function get_struct_name()
 	local node = vim.treesitter.get_node()
 	while node do
@@ -190,6 +231,10 @@ local function add_tags_sequentially(file, tags, scope, override, index)
 end
 
 function M.add_tags(cmd_opts)
+	if not is_available() then
+		vim.notify("gomodifytags: not installed. Run :MasonInstall gomodifytags", vim.log.levels.ERROR)
+		return
+	end
 	ensure_saved()
 	local file = vim.api.nvim_buf_get_name(0)
 	if file == "" then
@@ -207,6 +252,10 @@ function M.add_tags(cmd_opts)
 end
 
 function M.remove_tags(cmd_opts)
+	if not is_available() then
+		vim.notify("gomodifytags: not installed. Run :MasonInstall gomodifytags", vim.log.levels.ERROR)
+		return
+	end
 	ensure_saved()
 	local file = vim.api.nvim_buf_get_name(0)
 	if file == "" then
