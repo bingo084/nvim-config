@@ -33,7 +33,7 @@ return {
 			vim.keymap.del({ "i", "s" }, "<C-s>")
 
 			local group = vim.api.nvim_create_augroup("UserLspConfig", {})
-			vim.api.nvim_create_autocmd({ "BufRead", "InsertLeave", "BufWritePre" }, {
+			vim.api.nvim_create_autocmd({ "BufRead", "InsertLeave", "BufWritePre", "LspAttach" }, {
 				group = group,
 				callback = function(args)
 					if next(vim.lsp.get_clients({ bufnr = args.buf })) then
