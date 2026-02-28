@@ -1,13 +1,13 @@
+local ok, registry = pcall(require, "mason-registry")
+if not ok then
+	return { outdated = {}, get_text = function() return "" end, has_updates = function() return false end }
+end
+
 local M = {}
 
 M.outdated = {}
 
 local function check()
-	local ok, registry = pcall(require, "mason-registry")
-	if not ok then
-		return
-	end
-
 	registry.refresh(function()
 		local outdated = {}
 		for _, pkg in ipairs(registry.get_installed_packages()) do
@@ -42,6 +42,9 @@ local timer = vim.uv.new_timer()
 if timer then
 	timer:start(0, 3600000, vim.schedule_wrap(check))
 end
+
+registry:on("package:install:success", vim.schedule_wrap(check))
+registry:on("package:uninstall:success", vim.schedule_wrap(check))
 
 vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
