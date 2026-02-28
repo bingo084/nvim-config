@@ -78,6 +78,7 @@ return {
 						function() vim.lsp.buf.type_definition({ reuse_win = true }) end,
 						"Goto [D]eclaration"
 					)
+					map("n", "lc", vim.lsp.codelens.run, "Run Code Lens")
 					map(
 						{ "n", "v", "i" },
 						"<A-Enter>",
