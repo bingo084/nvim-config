@@ -24,19 +24,3 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 	callback = function() vim.cmd("checktime") end,
 	desc = "Reload buffer if it's changed externally",
 })
-
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-	group = group,
-	callback = function(args)
-		if next(vim.lsp.get_clients({ bufnr = args.buf })) then
-			vim.lsp.codelens.refresh({ bufnr = args.buf })
-		end
-	end,
-	desc = "Refresh code lens",
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = group,
-	callback = function(args) vim.lsp.inlay_hint.enable(true, { bufnr = args.buf }) end,
-	desc = "Enable inlay hints",
-})
