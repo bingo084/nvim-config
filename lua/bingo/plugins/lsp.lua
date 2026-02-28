@@ -33,18 +33,16 @@ return {
 			vim.keymap.del({ "i", "s" }, "<C-s>")
 
 			local group = vim.api.nvim_create_augroup("UserLspConfig", {})
-			vim.api.nvim_create_autocmd({ "BufRead", "InsertLeave", "BufWritePre", "LspAttach" }, {
-				group = group,
-				callback = function(args)
-					if next(vim.lsp.get_clients({ bufnr = args.buf })) then
-						vim.lsp.codelens.refresh({ bufnr = args.buf })
-					end
-				end,
-				desc = "Refresh code lens",
-			})
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = group,
 				callback = function(ev)
+					vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePre" }, {
+						group = group,
+						buffer = ev.buf,
+						callback = function(args) vim.lsp.codelens.refresh({ bufnr = args.buf }) end,
+						desc = "Refresh code lens",
+					})
+					vim.lsp.codelens.refresh({ bufnr = ev.buf })
 					vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
 					local function map(mode, key, action, desc)
 						vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = desc })
