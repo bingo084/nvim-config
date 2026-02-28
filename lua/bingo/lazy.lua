@@ -26,7 +26,6 @@ require("lazy").setup("bingo.plugins", {
 	},
 	checker = {
 		enabled = true,
-		frequency = 86400,
 	},
 })
 
