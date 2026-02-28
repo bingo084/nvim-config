@@ -14,6 +14,12 @@ local lazy = {
 	cond = require("lazy.status").has_updates,
 	color = { fg = color.peach },
 }
+local mason = {
+	function() return require("bingo.mason-update").get_text() end,
+	cond = function() return require("bingo.mason-update").has_updates() end,
+	icon = "󱁤",
+	color = { fg = color.yellow },
+}
 local branch = {
 	"branch",
 	icon = { "", color = { fg = color.peach } },
@@ -137,7 +143,7 @@ return {
 			lualine_a = { mode },
 			lualine_b = { branch, git_status },
 			lualine_c = { filetype, filename, modified_buffer, diagnostics, recording },
-			lualine_x = { diff, lazy },
+			lualine_x = { diff, mason, lazy },
 			lualine_y = { lanuage_server, copilot, "encoding", "fileformat" },
 			lualine_z = { { "progress", padding = { left = 1 } }, "location" },
 		},
