@@ -59,11 +59,18 @@ return {
 				Snacks.toggle.zoom():map("<leader>of")
 				Snacks.toggle
 					.new({
+						name = "Inlay Hints",
+						get = function() return vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) end,
+						set = function(state) vim.lsp.inlay_hint.enable(state, { bufnr = 0 }) end,
+					})
+					:map("<leader>oh")
+				Snacks.toggle
+					.new({
 						name = "Illuminate",
 						get = function() return not require("illuminate").is_paused() end,
 						set = function() require("illuminate").toggle() end,
 					})
-					:map("<leader>oh")
+					:map("<leader>oH")
 				Snacks.toggle
 					.new({
 						name = "Indent Blankline",
