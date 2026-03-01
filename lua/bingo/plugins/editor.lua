@@ -28,9 +28,14 @@ return {
 			require("illuminate").configure({
 				modes_denylist = { "v" },
 				large_file_cutoff = 5000,
+				disable_keymaps = true,
 			})
 		end,
 		event = "VeryLazy",
+		keys = {
+			{ "]w", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference" },
+			{ "[w", function() require("illuminate").goto_prev_reference() end, desc = "Prev Reference" },
+		},
 	},
 	{
 		"kylechui/nvim-surround",
