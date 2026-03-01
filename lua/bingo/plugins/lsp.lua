@@ -39,7 +39,7 @@ return {
 					vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePre" }, {
 						group = group,
 						buffer = ev.buf,
-						callback = function(args) vim.lsp.codelens.refresh({ bufnr = args.buf }) end,
+						callback = function() vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
 						desc = "Refresh code lens",
 					})
 					vim.lsp.codelens.refresh({ bufnr = ev.buf })
