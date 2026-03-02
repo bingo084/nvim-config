@@ -2,6 +2,9 @@ return {
 	settings = {
 		-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 		gopls = {
+			codelenses = {
+				test = true,
+			},
 			gofumpt = true,
 			hints = {
 				assignVariableTypes = true,
