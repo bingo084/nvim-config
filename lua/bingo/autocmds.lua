@@ -29,3 +29,11 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 	end,
 	desc = "Reload buffer if it's changed externally",
 })
+
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+	group = group,
+	callback = function(args)
+		vim.keymap.set("n", "<S-CR>", "<CR>q:", { buffer = args.buf, desc = "Execute command and reopen cmdwin" })
+	end,
+	desc = "Cmdwin: map <S-CR> to execute and reopen",
+})
