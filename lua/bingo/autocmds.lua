@@ -21,6 +21,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 	group = group,
-	callback = function() vim.cmd("checktime") end,
+	callback = function()
+		if vim.fn.getcmdwintype() ~= "" or vim.bo.buftype ~= "" then
+			return
+		end
+		vim.cmd("checktime")
+	end,
 	desc = "Reload buffer if it's changed externally",
 })
