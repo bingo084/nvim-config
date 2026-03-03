@@ -5,6 +5,9 @@ end
 -- Remap space as leader key
 vim.g.mapleader = " "
 map("", "<Space>", "<Nop>", "Leader Key")
+-- Distinguish <C-m> from <CR>, <C-i> from <Tab>
+map("n", "<CR>", "<CR>", "Enter")
+map("n", "<C-i>", "<C-i>", "Tab")
 -- Clear hlight search
 map("n", "<Esc>", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>", "Clear Highlight")
 map("i", "<S-CR>", "<Esc>o", "New Line")
