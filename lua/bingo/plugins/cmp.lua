@@ -94,6 +94,8 @@ return {
 		},
 		cmdline = {
 			keymap = {
+				["<C-d>"] = { function(cmp) return cmp.select_next({ count = 5 }) end, "fallback" },
+				["<C-u>"] = { function(cmp) return cmp.select_prev({ count = 5 }) end, "fallback" },
 				["<C-f>"] = { "select_and_accept", "fallback" },
 			},
 		},
