@@ -9,9 +9,11 @@ return {
 				callback = function(args)
 					local lang = vim.treesitter.language.get_lang(args.match) or args.match
 					if vim.treesitter.language.add(lang) then
-						require("nvim-treesitter")
-							.install(lang)
-							:await(function() vim.treesitter.start(args.buf, lang) end)
+						require("nvim-treesitter").install(lang):await(function()
+							if vim.api.nvim_buf_is_valid(args.buf) then
+								vim.treesitter.start(args.buf, lang)
+							end
+						end)
 					end
 				end,
 			})
