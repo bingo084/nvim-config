@@ -10,6 +10,10 @@ return {
 		dependencies = {
 			{ "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
 		},
+		init = function()
+			-- Delete built-in gcc mapping to fix lazy loading
+			vim.keymap.del("n", "gcc")
+		end,
 		version = false,
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
