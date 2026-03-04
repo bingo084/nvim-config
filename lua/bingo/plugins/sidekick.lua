@@ -4,6 +4,20 @@ return {
 	dependencies = {
 		"zbirenbaum/copilot.lua",
 	},
+	init = function()
+		local group = vim.api.nvim_create_augroup("sidekick_custom", {})
+		vim.api.nvim_create_autocmd("FileType", {
+			group = group,
+			pattern = "sidekick_terminal",
+			callback = function(args)
+				vim.api.nvim_create_autocmd("BufEnter", {
+					group = group,
+					buffer = args.buf,
+					callback = function() vim.cmd.startinsert() end,
+				})
+			end,
+		})
+	end,
 	---@class sidekick.Config
 	opts = {
 		cli = {
