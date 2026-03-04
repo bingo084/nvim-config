@@ -271,5 +271,30 @@ return {
 		},
 		-- Scratch
 		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+		-- Terminal
+		{
+			"<c-=>",
+			function() Snacks.terminal(nil, { win = { position = "float", border = "rounded" }, count = 1 }) end,
+			mode = { "n", "i", "t" },
+			desc = "Float Terminal",
+		},
+		{
+			"<c-->",
+			function()
+				Snacks.terminal(nil, { win = { height = 0.3, position = "bottom", wo = { winbar = "" } }, count = 2 })
+			end,
+			mode = { "n", "i", "t" },
+			desc = "Bottom Terminal",
+		},
+		{
+			[[<c-\>]],
+			function()
+				Snacks.terminal(nil, { win = { width = 0.3, position = "right", wo = { winbar = "" } }, count = 3 })
+			end,
+			mode = { "n", "i", "t" },
+			desc = "Vertical Terminal",
+		},
+		{ "<leader>tb", function() Snacks.terminal("btop") end, desc = "Btop" },
+		{ "<leader>td", function() Snacks.terminal("lazydocker") end, desc = "Lazydocker" },
 	},
 }
