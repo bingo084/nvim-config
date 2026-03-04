@@ -13,7 +13,7 @@ return {
 					buffers = { "<leader>fb", "buffers", mode = "nt", desc = "open buffer picker" },
 					files = { "<leader>ff", "files", mode = "nt", desc = "open file picker" },
 					prompt = { "<leader>ap", "prompt", mode = "t", desc = "insert prompt or context" },
-					stopinsert = { "jk", "stopinsert", mode = "t", desc = "enter normal mode" },
+					stopinsert = { "<Esc><Esc>", "stopinsert", mode = "t", desc = "enter normal mode" },
 					nav_left = { "<A-h>", "nav_left", expr = true, desc = "navigate to the left window" },
 					nav_down = { "<A-j>", "nav_down", expr = true, desc = "navigate to the below window" },
 					nav_up = { "<A-k>", "nav_up", expr = true, desc = "navigate to the above window" },
