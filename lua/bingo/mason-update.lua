@@ -7,7 +7,7 @@ local M = {}
 
 M.outdated = {}
 
-local function check()
+local function check(notify)
 	registry.refresh(function()
 		local outdated = {}
 		for _, pkg in ipairs(registry.get_installed_packages()) do
@@ -18,7 +18,7 @@ local function check()
 			end
 		end
 		M.outdated = outdated
-		if #outdated > 0 then
+		if notify and #outdated > 0 then
 			local lines = { "# Package Updates" }
 			for _, pkg in ipairs(outdated) do
 				table.insert(lines, "- **" .. pkg.name .. "**")
@@ -43,8 +43,9 @@ if timer then
 	timer:start(0, 3600000, vim.schedule_wrap(check))
 end
 
-registry:on("package:install:success", vim.schedule_wrap(check))
-registry:on("package:uninstall:success", vim.schedule_wrap(check))
+local on_pkg_change = vim.schedule_wrap(function() check(true) end)
+registry:on("package:install:success", on_pkg_change)
+registry:on("package:uninstall:success", on_pkg_change)
 
 vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
