@@ -43,7 +43,7 @@ if timer then
 	timer:start(0, 3600000, vim.schedule_wrap(check))
 end
 
-local on_pkg_change = vim.schedule_wrap(function() check(true) end)
+local on_pkg_change = vim.schedule_wrap(function() check(false) end)
 registry:on("package:install:success", on_pkg_change)
 registry:on("package:uninstall:success", on_pkg_change)
 
