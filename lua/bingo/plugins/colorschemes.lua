@@ -17,7 +17,7 @@ return add_keys({
 	{
 		"catppuccin/nvim",
 		version = false,
-		init = function() vim.cmd.colorscheme("catppuccin") end,
+		init = function() vim.cmd.colorscheme("catppuccin-nvim") end,
 		name = "catppuccin",
 		opts = {
 			flavour = "auto",
