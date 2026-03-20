@@ -50,6 +50,7 @@ return {
 		keys = {
 			{ "<leader>gd", "<cmd>CodeDiff<CR>", desc = "Diff View" },
 			{ "<leader>gl", "<cmd>CodeDiff history<CR>", desc = "Log" },
+			{ "<leader>gl", "<cmd>'<,'>CodeDiff history<CR>", mode = "x", desc = "Log Selection" },
 			{ "<leader>gL", "<cmd>CodeDiff history %<CR>", desc = "Log Current File" },
 		},
 	},
