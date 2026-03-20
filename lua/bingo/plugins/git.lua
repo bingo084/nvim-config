@@ -100,8 +100,8 @@ return {
 						return "<Ignore>"
 					end, { buffer = bufnr, desc = desc, expr = true })
 				end
-				navimap("]c", gitsigns.next_hunk, "Next Change(hunk)")
-				navimap("[c", gitsigns.prev_hunk, "Prev Change(hunk)")
+				navimap("]c", function() gitsigns.nav_hunk("next") end, "Next Change(hunk)")
+				navimap("[c", function() gitsigns.nav_hunk("prev") end, "Prev Change(hunk)")
 				map("n", "<leader>gb", function() gitsigns.blame_line({ full = true }) end, "Blame")
 				map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
 				map("n", "<leader>gr", gitsigns.reset_hunk, "Reset Hunk")
