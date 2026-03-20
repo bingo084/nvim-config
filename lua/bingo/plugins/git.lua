@@ -60,17 +60,6 @@ return {
 			on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
 				local function map(mode, lhs, rhs, desc) vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc }) end
-				local function navimap(lhs, rhs, desc)
-					vim.keymap.set("n", lhs, function()
-						if vim.wo.diff then
-							return lhs
-						end
-						vim.schedule(rhs)
-						return "<Ignore>"
-					end, { buffer = bufnr, desc = desc, expr = true })
-				end
-				navimap("]c", function() gitsigns.nav_hunk("next") end, "Next Change(hunk)")
-				navimap("[c", function() gitsigns.nav_hunk("prev") end, "Prev Change(hunk)")
 				map("n", "<leader>gb", function() gitsigns.blame_line({ full = true }) end, "Blame")
 				map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
 				map("n", "<leader>gr", gitsigns.reset_hunk, "Reset Hunk")
@@ -84,6 +73,26 @@ return {
 				map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", "inner hunk")
 			end,
 		},
+		keys = function()
+			local function nav_hunk(lhs, direction)
+				return function()
+					if vim.wo.diff then
+						local count = vim.v.count > 0 and tostring(vim.v.count) or ""
+						vim.cmd.normal({ count .. lhs, bang = true })
+						return
+					end
+					if vim.b.gitsigns_status_dict == nil then
+						return
+					end
+					---@diagnostic disable-next-line: missing-fields
+					require("gitsigns").nav_hunk(direction, { count = vim.v.count1 })
+				end
+			end
+			return {
+				{ "]c", nav_hunk("]c", "next"), desc = "Next Change(hunk)" },
+				{ "[c", nav_hunk("[c", "prev"), desc = "Prev Change(hunk)" },
+			}
+		end,
 		event = "VeryLazy",
 	},
 }
