@@ -63,7 +63,8 @@ local modified_buffer = {
 		local count = 0
 		local buffers = vim.fn.getbufinfo({ buflisted = 1, bufmodified = 1 })
 		for _, buf in ipairs(buffers) do
-			if buf.hidden == 0 and buf.bufnr ~= vim.api.nvim_get_current_buf() then
+			-- codediff will set buf modified to 1, but it's changed is 0
+			if buf.changed == 1 and buf.hidden == 0 and buf.bufnr ~= vim.api.nvim_get_current_buf() then
 				count = count + 1
 			end
 		end
