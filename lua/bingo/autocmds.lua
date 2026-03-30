@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		if vim.env.KITTY_WINDOW_ID then
 			local title = vim.fs.basename(vim.fn.getcwd())
 			vim.system({ "kitten", "@", "set-tab-title", title }, { detach = true })
+			vim.system({ "kitten", "@", "set-window-title", title }, { detach = true })
 		end
 	end,
 	desc = "Set kitty tab title to working directory on startup",
@@ -54,6 +55,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
 		if vim.env.KITTY_WINDOW_ID then
 			vim.system({ "kitten", "@", "set-tab-title" }, { detach = true })
+			vim.system({ "kitten", "@", "set-window-title" }, { detach = true })
 		end
 	end,
 	desc = "Set kitty tab title to default on exit",
