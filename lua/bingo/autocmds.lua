@@ -37,3 +37,24 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 	end,
 	desc = "Cmdwin: map <S-CR> to execute and reopen",
 })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = group,
+	callback = function()
+		if vim.env.KITTY_WINDOW_ID then
+			local title = vim.fs.basename(vim.fn.getcwd())
+			vim.system({ "kitten", "@", "set-tab-title", title }, { detach = true })
+		end
+	end,
+	desc = "Set kitty tab title to working directory on startup",
+})
+
+vim.api.nvim_create_autocmd("VimLeave", {
+	group = group,
+	callback = function()
+		if vim.env.KITTY_WINDOW_ID then
+			vim.system({ "kitten", "@", "set-tab-title" }, { detach = true })
+		end
+	end,
+	desc = "Set kitty tab title to default on exit",
+})
