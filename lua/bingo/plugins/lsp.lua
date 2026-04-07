@@ -108,7 +108,7 @@ return {
 			})
 		end,
 		event = { "BufReadPre", "BufNewFile" },
-		keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
+		keys = { { "<leader>li", "<cmd>checkhealth vim.lsp<CR>", desc = "Info" } },
 	},
 	{
 		"mason-org/mason.nvim",
