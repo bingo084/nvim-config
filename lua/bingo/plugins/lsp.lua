@@ -39,10 +39,10 @@ return {
 					vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePre" }, {
 						group = group,
 						buffer = ev.buf,
-						callback = function() vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
+						callback = function() vim.lsp.codelens.enable(true, { bufnr = ev.buf }) end,
 						desc = "Refresh code lens",
 					})
-					vim.lsp.codelens.refresh({ bufnr = ev.buf })
+					vim.lsp.codelens.enable(true, { bufnr = ev.buf })
 					vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
 					local function map(mode, key, action, desc)
 						vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = desc })
