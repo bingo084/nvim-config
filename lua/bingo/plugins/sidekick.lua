@@ -10,7 +10,7 @@ return {
 			group = group,
 			pattern = "sidekick_terminal",
 			callback = function(args)
-				vim.api.nvim_create_autocmd("BufEnter", {
+				vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 					group = group,
 					buffer = args.buf,
 					callback = function() vim.cmd.startinsert() end,
