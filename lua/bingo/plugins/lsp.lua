@@ -128,6 +128,7 @@ return {
 				"jsonls",
 				"lua_ls",
 				"postgres_lsp",
+				"qmlls",
 				"rust_analyzer",
 				"taplo",
 				"ts_ls",
