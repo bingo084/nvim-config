@@ -37,6 +37,7 @@ return {
 			---@type table<string, sidekick.cli.Config|{}>
 			tools = {
 				codex = { cmd = { "codex", "resume", "--last" } },
+				copilot = { cmd = { "copilot", "--continue" } },
 				cursor = { cmd = { "cursor-agent", "resume" } },
 				gemini = {
 					cmd = {
