@@ -24,6 +24,17 @@ return {
 				end
 			end,
 		})
+		vim.api.nvim_create_autocmd("User", {
+			group = group,
+			pattern = "PersistedSavePre",
+			callback = function()
+				local state = require("sidekick.cli.state")
+				if #state.get({ attached = true }) ~= 0 then
+					require("sidekick.cli").close({ all = true })
+					vim.wait(200, function() return #state.get({ attached = true }) == 0 end, 10)
+				end
+			end,
+		})
 	end,
 	opts = {
 		silent = false,
