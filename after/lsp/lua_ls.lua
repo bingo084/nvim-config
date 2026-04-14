@@ -1,4 +1,7 @@
+---@type vim.lsp.Config
 return {
+	---@module "lspconfig"
+	---@type lspconfig.settings.lua_ls
 	settings = {
 		-- https://luals.github.io/wiki/settings/
 		Lua = {

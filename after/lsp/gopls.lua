@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
 	settings = {
 		-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
