@@ -129,7 +129,7 @@ return {
 				"lua_ls",
 				"postgres_lsp",
 				"rust_analyzer",
-				"taplo",
+				"tombi",
 				"ts_ls",
 				"vue_ls",
 				"yamlls",
