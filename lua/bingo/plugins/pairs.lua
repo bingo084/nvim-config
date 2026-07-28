@@ -2,10 +2,14 @@
 return {
 	{
 		"saghen/blink.pairs",
-		dependencies = "saghen/blink.download",
+		dependencies = "saghen/blink.lib",
+		build = function()
+			---@module "blink.lib"
+			require("blink.pairs").download():pwait(60000)
+		end,
 		init = function() vim.keymap.set({ "i", "c" }, "<C-h>", "<BS>", { remap = true }) end,
-		--- @module 'blink.pairs'
-		--- @type blink.pairs.Config
+		---@module 'blink.pairs'
+		---@type blink.pairs.Config
 		opts = {
 			highlights = {
 				enabled = false,
