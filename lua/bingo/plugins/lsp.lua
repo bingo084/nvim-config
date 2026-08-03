@@ -129,6 +129,7 @@ return {
 				"lua_ls",
 				"postgres_lsp",
 				"rust_analyzer",
+				"tailwindcss",
 				"tombi",
 				"ts_ls",
 				"vue_ls",
