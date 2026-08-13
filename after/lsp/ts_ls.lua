@@ -9,6 +9,9 @@ return {
 				languages = { "javascript", "typescript", "vue" },
 			},
 		},
+		preferences = {
+			preferTypeOnlyAutoImports = true,
+		},
 	},
 	filetypes = {
 		"javascript",
