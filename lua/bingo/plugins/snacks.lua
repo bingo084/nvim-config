@@ -203,7 +203,11 @@ return {
 		{ "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss" },
 		{ "<leader>nh", function() Snacks.notifier.show_history() end, desc = "History" },
 		-- Picker
-		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+		{
+			"<leader><space>",
+			function() Snacks.picker.smart({ filter = { cwd = true } }) end,
+			desc = "Smart Find Files",
+		},
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>;", function() Snacks.picker.command_history() end, desc = "Command History" },
 
