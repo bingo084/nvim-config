@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"zbirenbaum/copilot.lua",
 	},
+	version = false,
 	---@class sidekick.Config
 	opts = {
 		cli = {
