@@ -1,14 +1,44 @@
 ---@type LazySpec
 return {
 	"mrjones2014/smart-splits.nvim",
-	build = "./kitty/install-kittens.bash",
 	dependencies = {
 		"pogyomo/submode.nvim",
 	},
 	config = function()
+		-- v2's cached Kitty pane ID does not change immediately after navigation (#451).
+		local kitty = require("smart-splits.mux.kitty")
+		local utils = require("smart-splits.utils")
+		kitty.current_pane_id = function()
+			local cmd = { "kitty", "@" }
+			local password = vim.g.smart_splits_kitty_password or require("smart-splits.config").kitty_password or ""
+			if #password > 0 then
+				vim.list_extend(cmd, { "--password", password })
+			end
+			cmd[#cmd + 1] = "ls"
+			local output, code = utils.system(cmd)
+			if code ~= 0 or output == nil then
+				return nil
+			end
+			local clients = vim.json.decode(output)
+			local client = utils.tbl_find(clients, function(item) return item.is_active and item.is_focused end)
+			if not client then
+				return nil
+			end
+			local tab = utils.tbl_find(client.tabs, function(item)
+				return (item.is_active or item.is_active_tab) and item.is_focused
+			end)
+			if not tab then
+				return nil
+			end
+			local pane = utils.tbl_find(tab.windows, function(item)
+				return (item.is_active or item.is_active_window) and item.is_focused
+			end)
+			return pane and pane.id
+		end
+		---@diagnostic disable-next-line: missing-fields
 		require("smart-splits").setup({
 			default_amount = 2,
-			at_edge = "split",
+			at_edge = function(ctx) ctx.split() end,
 			cursor_follows_swapped_bufs = true,
 		})
 		local ss = require("smart-splits")
