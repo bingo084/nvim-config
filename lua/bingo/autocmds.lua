@@ -43,11 +43,44 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		if vim.env.KITTY_WINDOW_ID then
 			local title = vim.fs.basename(vim.fn.getcwd())
-			vim.system({ "kitten", "@", "set-tab-title", title }, { detach = true })
-			vim.system({ "kitten", "@", "set-window-title", title }, { detach = true })
+			vim.system({ "kitten", "@", "set-window-title", "--temporary", title }, { detach = true })
 		end
 	end,
 	desc = "Set kitty tab title to working directory on startup",
+})
+
+local kitty_title_buf
+
+local function set_kitty_title(title) vim.api.nvim_ui_send("\27]0;" .. title .. "\7") end
+
+vim.api.nvim_create_autocmd("TermRequest", {
+	group = group,
+	callback = function(args)
+		if not vim.env.KITTY_WINDOW_ID or not vim.api.nvim_ui_send then
+			return
+		end
+		local tool = vim.b[args.buf].sidekick_cli
+		if not tool or tool.name ~= "codex" then
+			return
+		end
+		local title = args.data.sequence:match("^\27%][02];(.*)$")
+		if title then
+			kitty_title_buf = args.buf
+			set_kitty_title(title ~= "" and title or vim.fs.basename(vim.fn.getcwd()))
+		end
+	end,
+	desc = "Forward Sidekick Codex title and spinner to Kitty",
+})
+
+vim.api.nvim_create_autocmd({ "TermClose", "BufWipeout" }, {
+	group = group,
+	callback = function(args)
+		if args.buf == kitty_title_buf then
+			kitty_title_buf = nil
+			set_kitty_title(vim.fs.basename(vim.fn.getcwd()))
+		end
+	end,
+	desc = "Restore Kitty title when Sidekick Codex exits",
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
