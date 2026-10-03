@@ -121,6 +121,7 @@ return {
 			ensure_installed = {
 				"bashls",
 				"cssls",
+				"fish_lsp",
 				"gopls",
 				"html",
 				"hyprls",
