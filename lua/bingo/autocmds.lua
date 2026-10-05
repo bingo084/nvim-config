@@ -68,8 +68,13 @@ vim.api.nvim_create_autocmd("TermRequest", {
 			kitty_title_buf = args.buf
 			set_kitty_title(title ~= "" and title or vim.fs.basename(vim.fn.getcwd()))
 		end
+		local notification = args.data.sequence:match("^\27%]9;(.*)$")
+		-- OSC 9;4 is a progress update, not a notification.
+		if notification and not notification:match("^4;") then
+			vim.api.nvim_ui_send("\27]99;o=unfocused;" .. notification .. "\7")
+		end
 	end,
-	desc = "Forward Sidekick Codex title and spinner to Kitty",
+	desc = "Forward Sidekick Codex title and notifications to Kitty",
 })
 
 vim.api.nvim_create_autocmd({ "TermClose", "BufWipeout" }, {

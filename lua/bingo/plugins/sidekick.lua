@@ -23,7 +23,18 @@ return {
 			},
 			---@type table<string, sidekick.cli.Config|{}>
 			tools = {
-				codex = { cmd = { "codex", "resume", "--last" } },
+				codex = {
+					-- Kitty checks focus when receiving the forwarded notification.
+					cmd = {
+						"codex",
+						"resume",
+						"--last",
+						"-c",
+						'tui.notification_method="osc9"',
+						"-c",
+						'tui.notification_condition="always"',
+					},
+				},
 				copilot = { cmd = { "copilot", "--continue" } },
 				cursor = { cmd = { "cursor-agent", "resume" } },
 				gemini = {
