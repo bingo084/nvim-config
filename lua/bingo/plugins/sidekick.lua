@@ -28,6 +28,8 @@ return {
 					cmd = {
 						"codex",
 						"resume",
+						"--remote",
+						"unix://",
 						"--last",
 						"-c",
 						'tui.notification_method="osc9"',
