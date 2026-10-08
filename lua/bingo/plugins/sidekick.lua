@@ -10,6 +10,12 @@ return {
 		cli = {
 			---@class sidekick.win.Opts
 			win = {
+				config = function(terminal)
+					if terminal.tool.name == "codex" and terminal.tool.cmd[1] == "codex" then
+						-- Remote resume needs an absolute cwd to filter sessions.
+						vim.list_extend(terminal.tool.cmd, { "--cd", terminal.cwd })
+					end
+				end,
 				keys = {
 					buffers = { "<leader>fb", "buffers", mode = "nt", desc = "open buffer picker" },
 					files = { "<leader>ff", "files", mode = "nt", desc = "open file picker" },
