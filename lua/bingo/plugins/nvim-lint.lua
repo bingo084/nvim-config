@@ -17,10 +17,9 @@ return {
 				desc = "Lint on text change",
 			})
 		end,
+		event = { "BufReadPost", "BufNewFile" },
 		keys = {
 			{ "<leader>ld", vim.diagnostic.open_float, desc = "Diagnostic" },
-			{ "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
-			{ "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
 			{ "<leader>ll", vim.diagnostic.setloclist, desc = "Loclist" },
 			{ "<leader>lq", vim.diagnostic.setqflist, desc = "Qflist" },
 		},

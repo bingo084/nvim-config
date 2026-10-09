@@ -14,6 +14,11 @@ return {
 			vim.diagnostic.config({
 				update_in_insert = true,
 				float = { border = "rounded" },
+				jump = {
+					on_jump = function(_, bufnr)
+						vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+					end,
+				},
 				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "",
@@ -29,6 +34,7 @@ return {
 			vim.keymap.del("n", "grn")
 			vim.keymap.del("n", "grr")
 			vim.keymap.del("n", "grt")
+			vim.keymap.del("n", "grx")
 			vim.keymap.del("n", "gO")
 			vim.keymap.del({ "i", "s" }, "<C-s>")
 
