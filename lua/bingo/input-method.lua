@@ -3,13 +3,8 @@ if vim.fn.executable("busctl") ~= 1 then
 end
 
 local function ascii_mode()
-	local mode = vim.fn.mode()
-	if mode == "n" then
+	if vim.fn.mode() == "n" then
 		return true
-	end
-	local tool = vim.b.sidekick_cli
-	if mode == "t" and tool and tool.name == "codex" then
-		return false
 	end
 end
 
@@ -75,7 +70,7 @@ local function refresh()
 		return
 	end
 	scheduled = true
-	-- Sidekick restores terminal mode on WinEnter; wait for that to settle.
+	-- Let window and mode changes settle before checking the active context.
 	vim.schedule(function()
 		scheduled = false
 		apply()
@@ -91,7 +86,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufEnter", "ModeChanged",
 		end
 		refresh()
 	end,
-	desc = "Use English in Normal mode and Chinese in the Codex terminal",
+	desc = "Use English in Normal mode",
 })
 vim.api.nvim_create_autocmd("FocusLost", {
 	group = group,

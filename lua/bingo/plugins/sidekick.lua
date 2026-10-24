@@ -5,58 +5,7 @@ return {
 		"zbirenbaum/copilot.lua",
 	},
 	version = false,
-	---@class sidekick.Config
-	opts = {
-		cli = {
-			---@class sidekick.win.Opts
-			win = {
-				config = function(terminal)
-					if terminal.tool.name == "codex" and terminal.tool.cmd[1] == "codex" then
-						-- Remote resume needs an absolute cwd to filter sessions.
-						vim.list_extend(terminal.tool.cmd, { "--cd", terminal.cwd })
-					end
-				end,
-				keys = {
-					buffers = { "<leader>fb", "buffers", mode = "nt", desc = "open buffer picker" },
-					files = { "<leader>ff", "files", mode = "nt", desc = "open file picker" },
-					prompt = { "<leader>ap", "prompt", mode = "t", desc = "insert prompt or context" },
-					stopinsert = { "<Esc><Esc>", "stopinsert", mode = "t", desc = "enter normal mode" },
-					nav_left = false,
-					nav_down = false,
-					nav_up = false,
-					nav_right = false,
-				},
-			},
-			---@type table<string, sidekick.cli.Config|{}>
-			tools = {
-				codex = {
-					-- Kitty checks focus when receiving the forwarded notification.
-					cmd = {
-						"codex",
-						"resume",
-						"--remote",
-						"unix://",
-						"--last",
-						"-c",
-						'tui.notification_method="osc9"',
-						"-c",
-						'tui.notification_condition="always"',
-					},
-				},
-				copilot = { cmd = { "copilot", "--continue" } },
-				cursor = { cmd = { "cursor-agent", "resume" } },
-				gemini = {
-					cmd = {
-						"bash",
-						"-c",
-						"gemini --resume 2> >(grep -v 'No previous sessions found') || gemini",
-					},
-				},
-				["gemini(new session)"] = { cmd = { "gemini" } },
-				opencode = { cmd = { "opencode", "--continue" } },
-			},
-		},
-	},
+	opts = {},
 	keys = {
 		{
 			"<tab>",
@@ -72,35 +21,6 @@ return {
 			"<leader>as",
 			function() require("sidekick.nes").apply() end,
 			desc = "Goto/Apply Next Edit Suggestion",
-		},
-		{
-			"<c-.>",
-			function() require("sidekick.cli").toggle({ filter = { installed = true } }) end,
-			desc = "Sidekick Toggle",
-			mode = { "n", "t", "i", "x" },
-		},
-		{
-			"<leader>at",
-			function() require("sidekick.cli").send({ msg = "{this}" }) end,
-			mode = { "x", "n" },
-			desc = "Send This To Sidekick",
-		},
-		{
-			"<leader>af",
-			function() require("sidekick.cli").send({ msg = "{file}" }) end,
-			desc = "Send File To Sidekick",
-		},
-		{
-			"<leader>av",
-			function() require("sidekick.cli").send({ msg = "{selection}" }) end,
-			mode = { "x" },
-			desc = "Send Visual Selection To Sidekick",
-		},
-		{
-			"<leader>ap",
-			function() require("sidekick.cli").prompt() end,
-			mode = { "n", "x" },
-			desc = "Sidekick Select Prompt",
 		},
 	},
 }
