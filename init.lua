@@ -1,4 +1,5 @@
 require("bingo.autocmds")
+require("bingo.input-method")
 require("bingo.options")
 require("bingo.keymaps")
 require("bingo.lazy")
