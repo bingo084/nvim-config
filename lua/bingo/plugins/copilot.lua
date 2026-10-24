@@ -7,7 +7,12 @@ return {
 	},
 	{
 		"zbirenbaum/copilot.lua",
+		dependencies = { "copilotlsp-nvim/copilot-lsp" },
 		opts = {
+			nes = {
+				enabled = true,
+				keymap = { accept_and_goto = "<Tab>", dismiss = "<Esc>" },
+			},
 			suggestion = {
 				auto_trigger = true,
 				keymap = {
