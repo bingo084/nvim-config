@@ -21,6 +21,8 @@ opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 -- Preview substitutions live, as you type!
 opt.inccommand = "split"
 opt.cursorline = true
+-- Let the host terminal supply the terminal-mode cursor color.
+opt.guicursor = vim.o.guicursor:gsub("%-TermCursor", "")
 opt.scrolloff = 10
 opt.hlsearch = true
 opt.showmatch = true

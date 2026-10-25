@@ -2,6 +2,7 @@
 return {
 	"folke/sidekick.nvim",
 	version = false,
+	init = function() require("bingo.terminal-colors").setup() end,
 	opts = {
 		nes = { enabled = false },
 		copilot = { status = { enabled = false } },
@@ -9,6 +10,7 @@ return {
 			win = {
 				config = function(terminal)
 					if terminal.tool.name == "codex" then
+						require("bingo.terminal-colors").prepare()
 						vim.list_extend(terminal.tool.cmd, { "--cd", terminal.cwd })
 					end
 				end,
