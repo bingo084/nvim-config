@@ -24,6 +24,42 @@ return {
 				end
 			end,
 		})
+		-- Hide Codex only while serializing the editor layout; keep its job alive.
+		local saved, focused = {}, nil
+		vim.api.nvim_create_autocmd("User", {
+			group = group,
+			pattern = "PersistedSavePre",
+			callback = function()
+				saved, focused = {}, vim.api.nvim_get_current_win()
+				local Terminal = package.loaded["sidekick.cli.terminal"]
+				for _, term in pairs(Terminal and Terminal.terminals or {}) do
+					if term.tool.name == "codex" and term:is_open() then
+						saved[#saved + 1] = { terminal = term, focused = term:is_focused() }
+						term:hide()
+					end
+				end
+			end,
+		})
+		vim.api.nvim_create_autocmd("User", {
+			group = group,
+			pattern = "PersistedSavePost",
+			callback = function()
+				local restore, previous = saved, focused
+				saved, focused = {}, nil
+				-- Restore terminal input after the session commands finish changing modes.
+				vim.defer_fn(function()
+					for _, entry in ipairs(restore) do
+						entry.terminal:show()
+						if entry.focused then
+							entry.terminal:focus()
+						end
+					end
+					if previous and vim.api.nvim_win_is_valid(previous) then
+						vim.api.nvim_set_current_win(previous)
+					end
+				end, 0)
+			end,
+		})
 	end,
 	opts = {
 		silent = false,
