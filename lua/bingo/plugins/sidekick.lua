@@ -7,6 +7,11 @@ return {
 		nes = { enabled = false },
 		copilot = { status = { enabled = false } },
 		cli = {
+			context = {
+				diagnostics_line = function(ctx)
+					return require("sidekick.cli.context.diagnostics").get(ctx, { lnum = ctx.row - 1 })
+				end,
+			},
 			win = {
 				config = function(terminal)
 					if terminal.tool.name == "codex" then
@@ -49,6 +54,16 @@ return {
 			function() require("sidekick.cli").toggle({ name = "codex" }) end,
 			mode = { "n", "i", "x", "t" },
 			desc = "Toggle Codex",
+		},
+		{
+			"<leader>ad",
+			function() require("sidekick.cli").send({ name = "codex", msg = "{diagnostics_line}" }) end,
+			desc = "Send Line Diagnostics to Codex",
+		},
+		{
+			"<leader>aD",
+			function() require("sidekick.cli").send({ name = "codex", msg = "{diagnostics}" }) end,
+			desc = "Send File Diagnostics to Codex",
 		},
 		{
 			"<leader>af",
