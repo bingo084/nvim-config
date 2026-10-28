@@ -23,6 +23,8 @@ opt.inccommand = "split"
 opt.cursorline = true
 -- Let the host terminal supply the terminal-mode cursor color.
 opt.guicursor = vim.o.guicursor:gsub("%-TermCursor", "")
+-- Default terminal input to a vertical bar; applications may override it.
+opt.guicursor:append("t:ver25")
 opt.scrolloff = 10
 opt.hlsearch = true
 opt.showmatch = true
