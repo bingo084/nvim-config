@@ -8,7 +8,6 @@ return {
 			formatters_by_ft = {
 				fish = { "fish_indent" },
 				go = { "goimports", lsp_format = "last" },
-				lua = { "stylua" },
 				java = { "google-java-format" },
 				yaml = { "yamlfmt" },
 				sh = { "shfmt" },

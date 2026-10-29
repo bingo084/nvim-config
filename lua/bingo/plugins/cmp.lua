@@ -66,15 +66,9 @@ return {
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer", "emoji", "nerdfont" },
 			per_filetype = {
-				lua = { inherit_defaults = true, "lazydev" },
 				sql = { inherit_defaults = true, "dadbod" },
 			},
 			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					score_offset = 100,
-				},
 				emoji = {
 					name = "Emoji",
 					module = "blink-emoji",

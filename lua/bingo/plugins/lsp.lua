@@ -127,13 +127,13 @@ return {
 			ensure_installed = {
 				"bashls",
 				"cssls",
+				"emmylua_ls",
 				"fish_lsp",
 				"gopls",
 				"html",
 				"hyprls",
 				"jdtls",
 				"jsonls",
-				"lua_ls",
 				"postgres_lsp",
 				"rust_analyzer",
 				"tailwindcss",
@@ -146,16 +146,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	{ "b0o/SchemaStore.nvim", lazy = true },
-	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "lazy.nvim", words = { "LazySpec" } },
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
 	{ "mfussenegger/nvim-jdtls", version = false, lazy = true },
 	{
 		"ThePrimeagen/refactoring.nvim",
