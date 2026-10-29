@@ -1,6 +1,6 @@
 local function map(mode, key, action, desc)
-	local opts = { desc = desc }
-	vim.keymap.set(mode, key, action, opts)
+  local opts = { desc = desc }
+  vim.keymap.set(mode, key, action, opts)
 end
 -- Remap space as leader key
 vim.g.mapleader = " "
@@ -51,10 +51,11 @@ map("c", "<C-a>", "<Home>", "Beginning of line")
 map("c", "<C-f>", "<Right>", "Forward char")
 map("c", "<C-b>", "<Left>", "Backward char")
 map("c", "<C-d>", "<Del>", "Delete char forward")
-map("c", "<C-k>", function()
-	local line = vim.fn.getcmdline()
-	local pos = vim.fn.getcmdpos()
-	vim.fn.setcmdline(line:sub(1, pos - 1))
-end, "Delete to end of line")
+map("c", "<C-k>", function ()
+  local line = vim.fn.getcmdline()
+  local pos = vim.fn.getcmdpos()
+  vim.fn.setcmdline(line:sub(1, pos - 1))
+end, "Delete to end of line"
+)
 map("c", "<A-f>", "<S-Right>", "Forward word")
 map("c", "<A-b>", "<S-Left>", "Backward word")

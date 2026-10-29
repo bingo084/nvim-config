@@ -25,56 +25,52 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 
 local snippets = {
-	s(
-		{ trig = "code", name = "Code Block" },
-		fmt(
-			[[
+  s(
+    { trig = "code", name = "Code Block" },
+    fmt([[
                 ```{}
                 {}
                 ```
                 {}
-            ]],
-			{
-				c(1, {
-					t("bash"),
-					t("css"),
-					t("dockerfile"),
-					t("html"),
-					t("java"),
-					t("javascript"),
-					t("json"),
-					t("mermaid"),
-					t("mysql"),
-					t("nginx"),
-					t("properties"),
-					t("shell"),
-					t("text"),
-					t("yaml"),
-				}),
-				i(2, "code"),
-				i(0, ""),
-			}
-		)
-	),
-	s(
-		{ trig = "text", name = "Text Code Block" },
-		fmt(
-			[[
+            ]], {
+      c(1, {
+        t("bash"),
+        t("css"),
+        t("dockerfile"),
+        t("html"),
+        t("java"),
+        t("javascript"),
+        t("json"),
+        t("mermaid"),
+        t("mysql"),
+        t("nginx"),
+        t("properties"),
+        t("shell"),
+        t("text"),
+        t("yaml"),
+      }),
+      i(2, "code"),
+      i(0, ""),
+    })
+  ),
+  s(
+    { trig = "text", name = "Text Code Block" },
+    fmt(
+      [[
                 ```text
                 {}
                 ```
                 {}
-            ]],
-			{ i(1, "code"), i(0, "") }
-		)
-	),
-	s("ignoreLineLength", t("<!-- markdownlint-disable MD013 -->")),
+            ]], { i(1, "code"), i(0, "") }
+    )
+  ),
+  s("ignoreLineLength", t("<!-- markdownlint-disable MD013 -->")),
 }
 local autosnippets = {
-	s({ trig = "h(%d)", name = "Title", regTrig = true, hidden = false }, {
-		f(function(_, snip)
-			return string.rep("#", snip.captures[1]) .. " "
-		end, {}),
-	}),
+  s({ trig = "h(%d)", name = "Title", regTrig = true, hidden = false }, {
+    f(function (_, snip)
+      return string.rep("#", snip.captures[1]) .. " "
+    end, {}),
+  }),
 }
 return snippets, autosnippets

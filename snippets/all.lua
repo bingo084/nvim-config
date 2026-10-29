@@ -25,20 +25,19 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 
 local snippets = {
-	s(
-		"date",
-		f(function()
-			return os.date("%Y-%m-%d")
-		end)
-	),
-	s(
-		"time",
-		f(function()
-			return os.date("%Y-%m-%d %H:%M:%S")
-		end)
-	),
+  s(
+    "date",
+    f(function ()
+      return os.date("%Y-%m-%d")
+    end)
+  ),
+  s(
+    "time",
+    f(function ()
+      return os.date("%Y-%m-%d %H:%M:%S")
+    end)
+  ),
 }
 local autosnippets = {}
-
 
 return snippets, autosnippets

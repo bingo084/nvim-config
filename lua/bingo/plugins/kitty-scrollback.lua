@@ -1,10 +1,10 @@
---- @type LazySpec
+---@type LazySpec
 return {
-	"mikesmithgh/kitty-scrollback.nvim",
-	cmd = {
-		"KittyScrollbackGenerateKittens",
-		"KittyScrollbackCheckHealth",
-		"KittyScrollbackGenerateCommandLineEditing",
-	},
-	event = { "User KittyScrollbackLaunch" },
+  "mikesmithgh/kitty-scrollback.nvim",
+  cmd = {
+    "KittyScrollbackGenerateKittens",
+    "KittyScrollbackCheckHealth",
+    "KittyScrollbackGenerateCommandLineEditing",
+  },
+  event = { "User KittyScrollbackLaunch" },
 }
